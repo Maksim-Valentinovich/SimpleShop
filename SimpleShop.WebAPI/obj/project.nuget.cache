@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kSsPSwMghvIQdd8JuETQoDakM21UwnS6xth2kke1gxqNIOYg6KUwEWPRNahrkHEBd/+RXdRp0nYP3QmRDdKVJg==",
+  "dgSpecHash": "iJIbwmGWYEeAWMY8tE8XJ2cUiFqJHW6pyhRDFypdWDKohQURlbaaq3FDlcau7tGwpQgKABUSgN8F2Pqsr3Fa6Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.WebAPI\\SimpleShop.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\Alexandr\\Desktop\\Проекты\\SimpleShop\\SimpleShop.WebAPI\\SimpleShop.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alexandr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Alexandr\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",

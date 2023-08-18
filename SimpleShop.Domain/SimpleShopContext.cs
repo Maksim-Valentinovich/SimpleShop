@@ -16,6 +16,10 @@ namespace SimpleShop.Domain
 
         public DbSet<CategoryProduct> CategoryProducts { get; set; }
 
+        public DbSet<Client> Clients { get; set; }
+
+        public DbSet<PaymentType> PaymentTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CategoryProduct>().HasKey(x => new { x.ProductId, x.CategoryId });
