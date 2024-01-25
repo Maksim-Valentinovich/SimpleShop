@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Reset";
+}
+
+
+<div class="reset">
+    <div class="reset-info">
+        СБРОС ПАРОЛЯ
+    </div>
+    <div class="reset-form">
+        <label for="exampleInputPassword1" class="form-label">Телефон</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="reset-buttonts">
+        <div class="button-wrapper">
+            <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Index">Отмена</a></button>
+        </div>
+        <div class="button-wrapper">
+            <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ResetCode">Продолжить</a></button>
+        </div>
+    </div>
+</div>
+

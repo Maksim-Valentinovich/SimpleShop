@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container-home">
+        <div class="buttons">
+            <div class="buttons-dropdown">
+                <div class="button">
+                <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Города<i class="fa-solid fa-city"></i></button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Москва</a></li>
+                    <li><a class="dropdown-item" href="#">Санкт-Петербург</a></li>
+                    <li><a class="dropdown-item" href="#">Казань</a></li>
+                </ul>
+                </div>
+
+                <div class="button">
+                <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Клубы <i class="fa-solid fa-location-dot"></i></button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="devyatkino">Девяткино</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="murino">Мурино</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="kolpino">Колпино</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="shushary">Шушары</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="kudrovo">Кудрово</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="lenina">Ленина</a></li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="button-buy">
+                <a class="btn btn-lg" asp-area="" asp-controller="Home" asp-action="SignIn">Купить сейчас</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content-sale-image">
+                <a href="sale-image">
+                    <img src="https://www.fitnesshouse.ru/assets/cache/images/sale/September23/kvadrat-na-gl-standart-zamena-x-67b.jpg">
+                </a>
+            </div>
+           
+            <div class="content-info">
+                <div class="content-info-slogan">
+                    <h1>SIMPLE SHOP - ЭТО</h1>
+                </div>
+                
+                <div class="content-info-about">
+                    <div class="box">
+                        <span>14 </span><i class="fa-solid fa-house-circle-check"></i>
+                        <p>ГОРОДОВ В РОССИИ</p>
+                    </div>
+                    
+                    <div class="box">
+                        <span>71 </span><i class="fa-solid fa-users-line"></i>
+                        <p>КЛУБ ФЕДЕРАЛЬНОЙ СЕТИ</p>
+                    </div>
+                    
+                    <div class="box">
+                        <span>25+</span><i class="fa-solid fa-heart-pulse"></i>
+                        <p>ГРУППОВЫХ НАПРАВЛЕНИЙ</p>
+                    </div>
+                    
+                    <div class="box">
+                        <span>4 </span><i class="fa-solid fa-dumbbell"></i>
+                        <p>КЛУБА ПРЕМИУМ КЛАССА</p>
+                    </div>
+
+                <a class="btn btn-sm" asp-area="" asp-controller="Home" asp-action="SignIn">читать историю компании --></a>
+                </div>
+                
+                <div class="content-info-call">
+                    <div class="call-info">
+                        <p>Заказать обратный звонок по стоимости абонемента</p>
+                    </div>
+
+                    <div class="call-input-i">
+                        <label for="formGroupExampleInput" class="form-label">Введите имя</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Алексей">
+                    </div>
+
+                    <div class="call-input-i">
+                        <label for="formGroupExampleInput" class="form-label">Введите номер телефона</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="+7 999 999 99 99">
+                    </div>
+
+                    <div class="call-input-i">
+                        <label for="formGroupExampleInput" class="form-label">Выберите клуб</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Выбрать клуб">
+                    </div>
+
+                     <div class="button-call">
+                         <a class="btn btn-lg" asp-area="" asp-controller="Home" asp-action="SignIn">Заказать</a>
+                     </div>
+
+                    <div class="call-info-privacy">
+                        <p>Отправляя свои данные, вы даете согласие с Политикой конфиденциальности</p>
+                    </div>
+
+                </div>               
+            </div>
+        </div>
+        <div class="others">
+        <div class="others-job">
+            <div class="job-image">
+                <i class="fa-regular fa-handshake"></i>
+            </div>
+
+            <div class="job-text">Работа в компании</div>
+            <div class="job-textt">SIMPLE SHOP</div>
+
+            <a class="btn btn-sm" asp-area="" asp-controller="Home" asp-action="SignIn">Подробнее --></a>
+        </div>
+
+        <div class="others-banner">
+            <a href="sale-image">
+                <img src="https://files.salebot.pro/uploads/mini_landing_page_section/177197/attachment/1080%D1%85540.jpg">
+            </a>
+        </div>
+        </div>
+       
+</div>
+

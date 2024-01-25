@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj": {}
+    "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj": {
+    "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
         "projectName": "SimpleShop.Domain",
-        "projectPath": "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
+        "projectPath": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
         "packagesPath": "C:\\Users\\Alexandr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alexandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

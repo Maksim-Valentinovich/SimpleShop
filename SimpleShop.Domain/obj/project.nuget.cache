@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hq43rtfKMCBQ7h4UoHTYeVvKq808M6eYwiC0UG3iL6s/C2xIO1cYrNubBA7n/L4kKLHTcHPCTJ+lotxj2rKPNg==",
+  "dgSpecHash": "MuDMPWomV4ZnbpJ4sXTawnZUkmNMIaUGijAAiAg0WdA6KHjRwx3qvClgoEzW0ldR/NnKQsUPBQJv3HlgJABi/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alexandr\\Desktop\\1\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alexandr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Alexandr\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.9\\microsoft.entityframeworkcore.7.0.9.nupkg.sha512",

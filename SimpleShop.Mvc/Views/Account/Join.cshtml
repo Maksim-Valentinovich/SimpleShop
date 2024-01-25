@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Join";
+}
+
+<div class="join">
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail4">
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Пароль</label>
+            <input type="password" class="form-control" id="inputPassword4">
+        </div>
+
+        <div class="col-12">
+            <label for="inputUserFirstName" class="form-label">Имя</label>
+            <input type="text" class="form-control" id="inputUserFirstName" placeholder="">
+        </div>
+
+        <div class="col-12">
+            <label for="inputUserSecondName" class="form-label">Фамилия</label>
+            <input type="text" class="form-control" id="inputUserSecondName" placeholder="">
+        </div>
+
+        <div class="col-12">
+            <label for="inputUserPatronymic" class="form-label">Отчество</label>
+            <input type="text" class="form-control" id="inputUserPatronymic" placeholder="">
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputUserNumber" class="form-label">Номер телефона</label>
+            <input type="text" class="form-control" id="inputUserNumber">
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputGender" class="form-label">Пол</label>
+            <select id="inputGender" class="form-select">
+                <option selected>Выберите...</option>
+                <option>Мужской</option>
+                <option>Женский</option>n>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">Я ознакомлен(-на) и согласен(-на) с условиями Договора,  Правилами техники безопасности, <a asp-area="" asp-controller="Home" asp-action="Privacy">Правилами Клуба</a> и даю свое согласие  на обработку персональных данных.</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Регистрация</button>
+        </div>
+    </form>
+</div>

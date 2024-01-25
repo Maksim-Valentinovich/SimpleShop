@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleShop.WebAPI", "SimpleShop.WebAPI\SimpleShop.WebAPI.csproj", "{7C668467-42AC-4963-B892-0F51E419FD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleShop.Domain", "SimpleShop.Domain\SimpleShop.Domain.csproj", "{8903B635-13F8-4FF0-B74E-FE89BC28E242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleShop.Domain", "SimpleShop.Domain\SimpleShop.Domain.csproj", "{8903B635-13F8-4FF0-B74E-FE89BC28E242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleShop.Mvc", "SimpleShop.Mvc\SimpleShop.Mvc.csproj", "{D442DC15-3F10-423D-9917-D56C606E5DD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8903B635-13F8-4FF0-B74E-FE89BC28E242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8903B635-13F8-4FF0-B74E-FE89BC28E242}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8903B635-13F8-4FF0-B74E-FE89BC28E242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D442DC15-3F10-423D-9917-D56C606E5DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D442DC15-3F10-423D-9917-D56C606E5DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D442DC15-3F10-423D-9917-D56C606E5DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D442DC15-3F10-423D-9917-D56C606E5DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
