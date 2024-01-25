@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SimpleShop.Mvc.Areas.Store.ViewModels.ProductInClubViewModel>
+
+<div class="list-group">
+    @foreach(var club in Model)
+    {
+        <button class="choose-club" data-club="@club.ClubId" data-product="@club.ProductId"> @club.ClubName </button>
+    }
+</div>
+
+<script>
+    $(".choose-club").click(function () {
+        let clubId = $(this).data("club")
+        let productId = $(this).data("product")
+        window.location.href = "http://localhost:5255/Store/Order/Index?productId=" + productId + "&clubId=" + encodeURIComponent(clubId);
+    })
+</script>

@@ -1,0 +1,40 @@
+﻿@using SimpleShop.Mvc.ViewModels;
+@model CityViewModel
+
+<div class="location">
+    <div class="location-title">ВАШ ГОРОД @Model.Name ?</div>
+    <div class="location-buttons">
+        <button class="button-agree">Да</button>
+        <button class="button-disagree">Нет</button>
+    </div>
+</div>
+       
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(".button-agree").click(function () {
+        let cityId = "1";
+        $.ajax({
+            url: 'Home/CookieUpdate?cityId=' + cityId,
+            type: 'GET',
+            dataType: 'html',
+            success: function () {
+                window.location.href = "http://localhost:5255/Home/Index";
+            },
+            error: function (e) { }
+        })
+    })
+</script>
+<script>
+    $(".button-disagree").click(function () {
+        $.ajax({
+            url: 'Home/CookieNoSPB',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                window.location.href = "http://localhost:5255/Home/Index";
+            },
+            error: function (e) { }
+        })
+    })
+</script>

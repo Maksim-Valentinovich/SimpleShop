@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SimpleShop.Mvc.ViewModels.CoachesViewModel>
+
+<div class="club-content-info">
+    <h1><a name="schedule_link">ТРЕНЕРЫ ФИТНЕС-КЛУБА</a></h1>
+    <h1>SIMPLE-SHOP @Model.First().ClubName</h1>
+</div>
+
+<h2>ТРЕНЕРЫ ТРЕНАЖЕРНОГО ЗАЛА:</h2>
+<div class="club-coaches-group">
+    @foreach (var coach in Model.Where(c => c.CategoryId == 1))
+    {
+        <div class="treners" style="background-image: url(@coach.PhotoLink);  background-position:center; ">
+            <div>@coach.Name</div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Training">Купить тренировку</a> </div>
+        </div>
+    }
+</div>
+<h2>ТРЕНЕРЫ ВОДНОГО КОМПЛЕКСА:</h2>
+<div class="club-coaches-group">
+    @foreach (var coach in Model.Where(c => c.CategoryId == 2))
+    {
+        <div class="treners" style="background-image: url(@coach.PhotoLink);  background-position:center; background-size:cover; ">
+            <div>@coach.Name</div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Training">Купить тренировку</a> </div>
+        </div>
+    }
+</div>
+<h2>ТРЕНЕРЫ ГРУППОВЫХ ЗАНЯТИЙ:</h2>
+<div class="club-coaches-group">
+    @foreach (var coach in Model.Where(c => c.CategoryId == 3))
+    {
+        <div class="treners" style="background-image: url(@coach.PhotoLink); background-position:center;">
+            <div>@coach.Name</div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Training">Купить тренировку</a> </div>
+        </div>
+    }
+</div>

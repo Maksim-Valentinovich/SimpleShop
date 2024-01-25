@@ -1,0 +1,23 @@
+﻿@model IEnumerable<SimpleShop.Mvc.ViewModels.CityViewModel>
+
+<div class="list-group">
+    @foreach(var city in Model)
+    {
+        <button class="choose-city" data-city="@city.Id">@city.Name </button>
+    }
+</div>
+
+<script>
+    $(".choose-city").click(function () {
+        let cityId = $(this).data("city")
+        $.ajax({
+            url: 'CookieUpdate?cityId=' + cityId,
+            type: 'GET',
+            dataType: 'html',
+            success: function () {
+                window.location.href = "http://localhost:5255/Home/Index";
+            },
+            error: function (e) { }
+        })
+    })
+</script>

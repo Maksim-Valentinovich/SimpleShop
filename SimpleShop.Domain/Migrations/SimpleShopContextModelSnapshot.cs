@@ -22,7 +22,7 @@ namespace SimpleShop.Domain.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Category", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clients.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,40 +30,12 @@ namespace SimpleShop.Domain.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("Birhday")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.CategoryProduct", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ProductId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryProducts");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<byte>("Age")
-                        .HasColumnType("smallint");
 
                     b.Property<bool>("IsMan")
                         .HasColumnType("boolean");
@@ -72,7 +44,14 @@ namespace SimpleShop.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Patronymic")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -85,7 +64,47 @@ namespace SimpleShop.Domain.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Club", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.CategoryPeople", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoriesPeople");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.Club", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,11 +116,18 @@ namespace SimpleShop.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("City")
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("DisplayName")
+                    b.Property<string>("GroupLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GumLink")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -119,6 +145,10 @@ namespace SimpleShop.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("SwimLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<TimeSpan>("WeekendsFinish")
                         .HasColumnType("interval");
 
@@ -130,7 +160,56 @@ namespace SimpleShop.Domain.Migrations
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Order", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.ClubProduct", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClubId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ProductId", "ClubId");
+
+                    b.HasIndex("ClubId");
+
+                    b.ToTable("ClubProducts");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.Coach", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryCoachId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClubId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhotoLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TelephoneNubmer")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coaches");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Orders.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,7 +221,7 @@ namespace SimpleShop.Domain.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsOnline")
                         .HasColumnType("boolean");
@@ -157,39 +236,7 @@ namespace SimpleShop.Domain.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClubId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Count")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClubId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.ProductOrder", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Orders.ProductOrder", b =>
                 {
                     b.Property<int>("ProductId")
                         .HasColumnType("integer");
@@ -213,15 +260,162 @@ namespace SimpleShop.Domain.Migrations
                     b.ToTable("Subscriptions");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.CategoryProduct", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Products.Category", b =>
                 {
-                    b.HasOne("SimpleShop.Domain.Entities.Category", "Category")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Info")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PictureLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Products.CategoryProduct", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryProducts");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Products.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Count")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CountDay")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CountPeople")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CountVisit")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.ShopCards.ShopCardItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ShopCardId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("productId");
+
+                    b.ToTable("ShopCardItem");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.ClubProduct", b =>
+                {
+                    b.HasOne("SimpleShop.Domain.Entities.Clubs.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Club");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Orders.Order", b =>
+                {
+                    b.HasOne("SimpleShop.Domain.Entities.Clients.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Orders.ProductOrder", b =>
+                {
+                    b.HasOne("SimpleShop.Domain.Entities.Orders.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("SimpleShop.Domain.Entities.Products.CategoryProduct", b =>
+                {
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SimpleShop.Domain.Entities.Product", "Product")
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -232,45 +426,15 @@ namespace SimpleShop.Domain.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Order", b =>
+            modelBuilder.Entity("SimpleShop.Domain.Entities.ShopCards.ShopCardItem", b =>
                 {
-                    b.HasOne("SimpleShop.Domain.Entities.Client", "Client")
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "product")
                         .WithMany()
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("productId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("SimpleShop.Domain.Entities.Club", "Club")
-                        .WithMany()
-                        .HasForeignKey("ClubId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Club");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.ProductOrder", b =>
-                {
-                    b.HasOne("SimpleShop.Domain.Entities.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SimpleShop.Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
+                    b.Navigation("product");
                 });
 #pragma warning restore 612, 618
         }

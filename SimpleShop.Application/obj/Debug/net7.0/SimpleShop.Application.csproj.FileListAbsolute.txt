@@ -1,0 +1,15 @@
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\bin\Debug\net7.0\SimpleShop.Application.deps.json
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\bin\Debug\net7.0\SimpleShop.Application.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\bin\Debug\net7.0\SimpleShop.Application.pdb
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\bin\Debug\net7.0\SimpleShop.Domain.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\bin\Debug\net7.0\SimpleShop.Domain.pdb
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.csproj.AssemblyReference.cache
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.AssemblyInfoInputs.cache
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.AssemblyInfo.cs
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.csproj.CoreCompileInputs.cache
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.csproj.CopyComplete
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\refint\SimpleShop.Application.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\SimpleShop.Application.pdb
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Application\obj\Debug\net7.0\ref\SimpleShop.Application.dll

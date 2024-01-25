@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SimpleShop.Mvc.Areas.Store.ViewModels.ProductViewModel>
+
+@{await Html.RenderPartialAsync("_SaleImage");}    
+
+<div class="home-container">
+    <div class="menu-container">
+        @{await Html.RenderPartialAsync("_Menu");}
+    </div>
+
+    <div class="price-container">
+        @foreach (var product in Model)
+        {
+            <div class="price-box">
+                <div><h5>@product.Name</h5>@product.Description </div>
+                <div class="validity-period">@product.CountDay дней</div>
+                <div class="validity-price">@product.Price руб</div>
+                <button class="price-button-buy" data-product="@product.Id"> Выбрать клуб </button>
+            </div>
+        }
+    </div>
+        
+    <div class="modal" tabindex="-1" id="choose-club">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Выберите клуб</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script>
+    $(".price-button-buy").click(function () {
+        let productId = $(this).data("product")
+        $.ajax({
+            url: 'ChooseClubModal?productId=' + productId,
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#choose-club div.modal-body').html(content);
+                $('#choose-club').modal('show')
+            },
+            error: function (e) { }
+        })
+    })
+</script>

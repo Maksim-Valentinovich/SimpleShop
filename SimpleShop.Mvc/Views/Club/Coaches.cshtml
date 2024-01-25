@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SimpleShop.Mvc.ViewModels.StartViewModel>
+
+@{
+    ViewData["Title"] = "Coaches";
+}
+
+<div class="coasches-content">
+    <div class="club-coaches">
+
+        <div class="schedule-info">
+            <div class="schedule-info-text">
+                <h1>ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ</h1>
+                <h5>
+                    Персональный тренинг - индивидуальные программы тренировок с персональным тренером. Особенность таких тренеровок заключаются в том, 
+                    что тренер учитывает все индивидуальные цели, потребности и особенности организма спортсмена, что позволяет добиться максимального 
+                    эффекта от занятий.
+                </h5>
+            </div>
+            <div class="schedule-info-image">
+                <img src="https://www.dorjblog.com/wp-content/uploads/2022/03/online-booking-software-fitness-trainers.png">
+            </div>
+        </div>
+
+        <div class="schedule-search">
+            <h1>Найди своего тренера</h1>
+            <div class="search-parametrs">
+                <div class="buttons">
+                    <div class="buttons-dropdown">
+                        <div class="button"><button class="change-city">@Model.First().CityName<i class="fa-solid fa-location-dot"></i></button></div>
+                        <div class="button">
+                            <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Выберите клуб<i class="fa-solid fa-city"></i></button>
+                            <ul class="dropdown-menu">
+                                @foreach (var club in Model)
+                                {
+                                    <li><a class="dropdown-item" data-club="@club.ClubId">@club.ClubDisplayName</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="buttons-dropdown">
+                        <button class="button-see" data-clubs="???">Подобрать</button>
+                        <button class="button">Сбросить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="club-coaches-partial" id="coaches">
+            <div class="partial-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script>
+    $(".dropdown-item").click(function () {
+        let clubId = $(this).data("club")
+        $.ajax({
+            url: 'CategoryCoaches?clubId=' + clubId,
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#coaches div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    })
+</script>
+
+
+@* <script>
+    $(".dropdown-item").click(function () {
+        let clubId = $(this).data("club")
+        $(this).closest(".button-see").data('clubs', clubId);
+    })
+</script> *@
+

@@ -1,45 +1,35 @@
-﻿@{
+﻿@model IEnumerable<SimpleShop.Mvc.ViewModels.StartViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-
+    
 <div class="container-home">
         <div class="buttons">
             <div class="buttons-dropdown">
+                <div class="button"><button class="change-city">@Model.First().CityName <i class="fa-solid fa-location-dot"></i></button></div>
                 <div class="button">
-                <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Города<i class="fa-solid fa-city"></i></button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Москва</a></li>
-                    <li><a class="dropdown-item" href="#">Санкт-Петербург</a></li>
-                    <li><a class="dropdown-item" href="#">Казань</a></li>
-                </ul>
+                    <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Клубы<i class="fa-solid fa-city"></i></button>
+                    <ul class="dropdown-menu">
+                        @foreach (var club in Model)
+                        {
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-clubId="@club.ClubId">@club.ClubDisplayName</a></li>
+                        }
+                    </ul>
                 </div>
-
-                <div class="button">
-                <button class="btn dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">Клубы <i class="fa-solid fa-location-dot"></i></button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="devyatkino">Девяткино</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="murino">Мурино</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="kolpino">Колпино</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="shushary">Шушары</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="kudrovo">Кудрово</a></li>
-                    <li><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Index" asp-route-name="lenina">Ленина</a></li>
-                </ul>
-                </div>
+                <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule" asp-route-name="@Model.First().CityName" >Расписание<i class="fa-solid fa-list-check"></i></a></div></div>
+            <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.First().CityName">Тренеры<i class="fa-solid fa-person-circle-check"></i></a></div></div>
+                <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="Store" asp-controller="Home" asp-action="Index">Акции<i class="fa-solid fa-burst"></i></a></div></div>
             </div>
-
-            <div class="button-buy">
-                <a class="btn btn-lg" asp-area="" asp-controller="Home" asp-action="SignIn">Купить сейчас</a>
-            </div>
+            <div class="button-buy"><a class="btn btn-lg" asp-area="Store" asp-controller="Home" asp-action="Index">Купить сейчас</a></div>
         </div>
-
+        <div class="question" id="question"><div class="location-content"></div></div>
         <div class="content">
             <div class="content-sale-image">
                 <a href="sale-image">
                     <img src="https://www.fitnesshouse.ru/assets/cache/images/sale/September23/kvadrat-na-gl-standart-zamena-x-67b.jpg">
                 </a>
             </div>
-           
             <div class="content-info">
                 <div class="content-info-slogan">
                     <h1>SIMPLE SHOP - ЭТО</h1>
@@ -118,6 +108,105 @@
             </a>
         </div>
         </div>
+
+    <div class="modal" tabindex="-1" id="choose-city">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Выберите город</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
        
 </div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(".change-city").click(function () {
+        $.ajax({
+            url: 'ChooseCityModal',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#choose-city div.modal-body').html(content);
+                $('#choose-city').modal('show');
+            },
+            error: function (e) { }
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'CookieCheck2',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.dir(data);
+            },
+            error: function (jqXHR, exception) {
+                if (jqXHR.status == 200) {
+                    window.location.href = "http://localhost:5255/Home/Index";
+                }
+                else if (jqXHR.status == 404) {
+                    $.ajax({
+                        url: 'ChooseCityModal',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: function (content) {
+                            $('#choose-city div.modal-body').html(content);
+                            $('#choose-city').modal('show');
+                        },
+                        error: function (e) { }
+                    })
+                }
+                else (jqXHR.status == 400)
+                {
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            $.ajax({
+                                url: 'Home/AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + + encodeURIComponent(position.coords.longitude),
+                                type: 'GET',
+                                dataType: 'html',
+                                success: function (content) {
+                                    $('#question div.location-content').html(content);
+                                },
+                                error: function (e) { }
+                            });
+                        }
+                    );
+                }
+            }
+        })
+    })
+</script>
+
+
+@* <script>
+    $(document).ready(function () {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                alert('Последний раз вас засекали здесь: ' + position.coords.latitude + ", " + position.coords.longitude);
+                $.ajax({
+                    url: 'AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + + encodeURIComponent(position.coords.longitude),
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function () {
+                        window.location.href = "http://localhost:5255/Home/Index";
+                    },
+                    error: function (e) { }
+                });
+            }
+        );
+    })
+</script> *@
+
 

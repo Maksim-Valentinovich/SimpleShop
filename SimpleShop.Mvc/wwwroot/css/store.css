@@ -1,0 +1,482 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: #DADADA;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 0px;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+}
+.home-container {
+    display: flex;
+    flex-direction: row;
+    margin:0px;
+    padding:0px;
+}
+
+/*Шапка*/
+.header {
+    background: #42474D;
+    color: #fff;
+}
+.container-nav{
+    margin:0px 100px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 21px 0px;
+    width: 100%;
+}
+.navbar-phone {
+    font-size: 21px;
+    font-weight: bold;
+    font-family: 'Oxygen', sans-serif;
+}
+.navbar-logo {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 35px;
+    text-transform: uppercase;
+}
+.navbar-logo i {
+    transform: rotate(90deg);
+}
+.navbar-account {
+    font-family: 'Oxygen', sans-serif;
+    color: white;
+    font-size: 21px;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+/*Шапка*/
+
+
+/*Картинка скидки*/
+.sale-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.image-position {
+    display: flex;
+    flex-direction: column;
+}
+/*Картинка скидки*/
+
+
+/*Футер*/
+.container-footer {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 120px;
+}
+.footer-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+.footer-link-logo {
+    font-weight: bold;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 20px;
+}
+.footer-link-logo i {
+    transform: rotate(90deg);
+}
+.footer-link {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+.messange-logo i {
+    font-size: 45px;
+}
+.footer-documettation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.footer-documentation-social {
+    font-size: 30px;
+}
+.footer-documentation-link a {
+    font-size: 14px;
+    color: darkgray;
+}
+/*Футер*/
+
+
+/*Меню*/
+.menu-container {
+    width: 280px;
+}
+.store-menu {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    text-align:left;
+    background-color: #212529;
+    padding: 50px 0px 0px 10px;
+}
+.menu-point {
+    margin: 15px 0px;
+}
+.menu-point i {
+    color: white;
+    font-size: 20px;
+}
+.menu-point a {
+    margin:0px 10px;
+    font-size: 18px;
+    color: white;
+    text-decoration:none;
+}
+/*Меню*/
+
+
+/*Поле предложений*/
+.price-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 15px;
+    width:79%;
+}
+.price-box {
+    margin: 10px 0px;
+    padding: 20px 0px 15px 0px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    text-align: center;
+    width: 280px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 0.1em 0.1em 6px rgba(122,122,122,0.5);
+    outline: 1px solid darkgray;
+}
+.validity-price {
+    margin: auto auto 15px auto;
+    font-size: 20px;
+    color: #000B89;
+}
+.price-button-buy {
+    color:white;
+    width: 150px;
+    height: 45px;
+    margin: auto auto 0px auto;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #5C636A;
+}
+.price-button-buy a {
+    color: white;
+    text-decoration: none;
+}
+/*Поле предложений*/
+
+
+/*Выбор клуба*/
+.modal-header {
+    color:black;
+}
+.list-group a {
+    color: black;
+    text-decoration: none;
+}
+.reset-buttonts {
+    display:flex;
+    padding: 20px 0px 0px 0px;
+}
+.choose-club {
+    width: 400px;
+    height: 40px;
+    margin: 1px auto;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color:white;
+}
+/*Выбор клуба*/
+
+
+/*Информация о товаре*/
+.order-container {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding:30px 10px;
+    width:79%;
+}
+.order-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.order-image img {
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 20px;
+}
+
+.button-buy-product {
+    color: white;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    padding: 5px 10px;
+    width: 190px;
+    height: 60px;
+    background: #CD4141;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 15px;
+}
+.order-info {
+    color: #42474D;
+    padding:0px 20px;
+}
+.order-info-slogan {
+    font-weight: bold;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 30px;
+    color: #9FA0A2;
+}
+.order-info-price {
+    display: flex;
+    flex-direction: row;
+}
+.order-box {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Oxygen', sans-serif;
+    color: #42474D;
+}
+.order-info-warning {
+    font-size: 18px;
+    text-align: justify;
+}
+
+
+.additional-offers {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px;
+}
+.offers-slogan {
+    font-weight: bold;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 37px;
+    color: #9FA0A2;
+    text-align: center;
+}
+.offers-package {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+.price-box i {
+    color: darkgray;
+    margin: 10px 0px;
+    font-size: 60px;
+}
+.button-basket-modal {
+    width: max-content;
+    height: 45px;
+    margin: 0px 10px;
+    padding:0px 10px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #5C636A;
+}
+.button-basket-modal a {
+    color:white;
+}
+.basket-modal-buttonts {
+    display: flex;
+    flex-direction:row;
+}
+/*Информация о товаре*/
+
+
+/*Корзина*/
+.basket-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.basket-content {
+    width: 79%;
+    color: black;
+    padding: 25px;
+}
+
+/*.order {
+    color: #42474D;
+}*/
+
+/*.order-info {
+    color: black;
+}*/
+
+
+.order-list {
+    box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.list-position {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+    padding:15px 0px;
+}
+
+.pisition-info{
+    width:45%;
+}
+.position-club {
+    width: 35%;
+}
+.position-price {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+.list-price{
+    text-align:right;
+}
+.list-price span {
+    color: black;
+    margin: 0px 15px;
+    font-size: 35px;
+}
+.buttonts-next {
+    padding:25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/*Регистрация*/
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding: 30px 15px;
+    width: 79%;
+}
+.registration-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 0px;
+    height: min-content;
+}
+
+
+.personal-info {
+    margin: 20px 0px;
+    padding: 20px 30px;
+    box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
+    border-radius: 10px;
+}
+
+
+.list-offers {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+
+.order-card {
+    width:95%;
+    margin: 10px 0px 20px 10px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
+    border-radius: 10px;
+}
+.order-card-point {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 30px 0px 0px;
+}
+.list-price {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #F9E000;
+}
+/*Регистрация*/
+
+/*Метод оплаты*/
+.payment-method {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
+    border-radius: 10px;
+}
+
+.method-point {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    padding: 30px 0px;
+    font-size: 55px;
+}
+/*Метод оплаты*/
+
+
+.finish-container{
+    color:black;
+}
+
+
+
+
+
+
+

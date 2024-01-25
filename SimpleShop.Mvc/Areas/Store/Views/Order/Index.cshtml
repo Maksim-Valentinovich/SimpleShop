@@ -1,0 +1,104 @@
+﻿@using SimpleShop.Mvc.Areas.Store.ViewModels;
+@model ProductViewModel
+
+@{ViewData["Title"] = "OrderInfo";}
+
+
+<div class="home-container">
+
+    <div class="menu-container">
+        @{await Html.RenderPartialAsync("_Menu");}
+    </div>
+
+    <div class="order-container">
+        <div class="order-content">
+            <div class="order-image">
+                <a href="order-image">
+                    <img src="@Model.PictureLink" width="450" height="400">
+                </a>
+            </div>
+
+            <div class="order-info">
+                <div class="order-info-slogan">
+                    @Model.Name
+                </div>
+                <div class="order-info-slogan">
+                    Simple Shop @Model.ClubName
+                </div>
+
+                <div class="order-info-price">
+                    <div class="order-box">
+                        @Model.Price руб
+                    </div>
+                    <button class="button-buy-product" data-ids="@Model.Id">Купить</button>
+                </div>
+                <div class="order-info-warning">
+                    @Model.Info
+                </div> 
+            </div>
+
+            <div class="modal" tabindex="-1" id="basket-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Товары в корзине</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <div class="basket-modal-buttonts">
+                                <div class="button-basket-modal"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Discount">Продолжить покупки</a> </div>
+                                <div class="button-basket-modal"><a class="btn" asp-area="Store" asp-controller="Order" asp-action="Registration">Перейти к оформлению</a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="additional-offers">
+            <div class="offers-slogan">Мы рекомендуем</div>
+
+            <div class="additional-partial" id="additional">
+                <div class="partial-content"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(".button-buy-product").click(function () {
+        let productId = $(this).data("ids")
+        $.ajax({
+            url: 'BasketModal?productId=' + productId,
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#basket-modal div.modal-body').html(content);
+                $('#basket-modal').modal('show')
+            },
+            error: function (e) { }
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'Recommendations',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#additional div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    })
+</script>
+
+
+
+

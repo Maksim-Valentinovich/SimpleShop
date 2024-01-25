@@ -1,11 +1,12 @@
 ﻿<div class="account-menu">
+    <div class="menu-logo">Simple<i class="fa-solid fa-dumbbell"></i>Shop</div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-address-card"></i><a asp-area="" asp-controller="Client" asp-action="Index">МОЙ ПРОФИЛЬ</a> </button>
+        <button class="btn navbar-account"><i class="fa-solid fa-address-card"></i><a asp-area="PersonalAccount" asp-controller="Home" asp-action="Index">МОЙ ПРОФИЛЬ</a></button>
     </div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-basket-shopping"></i><a asp-area="" asp-controller="Client" asp-action="Purchases">МОИ ПОКУПКИ</a> </button>
+        <button class="btn navbar-account"><i class="fa-solid fa-basket-shopping"></i><a asp-area="PersonalAccount" asp-controller="Basket" asp-action="Index">МОИ ПОКУПКИ</a></button>
     </div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-circle-info"></i><a asp-area="" asp-controller="Client" asp-action="Help">ПОМОЩЬ</a> </button>
+        <button class="btn navbar-account"><i class="fa-solid fa-circle-info"></i><a asp-area="PersonalAccount" asp-controller="Help" asp-action="Index">ПОМОЩЬ</a></button>
     </div>
 </div>

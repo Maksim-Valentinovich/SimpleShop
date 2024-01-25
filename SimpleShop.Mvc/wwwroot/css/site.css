@@ -23,25 +23,19 @@ body {
     background-attachment: fixed;
     background-size: cover;
     color: #fff;
-}
-.footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 335px;
+
 }
 
+/*Шапка*/
 .header {
     background: #42474D;
     color: #fff;
 }
-
 .navbar{
     display:flex;
     justify-content:space-between;
-    margin:0;
-    padding:21px 0;
+    margin:0px;
+    padding:21px 0px;
     width:100%;
 }
 .navbar-phone {
@@ -54,8 +48,8 @@ body {
     font-size: 35px;
     text-transform: uppercase;
 }
-.navbar-logo i{
-    transform:rotate(90deg);
+.navbar-logo i {
+    transform: rotate(90deg);
 }
 .navbar-account {
     font-family: 'Oxygen', sans-serif;
@@ -66,22 +60,27 @@ body {
     color: white;
     text-decoration:none;
 }
+/*Шапка*/
+
+/*Главная страница*/
 
 .buttons {
     display: flex;
     justify-content: space-between;
-    margin: 35px 0px;
+    padding: 35px 0px;
 }
 .buttons-dropdown {
     display: flex;
 }
 .button {
-
     display: flex;
     background: #E2F0FB;
     margin: 0px 30px 0px 0px;
     box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
     border-radius: 15px;
+}
+.button i{
+    margin:0px 10px;
 }
 .button-buy {
     display: flex;
@@ -94,9 +93,34 @@ body {
     box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
     border-radius: 15px;
 }
-
 .button-buy a{
     color:white;
+}
+.change-city {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E2F0FB;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 15px;
+    font-size: 19px;
+    color:black;
+    padding:0px 15px;
+}
+
+.modal-title {
+    color: black;
+}
+.choose-city {
+    width: 400px;
+    height: 40px;
+    margin: 1px auto;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: white;
 }
 
 
@@ -210,6 +234,8 @@ body {
     box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
     border-radius: 20px;
 }
+/*Главная страница*/
+
 
 .sign {
     margin: 30px;
@@ -224,11 +250,22 @@ body {
     justify-content: center;
     color: #42474D;
 }
+.join-form{
+    width:600px;
+}
 .privacy {
     margin: 30px;
     color: #42474D;
 }
 
+/*Футер*/
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 335px;
+}
 .container-footer {
     display: flex;
     flex-direction: column;
@@ -269,6 +306,10 @@ body {
     font-size: 14px;
     color: darkgray;
 }
+/*Футер*/
+
+
+/*Страница клуба*/
 .club-content{
     color:black;
 }
@@ -291,88 +332,122 @@ body {
     margin: 30px auto;
     display: flex;
     flex-direction: row;
+    justify-content:center;
     flex-wrap: wrap;
-    width: 500px;
-    height: 150px;
-    border-radius: 20px;
+    width: 750px;
 }
 .menu-box {
-    padding:20px 0px;
-    text-align:center;
+    padding: 20px 0px;
+    text-align: center;
     width: 250px;
-    height: 74px;
-    outline: 2px solid #fff;
-    border-radius: 20px;
+    outline: 2px solid darkgray;
+    background-color: #161616;
 }
+.menu-box a {
+    color: white;
+    text-decoration: none;
+}
+
 .club-price {
     display: flex;
     flex-direction: row;
+    flex-wrap:wrap;
     justify-content: space-around;
-    margin: 50px 0px;
+    padding: 30px 0px;
 }
 .club-description {
+    padding: 20px 0px 0px 0px;
     display: flex;
     flex-direction: column;
-    justify-content:center;
     color: white;
     text-align: center;
-    width: 180px;
-    height: 300px;
+    width: 280px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
+/*    outline: 1px solid darkgray;*/
     background-color: #42474D;
-    border-radius: 10px;
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
-    border-radius: 20px;
 }
 .validity-period {
     width: 60%;
     outline: 2px solid #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     margin:auto;
 }
 .description-button-buy {
-    width:120px;
+    width:max-content;
     margin: auto;
-    color: white;
+    padding:5px 15px;
     background-color: #E2F0FB;
-    border-radius: 20px;
+    border-radius: 5px;
+}
+.description-button-buy a {
+    color:black;
+    text-decoration: none;
 }
 
-.presentation-gum {
-    margin:20px 0px;
-    height: 600px;
-    background: url(https://fitnesstop.ru/assets/images/products/857/susanin-fitness-zhemchuzhnaya-plaza-4.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.club-presentation{
+    padding:30px 0px;
+}
+/*.presentation-gum {
+    margin: 20px 0px;
+    background: url(https://fitnesstop.ru/assets/images/products/857/susanin-fitness-zhemchuzhnaya-plaza-4.jpg) center center no-repeat;
+    background-size: cover !important;
     background-attachment: local;
 }
-
 .presentation-group {
     margin: 20px 0px;
-    height: 600px;
-    background: url(https://forma-fs.by/assets/cache/images/uslugi/dsc_1662-968x504-692.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: url(https://forma-fs.by/assets/cache/images/uslugi/dsc_1662-968x504-692.jpg) center center no-repeat;
+    background-size: cover !important;
     background-attachment: local;
 }
 .presentation-swimming {
     margin: 20px 0px;
-    height: 600px;
-    background: url(https://i8.photo.2gis.com/images/branch/0/30258560046473617_18c1.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: url(https://i8.photo.2gis.com/images/branch/0/30258560046473617_18c1.jpg) center center no-repeat;
+    background-size: cover !important;
     background-attachment: local;
-}
+}*/
 
-.presentation-text {
-    padding: 400px 100px 0px 50px;
+/*Расписание*/
+.club-content-info {
+    padding: 30px 0px;
+    color: #42474D;
+}
+.schedule-info {
+    padding: 20px 0px;
+    display: flex;
+    height:350px;
+}
+.schedule-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 30px 0px 0px;
+    width: 60%;
+    color: #42474D;
+}
+.schedule-info-text h1 {
+    font-size: 65px;
+}
+.schedule-info-image{
+    width:40%;
+}
+.schedule-info-image img {
+    width: 100%;
+    height: 300px;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 20px;
+}
+.schedule-search {
+    margin: 20px 0px;
     color: white;
+    background-color: #90959A;
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
 }
-
-.club-schedule{
-    margin:30px 0px;
+.club-schedule {
+    padding: 30px 0px;
 }
 .table-date {
     display: flex;
@@ -416,222 +491,142 @@ body {
     outline: 2px solid black;
 }
 
-
-.club-coaches {
-    display: flex;
-    flex-direction: column;   
-}
-.club-coaches-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 30px
-}
-.treners {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding:20px 0px;
-    color: white;
-    text-align: center;
-    width: 180px;
-    height: 300px;
-    background-color: #42474D;
-    border-radius: 10px;
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
-    border-radius: 20px;
-}
-.treners i {
-    margin:auto;
-    font-size: 100px;
-}
-
-.training {
-    display: flex;
-    flex-direction: column;
-    color: black;
-}
-
-.training-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-.training-image img {
-    width: 500px;
-    height: 450px;
-    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
-    border-radius: 20px;
-    margin:30px 0px;
-}
-
-.training-info {
-    width: 710px;
-    height: 450px;
-    margin: 20px 0px 30px 0px;
-    color: #42474D;
-}
-.training-info-slogan {
-    font-weight: bold;
-    font-family: 'Oxygen', sans-serif;
-    font-size: 37px;
-    color: #9FA0A2;
-    text-align: center;
-}
-
-.training-info-about {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
-    border-radius: 20px;
-    background: #E2F0FB;
-}
-
-.training-box {
-    padding: 0px 0px 0px 50px;
-    font-size: 50px;
-    font-weight: bold;
-    font-family: 'Oxygen', sans-serif;
-    width: 350px;
-    height: 150px;
-    color: #42474D;
-}
-.training-box span {
-    font-size: 70px;
-}
-
-.training-box p {
-    font-size: 15px;
-}
-.training-info-warning{
-    margin:30px 0px;
-    font-size:18px;
-    text-align:center;
-}
-
-.training-description {
-    display: flex;
-    flex-direction: column;
-}
-.description-slogan {
-    font-weight: bold;
-    font-family: 'Oxygen', sans-serif;
-    font-size: 37px;
-    color: #9FA0A2;
-    padding:0px 30px;
-}
-
-.description-package-training {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 30px 0px;
-}
-
-.package {
+/*Презентация тренировок*/
+.club-training {
     padding: 30px 0px;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    text-align: center;
-    width: 180px;
-    height: 300px;
-    background-color: #42474D;
-    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
-    border-radius: 10px;
+}
+.carousel-item img {
+    height: 700px;
+    filter: brightness(75%);
 }
 
-.package i {
-    margin: 30px 0px;
-    font-size: 80px;
-}
 
-.club-price-service {
+/*.club-price-service {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:30px 0px;
+    padding: 30px 0px;
 }
 .services-position {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin: 30px 0px;
-}
-
-.account {
+}*/
+.service-image {
     display: flex;
     flex-direction: row;
-}
-.account-menu {
-    background-color: #07334B;
-    padding: 50px 0px 0px 20px;
-}
-.menu-point {
-    margin:15px 0px;
-}
-.menu-point i {
-    font-size: 30px;
-}
-.menu-point a {
-    margin:0px 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
     color: white;
-    text-decoration:none;
+    padding: 30px 0px;
 }
-
-.account-content {
-    color: #9CADB7;
+.service-image-one {
+    width: 600px;
+    height: 450px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url(https://avatars.dzeninfra.ru/get-zen_doc/5098316/pub_639ddc8bb8faed0d4f4259d5_639dde4e974a534fb9456d05/scale_1200);
+    background-size: cover !important;
+    background-position: center;
+    margin: 20px 0px;
+    border-radius: 20px;
+    padding: 320px 0px 0px 50px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
 }
-.account-user-about {
-    display: flex;
-    justify-content: space-between;
-    width: 880px;
-    height: 70px;
-    padding: 20px 0px 0px 50px;
+.service-image-two {
+    width: 600px;
+    height: 450px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url(https://uhod-za.ru/wp-content/uploads/b/1/7/b171175f36175f22bd4c4cce6302388a.jpg);
+    background-size: cover !important;
+    background-position: center;
+    margin: 20px 0px;
+    border-radius: 20px;
+    padding: 320px 0px 0px 50px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
 }
-.user-about-name {
-    font-size: 20px;
+.service-image-three {
+    width: 600px;
+    height: 450px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url(https://gwfit.ru/wp-content/uploads/2021/09/t5mw5hq9xpovyskde0ad4crgyl57zevy.jpeg);
+    background-size: cover !important;
+    background-position: center;
+    margin: 20px 0px;
+    border-radius: 20px;
+    padding: 320px 0px 0px 50px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
 }
-.user-about-name span {
-    font-size: 15px;
+.service-image-four {
+    width: 600px;
+    height: 450px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url(https://eda.yandex/images/1387779/7d2ae8d4102a02fe3b01b2ad35fab59e-1100x825.jpeg);
+    background-size: cover !important;
+    background-position: center;
+    margin: 20px 0px;
+    border-radius: 20px;
+    padding: 320px 0px 0px 50px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
 }
-.account-user-exit i {
-    margin:0px 0px 0px 5px;
-    color: #9CADB7;
-}
-.account-user-exit a {
-    color: #9CADB7;
-    text-decoration: none;
-}
-
-.account-personal {
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
-    border-radius: 10px;
-    border: 1px solid #C1CCD2;
-    padding: 20px 40px;
-}
-.account-personal-card {
-    background-color: #F5F5F5;
-}
-.account-personal-chapter {
-    font-size: 20px;
-}
-.personal-card-point{
+.communicate {
+    margin: 20px 0px;
     display: flex;
     flex-direction: row;
+    justify-content:space-around;
 }
-.card-point-label {
+.communicate-form {
+    padding:45px;
+    outline: 2px solid darkgray;
+    border-radius: 20px;
+    box-shadow: 0.4em 0.4em 10px rgba(122,122,122,0.5);
+}
+.VK-link {
+    padding: 45px 0px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
-    margin:0px 100px 0px 0px;
+    text-align: center;
 }
-.card-point-info {
-    color: #4A5568;
+.VK-link i{
+    margin:20px 0px;
+    font-size:35px;
 }
+/*Страница клуба*/
+
+
+
+/*Страница тренеров*/
+.club-coaches {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+.club-coaches-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 30px 0px;
+}
+.treners {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0px;
+    color: white;
+    text-align: center;
+    width: 250px;
+    height: 370px;
+    border-radius: 2px;
+    box-shadow: 0.1em 0.1em 6px rgba(122,122,122,0.5);
+/*    background: url("https://sportishka.com/uploads/posts/2022-08/1660572220_5-sportishka-com-p-luchshie-fitnes-treneri-sport-krasivo-foto-5.jpg") center center no-repeat;*/
+    background-size: cover !important;
+    filter: brightness(80%);
+}
+
+.treners i {
+    margin:auto;
+    font-size: 100px;
+}
+/*Страница тренеров*/
+
+
 .reset {
     display: flex;
     flex-direction: column;
@@ -662,6 +657,53 @@ body {
     justify-content: center;
     color: #42474D;
 }
+
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #FFFEDA;
+    width: max-content;
+    text-align: center;
+    color:black;
+    font-size:19px;
+}
+.location-buttons {
+    padding: 10px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.button-agree {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E2F0FB;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 5px;
+    font-size: 19px;
+    color: black;
+    width: 100px;
+}
+.button-disagree {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E2F0FB;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 5px;
+    font-size: 19px;
+    color: black;
+    width: 100px;
+}
+
+
+
+
 
 
 

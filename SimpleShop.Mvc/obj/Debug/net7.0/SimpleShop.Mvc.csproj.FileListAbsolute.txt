@@ -126,8 +126,6 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.AspNetCore.WebSockets.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.AspNetCore.WebUtilities.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.CSharp.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.CommandLine.dll
@@ -139,7 +137,6 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Configuration.Xml.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
@@ -156,7 +153,6 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Localization.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Logging.Configuration.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Logging.Console.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Logging.Debug.dll
@@ -167,8 +163,6 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.ObjectPool.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Options.dll
-C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.Primitives.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Extensions.WebEncoders.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.JSInterop.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\refs\Microsoft.Net.Http.Headers.dll
@@ -371,3 +365,16 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\obj\Debug\net7.0\SimpleShop.Mvc.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\obj\Debug\net7.0\scopedcss\Areas\PersonalAccount\Views\Shared\_PersonalAccountLayout.cshtml.rz.scp.css
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\obj\Debug\net7.0\scopedcss\Areas\Store\Views\Shared\_StoreLayout.cshtml.rz.scp.css
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\package-lock.json
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\package.json
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\RestSharp.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\libman.json

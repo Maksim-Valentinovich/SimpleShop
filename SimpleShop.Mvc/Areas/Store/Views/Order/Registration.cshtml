@@ -1,0 +1,186 @@
+﻿@using SimpleShop.Mvc.Areas.Store.ViewModels;
+@model RegistrationViewModel
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<div class="home-container">
+
+    <div class="menu-container">
+        @{await Html.RenderPartialAsync("_Menu");}
+    </div>
+
+    <div class="registration-container">
+
+        <h1>Оформление заказа</h1>
+
+        <div class="registration-data">
+            <div class="data-personal">
+                <h2>Персональная информация</h2>
+                <form class="personal-info" asp-action="Registration" asp-controller="Order" asp-area="Store" asp-anti-forgery="true" id="form">
+                    
+                    <div id="message"></div>
+                    
+                    <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+                    <div class="form-position">
+                        <label asp-for="Name">Имя</label><br />
+                        <input type="text" class="form-control" id="name" asp-for="Name" />
+                        <span asp-validation-for="Name" />
+                    </div>
+
+                    <div class="form-position">
+                        <label asp-for="Surname">Фамилию</label><br />
+                        <input type="text" class="form-control" id="surname" asp-for="Surname" />
+                        <span asp-validation-for="Surname" />
+                    </div>
+
+                    <div class="form-position">
+                        <label asp-for="Patronymic">Отчество</label><br />
+                        <input type="text" class="form-control" id="patronymic" asp-for="Patronymic" />
+                        <span asp-validation-for="Patronymic" />
+                    </div>
+
+                    <div class="form-position">
+                        <label asp-for="Birthday">Дата рождения</label><br />
+                        <input type="date" class="form-control" id="birthday" asp-for="Birthday" />
+                        <span asp-validation-for="Birthday" />
+                    </div>
+
+                    <div class="form-position">
+                        <label asp-for="Phone">Номер телефона</label><br />
+                        <input type="text" class="form-control" id="phone" asp-for="Phone" />
+                        <span asp-validation-for="Phone" />
+                    </div>
+
+                    <div class="form-position">
+                        <label asp-for="Email">Адрес эл. почты</label><br />
+                        <input type="text" class="form-control" id="email" asp-for="Email" />
+                        <span asp-validation-for="Email" />
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" asp-for="IsMan" value="true">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Мужской
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" asp-for="IsMan" value="false" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Женский
+                        </label>
+                    </div>
+
+                    <div class="col-12">
+                        @* <input type="submit" class="btn btn-primary" value="Купить" /> *@
+                        <input type="submit" id="submit-form" class="hidden" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="data-order">
+                <h2>Перечень товаров</h2>
+                <div class="list-offers">
+                    <div class="additional-partial" id="additional">
+                        <div class="partial-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="registration-submit">
+            <div class="submit-info">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="gridCheck">Я ознакомлен(-на) и согласен(-на) с условиями Договора,  Правилами техники безопасности, <a asp-area="" asp-controller="Home" asp-action="Privacy">Правилами Клуба</a> и даю свое согласие  на обработку персональных данных.</label>
+                </div>
+            </div>
+
+            <div class="buttonts-next">
+                <button class="button-back"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index">Вернуться в магазин</a> </button>
+                <button class="button-choose-pay">Перейти к оплате</button>
+                @* <input type="submit" class="personal-info" asp-action="Registration" asp-controller="Order" asp-area="Store" id="one" value="Купить" /> *@
+                <div class="button-one"><label for="submit-form" tabindex="0">Купить</label></div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" id="choose-pay">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Выберите способ оплаты</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Вернуться к регистрации</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+
+<script>
+    $("#form").on("submit", function () {
+        event.preventDefault();
+        const data = {
+            name: $("#name").val(),
+            firstname: $("#surname").val(),
+            let patronymic: $("#patronymic").val(),
+            phone: $("#phone").val(),
+            email: $("#firstname").val(),
+        };
+        $.ajax({
+            url: 'Registration?model=' + data,
+            type: 'POST',
+            dataType: 'html',
+            success: function (content) {
+                $('#choose-pay div.modal-body').html(content);
+                $('#choose-pay').modal('show')
+            },
+            error: function (e) { }
+        });
+    });
+</script>
+
+
+<script>
+    $(".button-choose-pay").click(function () {
+        $.ajax({
+            url: 'ChoosePayModal',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#choose-pay div.modal-body').html(content);
+                $('#choose-pay').modal('show')
+            },
+            error: function (e) { }
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'Product',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#additional div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    })
+</script>
+
+<script>
+    $("#phone").mask("+7(999) 999-9999");
+</script>

@@ -1,0 +1,9 @@
+﻿@using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
+@model ClientViewModel;
+
+<div class="user-info">
+    <div class="user-info-name">@Model.FullName<p><span>@Model.Phone</span></p></div>
+    <div class="user-info-exit">
+        <button class="btn navbar-account"><a asp-area="" asp-controller="Home" asp-action="Index">Выйти</a><i class="fa-solid fa-right-from-bracket"></i> </button>
+    </div>
+</div>

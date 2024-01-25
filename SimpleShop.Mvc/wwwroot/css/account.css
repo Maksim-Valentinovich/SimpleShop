@@ -1,0 +1,117 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+.account-menu {
+    width:350px;
+    display: flex;
+    flex-direction: column;
+    background-color: #07334B;
+    padding: 50px 0px 0px 20px;
+}
+.menu-logo {
+    margin:0px 0px 30px 10px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.menu-logo i {
+    transform: rotate(90deg);
+}
+.menu-point {
+    margin:15px 0px;
+}
+.menu-point i {
+    color: white;
+    font-size: 30px;
+}
+.menu-point a {
+    margin:0px 10px;
+    color: white;
+    text-decoration:none;
+}
+
+
+.account-content {
+    color: #9CADB7;
+}
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    color: #9CADB7;
+    padding:20px 40px;
+}
+.user-info-name {
+    font-size: 20px;
+}
+.user-about-name span {
+    font-size: 15px;
+}
+.user-info-exit i {
+    font-size: 20px;
+    margin: 0px 0px 0px 5px;
+    color: #9CADB7;
+}
+.user-info-exit a {
+    color: #9CADB7;
+    text-decoration: none;
+}
+
+.account-personal {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    box-shadow: 0.4em 0.4em 20px rgba(122,122,122,0.5);
+    border-radius: 10px;
+    border: 1px solid #C1CCD2;
+    padding: 20px 40px;
+}
+.account-personal-card {
+    background-color: #FFFFFF;
+}
+.account-personal-chapter {
+    font-size: 20px;
+}
+.personal-card-point{
+    display: flex;
+    flex-direction: row;
+}
+.card-point-label {
+    display: flex;
+    flex-direction: column;
+    margin:0px 100px 0px 0px;
+}
+.card-point-info {
+    color: #4A5568;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+﻿<header class="header">
+    <div class="container-nav">
+        <nav class="navbar">
+            <button class="btn navbar-logo"><a asp-area="" asp-controller="Home" asp-action="Index">Simple<i class="fa-solid fa-dumbbell"></i>Shop</a></button>
+            <div class="navbar-phone">
+                <i class="fa-solid fa-mobile-screen-button"></i> (812) 610 06 06
+            </div>
+
+           <div>
+                <button class="btn navbar-account"><i class="fa-solid fa-clipboard-user"></i> <a asp-area="" asp-controller="Account" asp-action="Login">Личный кабинет</a></button>
+                <button type="button" class="btn btn-primary position-relative">
+                    <i class="fa-solid fa-cart-shopping"></i><a asp-area="Store" asp-controller="ShopCard" asp-action="Index">Корзина</a>
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
+                </button>
+           </div>
+
+        </nav>
+    </div>
+</header>

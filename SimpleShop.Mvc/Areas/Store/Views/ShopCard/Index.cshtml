@@ -1,0 +1,32 @@
+﻿@using SimpleShop.Mvc.Areas.Store.ViewModels;
+@model ShopCardFiveViewModel
+
+<div class="basket-container">
+    <div class="menu-container">
+        @{
+            await Html.RenderPartialAsync("_Menu");
+        }
+    </div>
+
+    <div class="basket-content">
+        <div class="order-info">
+            <h1>Данные о товаре</h1>
+        </div>
+        <div class="order-list">
+            @foreach (var Product in Model.ShopCard.ListShopItems)
+            {
+                <div class="list-position">
+                    <div class="pisition-info"> <b>Продукт:</b> @Product.product.Name<br /> </div>
+                    <div class="position-club"><b>Клуб:</b> Simple Shop<br /></div>
+                    <div class="position-price"><b>Цена:</b> @Product.product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
+                </div>
+            }
+            <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.product).Sum(c => c.Price).ToString() руб.</span></div>
+            
+            <div class="buttonts-next">
+                <div class="button-basket-modal"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Discount">Продолжить покупки</a> </div>
+                <div class="button-basket-modal"><a class="btn" asp-area="Store" asp-controller="Order" asp-action="Registration">Петейти к оформлению</a></div>
+            </div>
+        </div>
+    </div>
+</div>

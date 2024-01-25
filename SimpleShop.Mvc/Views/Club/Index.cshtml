@@ -1,17 +1,16 @@
-﻿@using SimpleShop.Mvc.ViewsModels;
+﻿@using SimpleShop.Mvc.ViewModels;
 @model ClubViewModel
 @{
-    ViewData["Title"] = "Murino";
+    ViewData["Title"] = "Club";
 }
 <div class="club-content">
     <div class="club-info">
-        <div class="info-club-name"><h1>SIMPLE-SHOP @Model.Name</h1></div>
+        <div class="info-club-name"><h1>SIMPLE-SHOP @Model.DisplayName</h1></div>
         <div class =info-club-name><h2>ФИТНЕС-КЛУБ С БАССЕЙНОМ</h2></div>
         <div>
             <h5>
-                Спортивный клуб с бассейном рядом с метро «Маяковская». Сервис премиального уровня, изысканный интерьер,
-                многообразие фитнес программ, профессиональное оборудование, тренеры с высшим профильным образованием,
-                панорамный вид на исторический центр города.
+                Спортивный клуб с бассейном. Сервис премиального уровня, изысканный интерьер,
+                многообразие фитнес программ, профессиональное оборудование, тренеры с высшим профильным образованием.
             </h5>
         </div>
 
@@ -20,52 +19,54 @@
                 Часы работы клуба:<p>будние: @($"{Model.InterpreterStart.ToString(@"hh\:mm")} - {Model.InterpreterFinish.ToString(@"hh\:mm")}")</p><p>выходные: @($"{Model.WeekendsStart.ToString(@"hh\:mm")} - {Model.WeekendsFinish.ToString(@"hh\:mm")}")</p>
             </div>
             <div class="info-adress">
-                @Model.City,<p>@Model.Address</p><p>@Model.Phone</p>
+                @Model.CityName,<p>@Model.Address</p><p>@Model.Phone</p>
             </div>
             <div class="info-service">
                 Клиентский сервис:<p>@Model.Phone</p>
             </div>
         </div>
-
+        
         <div class="info-menu">
-
             <div class="menu-box">
-                <a href="#description_link">АБОНЕМЕНТЫ</a>
-                
+                <a class="btn" href="#description_link">АБОНЕМЕНТЫ</a>
             </div>
 
             <div class="menu-box">
-                <a href="#schedule_link">РАСПИСАНИЕ</a>
+                <a class="btn" asp-area="" asp-controller="Club" asp-action="Schedule" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">РАСПИСАНИЕ</a>
             </div>
 
             <div class="menu-box">
-                <a href="#coaches_link">ТРЕНЕРЫ</a>
-                
+                <a class="btn" href="#coaches_link">ТРЕНИРОВКИ</a>
+            </div>
+            
+            <div class="menu-box">
+                <a class="btn" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">ТРЕНЕРЫ</a>
             </div>
 
             <div class="menu-box">
-                <a href="#description-service_link">ДОП.УСЛУГИ</a>
-                
+                <a class="btn" href="#description-service_link">ДОП. УСЛУГИ</a>
             </div>
 
+            <div class="menu-box">
+                <a class="btn" href="#communicate_link">СВЯЗАТЬСЯ</a>
+            </div>
         </div>
     </div>
 
-    <h1>ПРЕЗЕНТАЦИЯ</h1>
-    <h1>SIMPLE-SHOP @Model.Name</h1>
-
     <div class="club-presentation">
-        <div id="carouselExampleCaptions" class="carousel slide">
+        <div id="myCarousele_1" class="carousel slide">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#myCarousele_1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousele_1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousele_1" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://fitnesstop.ru/assets/images/products/857/susanin-fitness-zhemchuzhnaya-plaza-4.jpg" class="d-block w-100" alt="https://fitnesstop.ru/assets/images/products/857/susanin-fitness-zhemchuzhnaya-plaza-4.jpg">
+
+                    <img src="@Model.GumLink" class="d-block w-100" alt="Картинка">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>ТРЕНАЖЕРНЫЙ ЗАЛ</h5>
+                        <h1>ТРЕНАЖЕРНЫЙ ЗАЛ</h1>
                         <p>
                             Сердце любого клуба - тренажерный зал с силовыми и кардиотренажерами а также зонами свободных весов.
                             В нашем клубе для вас представлено самое современное и высокотехнологичное оборудование!
@@ -73,340 +74,225 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://forma-fs.by/assets/cache/images/uslugi/dsc_1662-968x504-692.jpg)" class="d-block w-100" alt="https://forma-fs.by/assets/cache/images/uslugi/dsc_1662-968x504-692.jpg)">
+                    <img src="@Model.GroupLink" class="d-block w-100" alt="Картинка">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>ГРУППОВЫЕ ЗАНЯТИЯ</h5>
+                        <h1>ГРУППОВЫЕ ЗАНЯТИЯ</h1>
                         <p>
-                            В клубе SIMPLE_SHOP представлено множество направлений групповых занятий: силовые, аэробные, танцевальные.
+                            В клубе представлено множество направлений групповых занятий: силовые, аэробные, танцевальные.
                             Тренировки проводятся с использование дополнительного оборудования, музыкальным сопровождением и индивидуальным
                             подходом тренера к каждому клиенту!
                         </p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://i8.photo.2gis.com/images/branch/0/30258560046473617_18c1.jpg" class="d-block w-100" alt="https://i8.photo.2gis.com/images/branch/0/30258560046473617_18c1.jpg">
+                    <img src="@Model.SwimLink" class="d-block w-100" alt="Картинка">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>БАССЕЙН И СПА ЗОНА</h5>
+                        <h1>БАССЕЙН И СПА ЗОНА</h1>
                         <p>
-                            В клубе SIMPLE_SHOP располагается 25-метровый бассейн с 3 дорожками, хамамм, финская сауна и джакузи.
+                            В клубе располагается 25-метровый бассейн с 3 дорожками, хамамм, финская сауна и джакузи.
                             Вы можете выбрать групповые тренировки в бассейне, индивидуальную тренировку с квалифицированным тренером
                             или свободно плавать самостоятельно и расслабиться после интенсивных нагрузок
                         </p>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousele_1" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Предыдущий</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousele_1" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Следующий</span>
             </button>
         </div>
-        <div class="presentation-gum">
-            <div class="presentation-text">
-                <h1>ТРЕНАЖЕРНЫЙ ЗАЛ</h1>
-                <h5>
-                    Сердце любого клуба - тренажерный зал с силовыми и кардиотренажерами а также зонами свободных весов.
-                    В нашем клубе для вас представлено самое современное и высокотехнологичное оборудование!
-                </h5>
-            </div>
-        </div>
-
-        <div class="presentation-group">
-            <div class="presentation-text">
-                <h1>ГРУППОВЫЕ ЗАНЯТИЯ</h1>
-                <h5>
-                    В клубе SIMPLE_SHOP представлено множество направлений групповых занятий: силовые, аэробные, танцевальные.
-                    Тренировки проводятся с использование дополнительного оборудования, музыкальным сопровождением и индивидуальным
-                    подходом тренера к каждому клиенту!
-                </h5>
-            </div>
-        </div>
-
-        <div class="presentation-swimming">
-            <div class="presentation-text">
-                <h1>БАССЕЙН И СПА ЗОНА</h1>
-                <h5>
-                    В клубе SIMPLE_SHOP располагается 25-метровый бассейн с 3 дорожками, хамамм, финская сауна и джакузи.
-                    Вы можете выбрать групповые тренировки в бассейне, индивидуальную тренировку с квалифицированным тренером
-                    или свободно плавать самостоятельно и расслабиться после интенсивных нагрузок
-                </h5>
-            </div>
-
-        </div>
-    </div>
-
-    <h1><a name="schedule_link">РАСПИСАНИЕ ФИТНЕС-КЛУБА</a></h1>
-    <h1>SIMPLE-SHOP @Model.Name</h1>
-    <div class="club-schedule">
-        <div class="shedual-table">
-            <div class="table-date">
-                <div class="date-logo"><i class="fa-regular fa-clock"></i></div>
-                <div class="date-day">18.09 пн</div>
-                <div class="date-day">19.09 вт</div>
-                <div class="date-day">20.09 ср</div>
-                <div class="date-day">21.09 чт</div>
-                <div class="date-day">22.09 пт</div>
-                <div class="date-day">23.09 сб</div>
-                <div class="date-day">24.09 вс</div>
-            </div>
-
-            <div class="table-lessons">
-                <div class="lessons-time">
-                    <div class="time-hour">09.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Lower body</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">10.00</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Flex</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Fitness Yoga</div>
-                    <div class="time-lesson">Dumbbells</div>
-                    <div class="time-lesson"></div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">11.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Flex</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">16.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Dumbbells</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">17.00</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson">Fitness Yoga</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Flex</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">18.00</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h1><a name="coaches_link">ТРЕНЕРЫ ФИТНЕС-КЛУБА</a></h1>
-    <h1>SIMPLE-SHOP @Model.Name</h1>
-    
-    <div class="club-coaches">
-        <h2>ТРЕНЕРЫ ТРЕНАЖЕРНОГО ЗАЛА:</h2>
-        <div class="club-coaches-group">
-           
-            <div class="treners">
-                <div>АЛЕКСАНДР</div>
-                <i class="fa-solid fa-person"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>ДМИТРИЙ</div>
-                <i class="fa-solid fa-person"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>СЕРГЕЙ</div>
-                <i class="fa-solid fa-person"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-        </div>
-        <h2>ТРЕНЕРЫ ВОДНОГО КОМПЛЕКСА:</h2>
-        <div class="club-coaches-group">
-            
-            <div class="treners">
-                <div>АННА</div>
-                <i class="fa-solid fa-person-dress"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>КСЕНИЯ</div>
-                <i class="fa-solid fa-person-dress"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>ТИМОФЕЙ</div>
-                <i class="fa-solid fa-person"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-        </div>
-        <h2>ТРЕНЕРЫ ГРУППОВЫХ УРОКОВ:</h2>
-        <div class="club-coaches-group">
-            <div class="treners">
-                <div>ВИКТОРИЯ</div>
-                <i class="fa-solid fa-person-dress"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>АЛЕКСЕЙ</div>
-                <i class="fa-solid fa-person"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-            <div class="treners">
-                <div>КРИСТИНА</div>
-                <i class="fa-solid fa-person-dress"></i>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="Training">Купить тренировку</a> </div>
-            </div>
-        </div>
     </div>
 
     <h1><a name="description_link">АБОНЕМЕНТЫ ФИТНЕС-КЛУБ</a></h1>
-    <h1>SIMPLE-SHOP @Model.Name</h1>
-
+    <h1>SIMPLE-SHOP @Model.DisplayName</h1>
     <div class="club-price">
-
         <div class="club-description">
             <div class="validity-period">1 день</div>
             <div><h5>ГОСТЕВОЙ ВИЗИТ</h5>Часы посещения не ограничены </div>
             <div class="validity-price">2800 руб</div>
-            <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Subscription">Узнать цену</a> </div>
         </div>
 
         <div class="club-description">
             <div class="validity-period">1 год</div>
             <h5>БЕЗЛИМИТНЫЙ</h5>
             Часы посещения не ограничены
-            <div class="validity-price">22000 руб</div>
-            <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Subscription">Узнать цену</a> </div>
         </div>
 
         <div class="club-description">
             <div class="validity-period">6 месяцев</div>
             <h5>УТРЕННИЙ</h5>
             Часы посещения клуба c 7:00 до 13:00
-            <div class="validity-price">16000 руб</div>
-            <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Subscription">Узнать цену</a> </div>
         </div>
 
         <div class="club-description">
-            <div class="validity-period">2 года</div>
-            <h5>СЕМЕЙНЫЙ</h5>
-            Абонемент для двоих. Часы посещения не ограничены
-            <div class="validity-price">36000 руб</div>
-            <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
+            <div class="validity-period"></div>
+            <h5>Другой</h5>
+            Подберите идеальный вариант для себя!
+            <div class="description-button-buy"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Subscription">Выбрать</a> </div>
         </div>
+    </div>
 
+    <h1><a name="coaches_link">ТРЕНИРОВКИ С ТРЕНЕРОМ</a></h1>
+    <div class="club-training">
+        <div id="carouselExampleCaptions_2" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://yobte.ru/uploads/posts/2019-11/devushki-v-bassejne-pod-vodoj-40-foto-11.jpg" class="d-block w-100" alt="картинка">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>ТРЕНИРОВКИ В БАССЕЙНЕ</h1>
+                        <p>
+                            Это отличная возможность для похудения, укрепления мускулатуры и общего оздоровления организма. Наши программы тренировок по плаванию 
+                            рассчитаны для мужчин и женщин и адаптированы под любой уровень подготовки. Вы можете заниматься как с тренером, так и индивидуально!
+                        </p>
+                        <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">Выбрать тренера</a></button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://muzgkb2.ru/info/wp-content/uploads/gerpesnoe-visipanie-i-trenirovki-v-trenazhernom-1.webp" class="d-block w-100" alt="картинка">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>ЗАНЯТИЯ С ПЕРСОНАЛЬНЫМ ТРЕНЕРОМ</h1>
+                        <p>
+                            Персональные тренировки - это специальная система тренировок с персональным инструктором. Наши сотрудники внимательно подойдут
+                            к особенностям вашего организма, учтут ваши цели и разработают подходящую программу тренировок и питания.
+                        </p>
+                        <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">Выбрать тренера</a></button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://sp-izumrud.ru/wp-content/uploads/2022/02/Zal-dlya-gruppovyh-zanyatij-2.jpg" class="d-block w-100" alt="картинка">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>АВТОРСКИЕ УРОКИ И МАСТЕР КЛАССЫ</h1>
+                        <p>
+                            Авторские уроки и мастер классы позволят вам повысить уровень своего мастерства, открыть для себя новые возможности в различных 
+                            направлениях фитнеса и профессионально подготовиться к спортивным соревнованиям.
+                        </p>
+                        <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">Выбрать тренера</a></button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://medatlet.ru/wp-content/uploads/2018/12/chto-nuzhno-znat-o-sportivnoy-reabilitatsii.jpg" class="d-block w-100" alt="картинка">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>ВОССТАНОВЛЕНИЕ ПОСЛЕ ТРАВМ</h1>
+                        <p>
+                            Специальные программы восстановления после травм направлены на полное восстановление вышего функционального состояния. 
+                            При этом, мы считаем крайне важным устранять риски повторного травмирования.
+                        </p>
+                        <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">Выбрать тренера</a></button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.tildacdn.com/tild3330-6365-4965-b535-336666356564/Untitled-design-2020.jpg" class="d-block w-100" alt="картинка">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>СПОРТИВНЫЕ СЕКЦИИ ДЛЯ ДЕТЕЙ</h1>
+                        <p>
+                            Разнообразные тренировочные программы для детей всех возрастов в сети премиальных фитнес-клубов SIMPLE-SHOP. Пробный урок - бесплатно!
+                        </p>
+                        <button type="submit" class="btn btn-primary"><a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.CityName" asp-route-clubName="@Model.Name">Выбрать тренера</a></button>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions_2" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующий</span>
+            </button>
+        </div>
     </div>
 
     <h1><a name="description-service_link">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</a></h1>
-    <h1>SIMPLE-SHOP @Model.Name</h1>
-
-    <div class="club-price-service">
-        <h2>АРЕНДА ПОЛОТЕНЦА</h2>
-        <div class="services-position">
-            <div class="club-description">
-                <div class="validity-period">1 месяц</div>
-                <div><h5>ПОЛОТЕНЦЕ</h5></div>
-                <div class="validity-price">650 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">3 месяца</div>
-                <div><h5>ПОЛОТЕНЦЕ</h5></div>
-                <div class="validity-price">1300 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">6 месяцев</div>
-                <div><h5>ПОЛОТЕНЦЕ</h5></div>
-                <div class="validity-price">2400 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">12 месяцев</div>
-                <div><h5>ПОЛОТЕНЦЕ</h5></div>
-                <div class="validity-price">4500 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
+    <h1>SIMPLE-SHOP @Model.DisplayName</h1>
+    <div class="service-image">
+        <div class="service-image-one">
+            <h2>Аренда полотенца</h2>
+            <div class="description-button-buy"><a asp-area="Store" asp-controller="Home" asp-action="Service">Сроки и стоимость</a> </div>
         </div>
-        <h2>СОЛЯРИЙ</h2>
-        <div class="services-position">
-
-            <div class="club-description">
-                <div class="validity-period">1 месяц</div>
-                <div><h5>СОЛЯРИЙ</h5></div>
-                <div class="validity-price">1200 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">3 месяца</div>
-                <div><h5>СОЛЯРИЙ</h5></div>
-                <div class="validity-price">3500 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">6 месяцев</div>
-                <div><h5>СОЛЯРИЙ</h5></div>
-                <div class="validity-price">6500 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">12 месяцев</div>
-                <div><h5>СОЛЯРИЙ</h5></div>
-                <div class="validity-price">12000 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
+        <div class="service-image-two">
+            <h2>Солярий</h2>
+            <div class="description-button-buy"><a asp-area="Store" asp-controller="Home" asp-action="Service">Минуты и стоимость</a> </div>
         </div>
-        <h2>АРЕНДА ШКАФЧИКА В РАЗДЕВАЛКЕ</h2>
-        <div class="services-position">
-
-            <div class="club-description">
-                <div class="validity-period">1 месяц</div>
-                <div><h5>ШКАФЧИК</h5></div>
-                <div class="validity-price">900 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">3 месяца</div>
-                <div><h5>ШКАФЧИК</h5></div>
-                <div class="validity-price">2500 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">6 месяцев</div>
-                <div><h5>ШКАФЧИК</h5></div>
-                <div class="validity-price">4800 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
-            <div class="club-description">
-                <div class="validity-period">12 месяцев</div>
-                <div><h5>ШКАФЧИК</h5></div>
-                <div class="validity-price">9000 руб</div>
-                <div class="description-button-buy"><a class="btn" asp-area="" asp-controller="Home" asp-action="SignIn">Купить</a> </div>
-            </div>
+        <div class="service-image-three">
+            <h2>Массаж</h2>
+            <div class="description-button-buy"><a asp-area="Store" asp-controller="Home" asp-action="Service">Услуги и цены</a> </div>
         </div>
-
+        <div class="service-image-four">
+            <h2>Фитнес-кафе</h2>
+            <div class="description-button-buy"><a asp-area="Store" asp-controller="Home" asp-action="Service">Меню и цены</a> </div>
+        </div>
     </div>
+
+    <h1><a name="communicate_link">ФИТНЕС-КЛУБ С БАССЕЙНОМ</a></h1>
+    <div class="info-club-name"><a name="description-service_link"><h1>SIMPLE-SHOP @Model.DisplayName</h1></a></div>
+    <div class="communicate">
+        <div class="communicate-form">
+            Оставьте заявку и мы вам перезвоним!
+            <form class="personal-info">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Выберите город</option>
+                    <option value="1">Санкт-Петербург</option>
+                    <option value="2">Москва</option>
+                    <option value="3">Уфа</option>
+                </select>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Выберите клуб</option>
+                    <option value="1">Мурино</option>
+                    <option value="2">Девяткино</option>
+                    <option value="3">Шушары</option>
+                </select>
+                <div class="form-position">
+                    <label for="inputUserFirstName" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="inputUserFirstName" placeholder="">
+                </div>
+
+                <div>
+                    <label for="inputUserNumber" class="form-label">Номер телефона</label>
+                    <input type="text" class="form-control" id="inputUserNumber">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="gridCheck"> <a asp-area="" asp-controller="Home" asp-action="Privacy">Согласие на обработку персональных данных</a></label>
+                </div>
+                <div class="button"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule">Перезвоните мне</a></div>
+            </form>
+        </div>
+        <div class="communicate-info">
+            <h1>Санкт петербург</h1>
+            <h5>Девяткино</h5>
+            <h6>ул. Марата, д. 5/21</h6>
+            <h5>Мурино</h5>
+            <h6>пр. Кондратьевский, д. 64, корп. 6</h6>
+            <h5>Колпино</h5>
+            <h6>пр. Тореза, д. 114 к.2 стр.1</h6>
+            <h5>Шушалы</h5>
+            <h6>г. Мурино, ул. Шувалова, 6</h6>
+            <h5>Ленина</h5>
+            <h6>просп. Авиаконструкторов, 54</h6>
+            <h5>Кудрово</h5>
+            <h6>Красносельское ш., 10</h6>
+        </div>
+    </div>
+
+    <div class="VK-link">
+        Подписывайтесь и будьте всегда в курсе новостей клуба!
+        <i class="fa-brands fa-vk"></i>
+    </div>
+   
 </div>
 
 
