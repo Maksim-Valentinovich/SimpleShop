@@ -5,10 +5,10 @@
     @foreach (var Product in Model.ShopCard.ListShopItems)
     {
         <div class="list-position">
-            <div class="pisition-info-modal">@Product.product.Name<br /></div>
+            <div class="pisition-info-modal">@Product.Product.Name<br /></div>
             <div class="position-club-modal"> Simple Shop<br /></div>
-            <div class="position-price-modal">@Product.product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
+            <div class="position-price-modal">@Product.Product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
         </div>
     }
-    <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.product).Sum(c => c.Price).ToString() руб.</span></div>
+    <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.Product).Sum(c => c.Price).ToString() руб.</span></div>
 </div>

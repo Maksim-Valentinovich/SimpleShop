@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Mvc.ViewModels;
@@ -21,6 +22,7 @@ namespace SimpleShop.Mvc.Controllers
         {
             var cl = _context.Clubs.FirstOrDefault(c => c.Id == clubId);
             var city = _context.Cities.FirstOrDefault(c => c.Id == cl.CityId);
+
 
             ClubViewModel club = new()
             {

@@ -16,12 +16,12 @@
             @foreach (var Product in Model.ShopCard.ListShopItems)
             {
                 <div class="list-position">
-                    <div class="pisition-info"> <b>Продукт:</b> @Product.product.Name<br /> </div>
+                    <div class="pisition-info"> <b>Продукт:</b> @Product.Product.Name<br /> </div>
                     <div class="position-club"><b>Клуб:</b> Simple Shop<br /></div>
-                    <div class="position-price"><b>Цена:</b> @Product.product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
+                    <div class="position-price"><b>Цена:</b> @Product.Product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
                 </div>
             }
-            <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.product).Sum(c => c.Price).ToString() руб.</span></div>
+            <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.Product).Sum(c => c.Price).ToString() руб.</span></div>
             
             <div class="buttonts-next">
                 <div class="button-basket-modal"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index" asp-route-category="Discount">Продолжить покупки</a> </div>

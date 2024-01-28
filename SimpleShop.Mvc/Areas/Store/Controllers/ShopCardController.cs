@@ -31,13 +31,13 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         public RedirectToActionResult AddToCard(int ids)
         {
-            if (ids != 0 )
+            if (ids != 0)
             {
-                var item = _context.Products.FirstOrDefault(p => p.Id == ids);
+                var product = _context.Products.FirstOrDefault(p => p.Id == ids);
 
-                if (item != null)
+                if (product != null)
                 {
-                    _shopCard.AddToCard(item);
+                    _shopCard.AddToCard(product);
                 }
             }
             return RedirectToAction("BasketModal");

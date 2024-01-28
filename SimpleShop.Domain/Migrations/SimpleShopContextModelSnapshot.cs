@@ -344,16 +344,15 @@ namespace SimpleShop.Domain.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ShopCardId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("productId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("integer");
+
+                    b.Property<Guid>("ShopCardId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("productId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ShopCardItem");
                 });
@@ -428,13 +427,13 @@ namespace SimpleShop.Domain.Migrations
 
             modelBuilder.Entity("SimpleShop.Domain.Entities.ShopCards.ShopCardItem", b =>
                 {
-                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "product")
+                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("productId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("product");
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

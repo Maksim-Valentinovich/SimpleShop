@@ -1,53 +1,114 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleShop.Domain.Entities.Products;
 using System.Text;
+using System.Text.Json;
 
 namespace SimpleShop.Domain.Entities.ShopCards
 {
+    //public class ShopCard : Entity
+    //{
+    //    private readonly SimpleShopContext _context;
+
+    //    public ShopCard(SimpleShopContext context)
+    //    {
+    //        _context = context;
+    //    }
+
+    //    public Guid ShopCardId { get; set; }
+    //    public List<ShopCardItem> ListShopItems { get; set; }
+
+    //    public static ShopCard GetCard(IServiceProvider services)
+    //    {
+    //        ISession? session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+    //        Guid shopCardId;
+
+    //        if (session.GetString("Id") == null)
+    //        {
+    //            shopCardId = Guid.NewGuid();
+
+    //            session.SetString("Id", shopCardId.ToString());
+    //        }
+
+    //        shopCardId = Guid.Parse(session.GetString("Id"));
+
+    //        return new ShopCard(services.GetService<SimpleShopContext>()) { ShopCardId = shopCardId };
+    //    }
+
+    //    public void AddToCard(Product product)
+    //    {
+    //        _context?.ShopCardItem.Add(new ShopCardItem
+    //        {
+    //            ShopCardId = ShopCardId,
+    //            Product = product,
+    //        });
+    //        _context?.SaveChanges();
+    //    }
+
+    //    public List<ShopCardItem> GetShopItems()
+    //    {
+    //        return _context.ShopCardItem.Where(c => c.ShopCardId == ShopCardId).Include(s => s.Product).ToList();
+    //    }
+    //}
+
     public class ShopCard : Entity
     {
-        private readonly SimpleShopContext _context;
+        private static IServiceProvider _services { get; set; }
 
-        public ShopCard(SimpleShopContext context)
+        public List<Product> ListShopItems { get; set; }
+
+        public ShopCard()
         {
-            _context = context;
-        }
 
-        public string ShopCardId { get; set; }
-        public List<ShopCardItem> ListShopItems { get; set; }
+        }
+        public ShopCard(IServiceProvider services)
+        {
+            _services = services;
+        }
 
         public static ShopCard GetCard(IServiceProvider services)
         {
             ISession? session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            var context1 = services.GetService<SimpleShopContext>(); //убрать
-
-            string shopCardId = session.GetString("Id");
-
-            if (shopCardId == null)
+            if (session.GetString("ShopCard") == null)
             {
-                shopCardId = Guid.NewGuid().ToString();
-                session.SetString("Id", shopCardId);
+                ShopCard cardNew = new();
+
+                string json = JsonSerializer.Serialize(cardNew);
+
+                session.SetString("ShopCard", json);
             }
-            return new ShopCard(context1) { ShopCardId = shopCardId };
+            ShopCard? card = JsonSerializer.Deserialize <ShopCard> (session.GetString("ShopCard"));
+
+            return new ShopCard() { ListShopItems = card.ListShopItems};
         }
 
         public void AddToCard(Product product)
         {
-            _context?.ShopCardItem.Add(new ShopCardItem
-            {
-                ShopCardId = ShopCardId,
-                product = product,
-            });
-            _context?.SaveChanges();
+            ISession? session = _services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+            ShopCard? card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
+
+            card.ListShopItems.Add(product);
+
+            ShopCard cardNew = new() {ListShopItems = card.ListShopItems};
+
+            string json = JsonSerializer.Serialize(cardNew);
+
+            session.SetString("ShopCard", json);
         }
 
-        public List<ShopCardItem> GetShopItems()
-        {
-            return _context.ShopCardItem.Where(c => c.ShopCardId == ShopCardId).Include(s => s.product).ToList();
+        public List<Product> GetShopItems()
+        {   
+            ISession? session = _services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+
+            var card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
+
+            return card.ListShopItems;
         }
     }
 }
