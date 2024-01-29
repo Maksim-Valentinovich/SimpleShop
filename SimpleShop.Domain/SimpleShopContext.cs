@@ -27,8 +27,6 @@ namespace SimpleShop.Domain
 
         public DbSet<ClubProduct> ClubProducts { get; set; }
 
-        public DbSet<ShopCardItem> ShopCardItem { get; set; }
-
         public DbSet<Coach> Coaches { get; set; }
 
         public DbSet<CategoryPeople> CategoriesPeople { get; set; }

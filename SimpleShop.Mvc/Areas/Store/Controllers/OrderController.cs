@@ -112,12 +112,6 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         //    return View(model);
         //}
 
-        [Route("Store/Order/BasketModal")]
-        [HttpGet]
-        public RedirectToRouteResult BasketModal(int productId = 0)
-        {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "AddToCard", ids = productId });
-        }
 
         [Route("Store/Order/Recommendations")]
         [HttpGet]
@@ -156,6 +150,28 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         {
             return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "Product" });
         }
+
+        [Route("Store/Order/DeleteProductOnCard")]
+        [HttpGet]
+        public RedirectToRouteResult DeleteProductOnCard(int indx)
+        {
+            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "DeleteProductOnCard", index = indx});
+        }
+
+        [Route("Store/Order/AddToCard")]
+        [HttpGet]
+        public RedirectToRouteResult AddToCard(int productId)
+        {
+            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "AddToCard", ids = productId });
+        }
+
+        [Route("Store/Order/BasketModal")]
+        [HttpGet]
+        public RedirectToRouteResult BasketModal()
+        {
+            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "BasketModal" });
+        }
+
     }
 
 

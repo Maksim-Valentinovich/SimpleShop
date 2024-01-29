@@ -190,23 +190,4 @@
 </script>
 
 
-@* <script>
-    $(document).ready(function () {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                alert('Последний раз вас засекали здесь: ' + position.coords.latitude + ", " + position.coords.longitude);
-                $.ajax({
-                    url: 'AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + + encodeURIComponent(position.coords.longitude),
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function () {
-                        window.location.href = "http://localhost:5255/Home/Index";
-                    },
-                    error: function (e) { }
-                });
-            }
-        );
-    })
-</script> *@
-
 

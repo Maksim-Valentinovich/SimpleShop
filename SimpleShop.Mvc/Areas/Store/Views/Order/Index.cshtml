@@ -73,15 +73,21 @@
     $(".button-buy-product").click(function () {
         let productId = $(this).data("ids")
         $.ajax({
-            url: 'BasketModal?productId=' + productId,
+            url: 'AddToCard?productId=' + productId,
             type: 'GET',
             dataType: 'html',
             success: function (content) {
                 $('#basket-modal div.modal-body').html(content);
-                $('#basket-modal').modal('show')
+                $('#basket-modal').modal('show');
             },
             error: function (e) { }
         })
+    })
+</script>
+
+<script>
+    $('#modal').on('hidden', function () {
+        $(this).data('modal').$element.removeData();
     })
 </script>
 

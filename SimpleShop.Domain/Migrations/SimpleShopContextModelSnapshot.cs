@@ -336,27 +336,6 @@ namespace SimpleShop.Domain.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("SimpleShop.Domain.Entities.ShopCards.ShopCardItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("ShopCardId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShopCardItem");
-                });
-
             modelBuilder.Entity("SimpleShop.Domain.Entities.Clubs.ClubProduct", b =>
                 {
                     b.HasOne("SimpleShop.Domain.Entities.Clubs.Club", "Club")
@@ -421,17 +400,6 @@ namespace SimpleShop.Domain.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("SimpleShop.Domain.Entities.ShopCards.ShopCardItem", b =>
-                {
-                    b.HasOne("SimpleShop.Domain.Entities.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Product");
                 });

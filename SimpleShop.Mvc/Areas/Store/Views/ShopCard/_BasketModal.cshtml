@@ -5,10 +5,30 @@
     @foreach (var Product in Model.ShopCard.ListShopItems)
     {
         <div class="list-position">
-            <div class="pisition-info-modal">@Product.Product.Name<br /></div>
+            <div class="pisition-info-modal">@Product.Name<br /></div>
             <div class="position-club-modal"> Simple Shop<br /></div>
-            <div class="position-price-modal">@Product.Product.Price руб.<br /><i class="fa-regular fa-trash-can"></i></div>
+            <div class="position-price-modal">@Product.Price руб.<br /></div>
+            <button class="button-position-delete" data-index="@Model.ShopCard.ListShopItems.IndexOf(Product)"><i class="fa-regular fa-trash-can"></i></button>
         </div>
     }
-    <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Select(c => c.Product).Sum(c => c.Price).ToString() руб.</span></div>
+    <div class="list-price">Итого: <span>@Model.ShopCard.ListShopItems.Sum(c => c.Price).ToString() руб.</span></div>
 </div>
+
+<script>
+    $(".button-position-delete").click(function () {
+        var index = $(this).data("index")
+        // var model = @Html.Raw(Json.Serialize(Model));
+        
+        $.ajax({
+            url: 'Order/DeleteProductOnCard?indx=' + index,
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                location.reload();
+                // $.modal.hide();  
+                // $(this).hide();
+            },
+            error: function (e) { }
+        })
+    })
+</script>

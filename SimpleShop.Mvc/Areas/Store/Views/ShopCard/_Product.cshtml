@@ -14,21 +14,21 @@
                 </div>
                 <div class="order-card-point">
                     <div class="card-point-info">
-                        @Product.Product.Name
+                        @Product.Name
                         <hr />
-                        @Product.Product.Description
+                        @Product.Description
                         <hr />
                         Simple Shop Такой то клуб
                         <hr />
-                        @Product.Product.CountDay дней
+                        @Product.CountDay дней
                         <hr />
-                        @Product.Product.Price руб.
+                        @Product.Price руб.
                         <hr />
                     </div>
                 </div>
             </div>
         }
-    <div class="list-price">Итого:<span>@Model.ShopCard.ListShopItems.Select(c => c.Product).Sum(c => c.Price).ToString() руб.</span></div>
+<div class="list-price">Итого:<span>@Model.ShopCard.ListShopItems.Sum(c => c.Price).ToString() руб.</span></div>
 
 
 

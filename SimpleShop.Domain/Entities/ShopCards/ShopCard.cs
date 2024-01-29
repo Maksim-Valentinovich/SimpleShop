@@ -1,7 +1,5 @@
-﻿
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleShop.Domain.Entities.Products;
 using System.Text;
@@ -57,22 +55,17 @@ namespace SimpleShop.Domain.Entities.ShopCards
 
     public class ShopCard : Entity
     {
-        private static IServiceProvider _services { get; set; }
+        private static IServiceProvider? _services { get; set; }
+
+        private static ISession? session { get; set; }
 
         public List<Product> ListShopItems { get; set; }
 
-        public ShopCard()
-        {
-
-        }
-        public ShopCard(IServiceProvider services)
-        {
-            _services = services;
-        }
-
         public static ShopCard GetCard(IServiceProvider services)
         {
-            ISession? session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            _services = services;
+
+            session = _services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
             if (session.GetString("ShopCard") == null)
             {
@@ -82,20 +75,38 @@ namespace SimpleShop.Domain.Entities.ShopCards
 
                 session.SetString("ShopCard", json);
             }
-            ShopCard? card = JsonSerializer.Deserialize <ShopCard> (session.GetString("ShopCard"));
+            ShopCard? card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
 
-            return new ShopCard() { ListShopItems = card.ListShopItems};
+            return new ShopCard() { ListShopItems = card.ListShopItems };
         }
 
         public void AddToCard(Product product)
         {
-            ISession? session = _services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
             ShopCard? card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
 
-            card.ListShopItems.Add(product);
+            if (card.ListShopItems == null)
+            {
+                card.ListShopItems = new List<Product>() { product };
+            }
+            else
+            {
+                card.ListShopItems.Add(product);
+            }
 
-            ShopCard cardNew = new() {ListShopItems = card.ListShopItems};
+            ShopCard cardNew = new() { ListShopItems = card.ListShopItems };
+
+            string json = JsonSerializer.Serialize(cardNew);
+
+            session.SetString("ShopCard", json);
+        }
+
+        public void DeleteProduct(int index) 
+        {
+            ShopCard? card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
+
+            card.ListShopItems.RemoveAt(index);
+
+            ShopCard cardNew = new() { ListShopItems = card.ListShopItems };
 
             string json = JsonSerializer.Serialize(cardNew);
 
@@ -103,9 +114,7 @@ namespace SimpleShop.Domain.Entities.ShopCards
         }
 
         public List<Product> GetShopItems()
-        {   
-            ISession? session = _services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
+        {
             var card = JsonSerializer.Deserialize<ShopCard>(session.GetString("ShopCard"));
 
             return card.ListShopItems;

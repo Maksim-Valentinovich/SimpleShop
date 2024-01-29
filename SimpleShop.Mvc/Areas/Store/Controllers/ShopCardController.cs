@@ -19,34 +19,29 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         public IActionResult Index()
         {
-            var items = _shopCard.GetShopItems();
-
-            _shopCard.ListShopItems = items;
-
-            return View(new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            return View();
         }
 
         public RedirectToActionResult AddToCard(int ids)
         {
-            if (ids != 0)
-            {
-                var product = _context.Products.FirstOrDefault(p => p.Id == ids);
+            var product = _context.Products.FirstOrDefault(p => p.Id == ids);
 
-                if (product != null)
-                {
-                    _shopCard.AddToCard(product);
-                }
-            }
+            _shopCard.AddToCard(product);
+
             return RedirectToAction("BasketModal");
         }
 
-        //public RedirectToActionResult DeleteProductOnCard()
-        //{
-        //    return RedirectToAction("BasketModal");
-        //}
+        [Route("Store/ShopCard/DeleteProductOnCard")]
+        [HttpGet]
+        public IActionResult DeleteProductOnCard(int index)
+        {
+            _shopCard.DeleteProduct(index);
+
+            return PartialView("_BasketModal", new ShopCardFiveViewModel
+            {
+                ShopCard = _shopCard,
+            });
+        }
 
         public IActionResult BasketModal()
         {
