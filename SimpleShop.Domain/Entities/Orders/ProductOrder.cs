@@ -19,7 +19,7 @@ namespace SimpleShop.Domain.Entities.Orders
         public int ClubId { get; set; }
 
         [ForeignKey("ClubId")]
-        public Club? Club { get; set; }
+        public Club Club { get; set; }
 
     }
 }

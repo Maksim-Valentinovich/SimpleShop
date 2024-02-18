@@ -8,9 +8,9 @@
 
         public required string Patronymic { get; set; }
 
-        //public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
-        //public bool IsMan { get; set; }
+        public bool IsMan { get; set; }
 
         public required string Email { get; set; }
 
