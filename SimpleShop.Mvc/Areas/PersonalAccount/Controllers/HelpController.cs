@@ -15,11 +15,11 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        [Route("PersonalAccount/Help/Index")]
+        [HttpGet("{clientId}")]
+        public IActionResult Index(int clientId)
         {
-            string email = "maks0076@mail.ru";
-
-            var cl = _context.Clients.FirstOrDefault(c => c.Email == email);
+            var cl = _context.Clients.FirstOrDefault(c => c.Id == clientId);
 
             ClientViewModel client = new()
             {

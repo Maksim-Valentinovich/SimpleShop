@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clients;
+using SimpleShop.Domain.Entities.Orders;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 
@@ -59,29 +60,36 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Order/Registration")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Registration(RegistrationViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var client = _context.Clients.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var client = _context.Clients.FirstOrDefault(u => u.Email == model.Email);
 
                 if (client == null)
                 {
                     _context.Clients.Add(new Client { Email = model.Email, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Password = "0" });
                     //_context.SaveChangesAsync();
 
-                    return PartialView("_ChoosePayModal");
+                    ModelState.AddModelError("", "OK");
+
+                    return View(model);
                 }
                 else
                 {
-                    return PartialView("_ChoosePayModal");
+                    //return PartialView("_ChoosePayModal");
+
+                    ModelState.AddModelError("", "OK");
+
+                    return View(model);
                 }
             }
             else
             {
                 ModelState.AddModelError("", "Заполните все поля регистрации!");
+                return View(model);
             }
-            return View(model);
         }
 
 
@@ -172,6 +180,20 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "BasketModal" });
         }
 
+        [Route("Store/Order/AddOrder")]
+        [HttpGet]
+        public void AddOrder(OrderViewModel model) 
+        {
+            _context.Orders.Add(new Order {ClientId = model.ClientId, Sum = model.Sum, Date = DateTime.Now, IsOnline = model.IsOnline, /*ProductId = model.ProductId*/ });
+            _context.SaveChanges();
+        }
+
+        [Route("Store/Order/Pay")]
+        [HttpGet]
+        public IActionResult Pay()
+        {
+            return View();
+        }
     }
 
 

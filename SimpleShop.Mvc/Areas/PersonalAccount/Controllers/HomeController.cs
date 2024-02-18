@@ -16,13 +16,14 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
         }
 
         [Route("PersonalAccount/Home/Index")]
-        [HttpGet]
-        public IActionResult Index(string email)
+        [HttpGet("{clientId}")]
+        public IActionResult Index(int clientId)
         {
-            var cl = _context.Clients.FirstOrDefault(c => c.Email == email);
+            var cl = _context.Clients.FirstOrDefault(c => c.Id == clientId);
 
             ClientViewModel client = new()
             {
+                Id = cl.Id,
                 Name = cl.Name,
                 Surname = cl.Surname,
                 Patronymic = cl.Patronymic,

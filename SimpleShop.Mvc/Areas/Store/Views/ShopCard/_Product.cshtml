@@ -1,33 +1,34 @@
 ﻿@using SimpleShop.Mvc.Areas.Store.ViewModels;
 @model ShopCardFiveViewModel
 
-
-        @foreach (var Product in Model.ShopCard.ListShopItems)
-        {
-            <div class="order-card">
-                <div class="order-card-point">
-                    <label for="colFormLabel" class="col">Вид услуги:</label>
-                    <label for="colFormLabel" class="col">Наименование:</label>
-                    <label for="colFormLabel" class="col">Клуб:</label>
-                    <label for="colFormLabel" class="col">Срок действия:</label>
-                    <label for="colFormLabel" class="col">Стоимость:</label>
-                </div>
-                <div class="order-card-point">
-                    <div class="card-point-info">
-                        @Product.Name
-                        <hr />
-                        @Product.Description
-                        <hr />
-                        Simple Shop Такой то клуб
-                        <hr />
-                        @Product.CountDay дней
-                        <hr />
-                        @Product.Price руб.
-                        <hr />
-                    </div>
+<div class="list-offers">
+    @foreach (var Product in Model.ShopCard.ListShopItems)
+    {
+        <div class="order-card">
+            <div class="order-card-point">
+                <label for="colFormLabel" class="col">Вид услуги:</label>
+                <label for="colFormLabel" class="col">Наименование:</label>
+                <label for="colFormLabel" class="col">Клуб:</label>
+                <label for="colFormLabel" class="col">Срок действия:</label>
+                <label for="colFormLabel" class="col">Стоимость:</label>
+            </div>
+            <div class="order-card-point">
+                <div class="card-point-info">
+                    @Product.Name
+                    <hr />
+                    @Product.Description
+                    <hr />
+                    Simple Shop Такой то клуб
+                    <hr />
+                    @Product.CountDay дней
+                    <hr />
+                    @Product.Price руб.
+                    <hr />
                 </div>
             </div>
-        }
+        </div>
+    }
+</div>
 <div class="list-price">Итого:<span>@Model.ShopCard.ListShopItems.Sum(c => c.Price).ToString() руб.</span></div>
 
 

@@ -1,6 +1,4 @@
-﻿using SimpleShop.Domain.Entities;
-
-namespace SimpleShop.Mvc.Areas.Store.ViewModels
+﻿namespace SimpleShop.Mvc.Areas.Store.ViewModels
 {
     public class ProductViewModel
     {
@@ -21,7 +19,7 @@ namespace SimpleShop.Mvc.Areas.Store.ViewModels
         public int? Count { get; set; }
         public string? ClubName { get; set; }
 
-        public int? ClubId {  get; set; }
+        public int? ClubId { get; set; }
         public string? PictureLink { get; set; }
 
         public string? Info { get; set; }

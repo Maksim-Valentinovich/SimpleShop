@@ -1,12 +1,15 @@
-﻿<div class="account-menu">
+﻿@using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
+@model ClientViewModel;
+
+<div class="account-menu">
     <div class="menu-logo">Simple<i class="fa-solid fa-dumbbell"></i>Shop</div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-address-card"></i><a asp-area="PersonalAccount" asp-controller="Home" asp-action="Index">МОЙ ПРОФИЛЬ</a></button>
+        <button class="btn navbar-account"><i class="fa-solid fa-address-card"></i><a asp-area="PersonalAccount" asp-controller="Home" asp-action="Index" asp-route-clientId="@Model.Id">МОЙ ПРОФИЛЬ</a></button>
     </div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-basket-shopping"></i><a asp-area="PersonalAccount" asp-controller="Basket" asp-action="Index">МОИ ПОКУПКИ</a></button>
+        <button class="btn navbar-account"><i class="fa-solid fa-basket-shopping"></i><a asp-area="PersonalAccount" asp-controller="Basket" asp-action="Index" asp-route-clientId="@Model.Id">МОИ ПОКУПКИ</a></button>
     </div>
     <div class="menu-point">
-        <button class="btn navbar-account"><i class="fa-solid fa-circle-info"></i><a asp-area="PersonalAccount" asp-controller="Help" asp-action="Index">ПОМОЩЬ</a></button>
+        <button class="btn navbar-account"><i class="fa-solid fa-circle-info"></i><a asp-area="PersonalAccount" asp-controller="Help" asp-action="Index" asp-route-clientId="@Model.Id">ПОМОЩЬ</a></button>
     </div>
 </div>

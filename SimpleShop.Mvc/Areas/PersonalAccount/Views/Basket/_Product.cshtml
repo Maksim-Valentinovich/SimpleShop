@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SimpleShop.Mvc.Areas.PersonalAccount.ViewModels.ProductViewModel>
+
+<div class="list-offers">
+    @foreach (var Product in Model)
+    {
+        <div class="order-card">
+            <div class="order-card-point">
+                <label for="colFormLabel" class="col">Вид услуги:</label>
+                <label for="colFormLabel" class="col">Наименование:</label>
+                <label for="colFormLabel" class="col">Клуб:</label>
+                <label for="colFormLabel" class="col">Срок действия:</label>
+                <label for="colFormLabel" class="col">Стоимость:</label>
+            </div>
+            <div class="order-card-point">
+                <div class="card-point-info">
+                    @Product.Name
+                    <hr />
+                    @Product.Description
+                    <hr />
+                    Simple Shop Такой то клуб
+                    <hr />
+                    @Product.CountDay дней
+                    <hr />
+                    @Product.Price руб.
+                    <hr />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+   
+   
+
+    
+

@@ -1,31 +1,96 @@
-﻿@{
-    ViewData["Title"] = "Account";
-}
+﻿@* @{ViewData["Title"] = "Account"}; *@
+
+@using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
+@model ClientViewModel;
 
 <div class="account">
-    <div class="account-content">
+    <div class="account-content" data-clientId="1" id="account-my">
         <div class="account-personal">
             <div class="account-personal-chapter">АБОНЕМЕНТЫ</div>
             <hr />
+            <div class="additional-partial" id="additional-subscription">
+                <div class="partial-content"></div>
+            </div>
             <div class="button-wrapper">
                 <button type="submit" class="btn btn-primary"> <a class="dropdown-item" asp-area="Store" asp-controller="Home" asp-action="Index">Купить</a></button>
             </div>
         </div>
 
         <div class="account-personal">
+            <div class="account-personal-chapter">ТРЕНИРОВКИ</div>
+            <hr />
+            <div class="additional-partial" id="additional-training">
+                <div class="partial-content"></div>
+            </div>
+            <div class="button-wrapper">
+                <button type="submit" class="btn btn-primary"> <a class="dropdown-item" asp-area="Store" asp-controller="Home" asp-action="Training">Купить</a></button>
+            </div>
+        </div>
+
+        <div class="account-personal">
             <div class="account-personal-chapter">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</div>
             <hr />
+            <div class="additional-partial" id="additional-service">
+                <div class="partial-content"></div>
+            </div>
             <div class="button-wrapper">
                 <button type="submit" class="btn btn-primary"> <a class="dropdown-item" asp-area="Store" asp-controller="Home" asp-action="Service">Купить</a></button>
             </div>
         </div>
 
-        <div class="account-personal">
-            <div class="account-personal-chapter">ТРЕНИРОВКИ</div>
-            <hr />
-            <div class="button-wrapper">
-                <button type="submit" class="btn btn-primary"> <a class="dropdown-item" asp-area="Store" asp-controller="Home" asp-action="Training">Купить</a></button>
-            </div>
-        </div>
+        
     </div>
 </div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script>
+    setOptionValue();
+    function setOptionValue() {
+        var clientId = ('@(Model.Id)');
+        let categoryId = 2;
+        $.ajax({
+            url: 'Product?clientId=' + clientId + "&categoryId=" + encodeURIComponent(categoryId),
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#additional-subscription div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    }
+</script>
+
+<script>
+    setOptionValue();
+    function setOptionValue() {
+        var clientId = ('@(Model.Id)');
+        let categoryId = 3;
+        $.ajax({
+            url: 'Product?clientId=' + clientId + "&categoryId=" + encodeURIComponent(categoryId),
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#additional-training div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    }
+</script>
+
+<script>
+    setOptionValue();
+    function setOptionValue() {
+        var clientId = ('@(Model.Id)');
+        let categoryId = 4;
+        $.ajax({
+            url: 'Product?clientId=' + clientId + "&categoryId=" + encodeURIComponent(categoryId),
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                $('#additional-service div.partial-content').html(content);
+            },
+            error: function (e) { }
+        });
+    }
+</script>

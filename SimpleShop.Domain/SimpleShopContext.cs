@@ -41,7 +41,7 @@ namespace SimpleShop.Domain
 
             modelBuilder.Entity<ClubProduct>().HasKey(x => new { x.ProductId, x.ClubId });
 
-            modelBuilder.Entity<ProductOrder>().HasKey(x => new { x.ProductId, x.OrderId });
+            modelBuilder.Entity<ProductOrder>().HasKey(x => new { x.ProductId, x.OrderId , x.ClubId});
         }
     }
 }

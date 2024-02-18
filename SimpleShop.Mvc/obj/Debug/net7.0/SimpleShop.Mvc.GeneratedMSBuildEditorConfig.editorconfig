@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUGVyc29uYWxBY2NvdW50XFZpZXdzXEJhc2tldFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Alexandr/Desktop/Изменения/SompleShop.Changes/SimpleShop/SimpleShop.Mvc/Areas/PersonalAccount/Views/Basket/_Product.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUGVyc29uYWxBY2NvdW50XFZpZXdzXEJhc2tldFxfUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Alexandr/Desktop/Изменения/SompleShop.Changes/SimpleShop/SimpleShop.Mvc/Areas/PersonalAccount/Views/Help/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUGVyc29uYWxBY2NvdW50XFZpZXdzXEhlbHBcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Alexandr/Desktop/Изменения/SompleShop.Changes/SimpleShop/SimpleShop.Mvc/Areas/Store/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3RvcmVcVmlld3NcT3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alexandr/Desktop/Изменения/SompleShop.Changes/SimpleShop/SimpleShop.Mvc/Areas/Store/Views/Order/Pay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3RvcmVcVmlld3NcT3JkZXJcUGF5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Alexandr/Desktop/Изменения/SompleShop.Changes/SimpleShop/SimpleShop.Mvc/Areas/Store/Views/Order/Registration.cshtml]

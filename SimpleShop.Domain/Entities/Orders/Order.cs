@@ -15,5 +15,7 @@ namespace SimpleShop.Domain.Entities.Orders
         public DateTime Date { get; set; }
 
         public decimal Sum { get; set; }
+
+        //public int ProductId { get; set; }
     }
 }

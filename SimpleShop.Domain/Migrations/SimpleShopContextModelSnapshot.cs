@@ -244,16 +244,12 @@ namespace SimpleShop.Domain.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CountDay")
+                    b.Property<int>("ClubId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CountPeople")
-                        .HasColumnType("integer");
+                    b.HasKey("ProductId", "OrderId", "ClubId");
 
-                    b.Property<int?>("CountVisit")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ProductId", "OrderId");
+                    b.HasIndex("ClubId");
 
                     b.HasIndex("OrderId");
 
@@ -368,6 +364,12 @@ namespace SimpleShop.Domain.Migrations
 
             modelBuilder.Entity("SimpleShop.Domain.Entities.Orders.ProductOrder", b =>
                 {
+                    b.HasOne("SimpleShop.Domain.Entities.Clubs.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SimpleShop.Domain.Entities.Orders.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
@@ -379,6 +381,8 @@ namespace SimpleShop.Domain.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Club");
 
                     b.Navigation("Order");
 

@@ -5,6 +5,7 @@ namespace SimpleShop.Mvc.Areas.PersonalAccount.ViewModels
 {
     public class ClientViewModel
     {
+        public int Id { get; set; }
         public string? Name { get; set; }
 
         public string? Surname { get; set; }

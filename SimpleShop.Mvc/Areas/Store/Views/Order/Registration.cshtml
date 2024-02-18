@@ -19,10 +19,8 @@
             <div class="data-personal">
                 <h2>Персональная информация</h2>
                 <form class="personal-info" asp-action="Registration" asp-controller="Order" asp-area="Store" asp-anti-forgery="true" id="form">
-                    
-                    <div id="message"></div>
-                    
-                    <div class="validation" asp-validation-summary="ModelOnly"></div>
+                   
+                    <div class="validation" asp-validation-summary="ModelOnly" id="message" data-state ="false"></div>
 
                     <div class="form-position">
                         <label asp-for="Name">Имя</label><br />
@@ -42,11 +40,11 @@
                         <span asp-validation-for="Patronymic" />
                     </div>
 
-                    <div class="form-position">
+@*                     <div class="form-position">
                         <label asp-for="Birthday">Дата рождения</label><br />
                         <input type="date" class="form-control" id="birthday" asp-for="Birthday" />
                         <span asp-validation-for="Birthday" />
-                    </div>
+                    </div> *@
 
                     <div class="form-position">
                         <label asp-for="Phone">Номер телефона</label><br />
@@ -82,10 +80,8 @@
 
             <div class="data-order">
                 <h2>Перечень товаров</h2>
-                <div class="list-offers">
-                    <div class="additional-partial" id="additional">
-                        <div class="partial-content"></div>
-                    </div>
+                <div class="additional-partial" id="additional">
+                    <div class="partial-content"></div>
                 </div>
             </div>
         </div>
@@ -142,14 +138,45 @@
             url: 'Registration?model=' + data,
             type: 'POST',
             dataType: 'html',
-            success: function (content) {
-                $('#choose-pay div.modal-body').html(content);
-                $('#choose-pay').modal('show')
+            success: function () {
+
             },
-            error: function (e) { }
+            error: function (e) { }ё
         });
     });
 </script>
+
+@* <script>
+    $("#form").validate({
+        rules: {
+            first: {
+                required: true,
+            },
+            middle: {
+                required: true,
+            },
+        },
+        messages: {
+            first: {
+                required: "Заполните все поля!",
+            },
+            middle: {
+                required: "Заполните все поля!",
+            },
+        },
+
+        submitHandler: function (form) {
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: $(form).serialize(),
+                success: function (response) {
+                    $('#answers').html(response);
+                }
+            });
+        }
+    });
+</script> *@
 
 
 <script>

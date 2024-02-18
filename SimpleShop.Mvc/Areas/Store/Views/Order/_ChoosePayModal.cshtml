@@ -2,11 +2,38 @@
     <div class="method-point">
         <div class="point-card">
             <h2>Онлайн</h2>
-            <i class="fa-solid fa-credit-card"></i>
+            <button class="button-card"><i class="fa-solid fa-credit-card"></i></button>
         </div>
-        <div class="point-card">
+        <div class="point-club">
             <h2>В клубе</h2>
-            <i class="fa-solid fa-money-bill-1-wave"></i>
+            <button class="button-club"><i class="fa-solid fa-money-bill-1-wave"></i></button>
         </div>
     </div>
 </div>
+
+<script>
+    $(".button-card").click(function () {
+        $.ajax({
+            url: 'Pay',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                window.location.href = "http://localhost:5255/Store/Order/Pay";
+            },
+            error: function (e) { }
+        })
+    })
+</script>
+<script>
+    $(".button-club").click(function () {
+        $.ajax({
+            url: 'Pay',
+            type: 'GET',
+            dataType: 'html',
+            success: function (content) {
+                window.location.href = "http://localhost:5255/Home/Index";
+            },
+            error: function (e) { }
+        })
+    })
+</script>

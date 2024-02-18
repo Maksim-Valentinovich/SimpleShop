@@ -35,7 +35,7 @@ namespace SimpleShop.Mvc.Controllers
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", email = model.Email });
+                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", /*email = model.Email,*/ clientId = client.Id});
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
