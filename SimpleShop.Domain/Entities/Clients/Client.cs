@@ -8,7 +8,7 @@ namespace SimpleShop.Domain.Entities.Clients
 
         public required string Surname { get; set; }
 
-        public required string? Patronymic { get; set; }
+        public required string Patronymic { get; set; }
 
         [NotMapped]
         public string FullName => $"{Surname} {Name} {Patronymic}";
@@ -21,7 +21,7 @@ namespace SimpleShop.Domain.Entities.Clients
 
         public required string Phone { get; set; }
 
-        public required string Password { get; set; }
+        public string? Password { get; set; }
 
     }
 }

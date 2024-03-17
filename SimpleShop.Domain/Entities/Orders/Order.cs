@@ -8,7 +8,7 @@ namespace SimpleShop.Domain.Entities.Orders
         public int ClientId { get; set; }
 
         [ForeignKey("ClientId")]
-        public Client Client { get; set; }
+        public Client? Client { get; set; }
 
         public bool IsOnline { get; set; }
 
@@ -16,6 +16,5 @@ namespace SimpleShop.Domain.Entities.Orders
 
         public decimal Sum { get; set; }
 
-        //public int ProductId { get; set; }
     }
 }
