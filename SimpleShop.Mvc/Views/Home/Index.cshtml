@@ -172,7 +172,7 @@
                     navigator.geolocation.getCurrentPosition(
                         function (position) {
                             $.ajax({
-                                url: 'Home/AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + + encodeURIComponent(position.coords.longitude),
+                                url: 'Home/AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + encodeURIComponent(position.coords.longitude),
                                 type: 'GET',
                                 dataType: 'html',
                                 success: function (content) {

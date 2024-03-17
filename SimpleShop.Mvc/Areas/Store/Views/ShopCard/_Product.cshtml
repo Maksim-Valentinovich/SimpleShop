@@ -2,7 +2,7 @@
 @model ShopCardFiveViewModel
 
 <div class="list-offers">
-    @foreach (var Product in Model.ShopCard.ListShopItems)
+    @for (int i = 0; i < Model.ShopCard.ListShopItems.Count; i++)
     {
         <div class="order-card">
             <div class="order-card-point">
@@ -14,15 +14,15 @@
             </div>
             <div class="order-card-point">
                 <div class="card-point-info">
-                    @Product.Name
+                    @Model.ShopCard.ListShopItems[i].Name
                     <hr />
-                    @Product.Description
+                    @Model.ShopCard.ListShopItems[i].Description
                     <hr />
-                    Simple Shop Такой то клуб
+                    Simple Shop @Model.ShopCard.ListShopClubs[i].DisplayName
                     <hr />
-                    @Product.CountDay дней
+                    @Model.ShopCard.ListShopItems[i].CountDay дней
                     <hr />
-                    @Product.Price руб.
+                    @Model.ShopCard.ListShopItems[i].Price руб.
                     <hr />
                 </div>
             </div>

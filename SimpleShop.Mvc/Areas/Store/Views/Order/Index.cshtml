@@ -68,12 +68,18 @@
     </div>
 </div>
 
+@section Scripts
+{
+    <script src="~/js/views/store/order/index.js"></script>
+}
+
 <script src="~/lib/jquery/jquery.min.js"></script>
+
 <script>
     $(".button-buy-product").click(function () {
-        let productId = $(this).data("ids")
+        let productId = $(this).data("ids");
         $.ajax({
-            url: 'AddToCard?productId=' + productId,
+            url: 'AddToCard?productId=' + productId + '&clubId=' + @Model.ClubId,
             type: 'GET',
             dataType: 'html',
             success: function (content) {
@@ -85,25 +91,6 @@
     })
 </script>
 
-@* <script>
-    $('#modal').on('hidden', function () {
-        $(this).data('modal').$element.removeData();
-    })
-</script> *@
-
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: 'Recommendations',
-            type: 'GET',
-            dataType: 'html',
-            success: function (content) {
-                $('#additional div.partial-content').html(content);
-            },
-            error: function (e) { }
-        });
-    })
-</script>
 
 
 

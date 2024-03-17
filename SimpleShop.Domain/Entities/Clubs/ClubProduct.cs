@@ -8,11 +8,11 @@ namespace SimpleShop.Domain.Entities.Clubs
         public int ClubId { get; set; }
 
         [ForeignKey("ClubId")]
-        public Club Club { get; set; }
+        public required Club Club { get; set; }
 
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public required Product Product { get; set; }
     }
 }
