@@ -17,7 +17,6 @@
 <script>
     $(".button-position-delete").click(function () {
         var index = $(this).data("index")
-        // var model = @Html.Raw(Json.Serialize(Model));
         
         $.ajax({
             url: 'Order/DeleteProductOnCard?indx=' + index,

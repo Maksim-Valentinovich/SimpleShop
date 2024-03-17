@@ -3,8 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clients;
 using SimpleShop.Domain.Entities.Orders;
+using SimpleShop.Domain.Entities.ShopCards;
+using SimpleShop.Mvc.Areas.Store.Dto.Order;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
+using System.Text.Json;
 
 namespace SimpleShop.Mvc.Areas.Store.Controllers
 {
@@ -57,69 +60,43 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             return View();
         }
 
-
-        [Route("Store/Order/Registration")]
+        [Route("Store/Order/MakeOrder")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Registration(RegistrationViewModel model)
+        public IActionResult MakeOrder(MakeOrderDto input)
         {
-            if (ModelState.IsValid)
+            var client = _context.Clients.FirstOrDefault(u => u.Email == input.Email);
+
+            if (client == null)
             {
-                var client = _context.Clients.FirstOrDefault(u => u.Email == model.Email);
-
-                if (client == null)
-                {
-                    _context.Clients.Add(new Client { Email = model.Email, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Password = "0" });
-                    //_context.SaveChangesAsync();
-
-                    ModelState.AddModelError("", "OK");
-
-                    return View(model);
-                }
-                else
-                {
-                    //return PartialView("_ChoosePayModal");
-
-                    ModelState.AddModelError("", "OK");
-
-                    return View(model);
-                }
+                _context.Clients.Add(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone });
+                _context.Orders.Add(new Order { ClientId = _context.Clients.OrderBy(c => c.Id).Last().Id, Date = DateTime.Now, IsOnline = input.IsOnline });
             }
             else
             {
-                ModelState.AddModelError("", "Заполните все поля регистрации!");
-                return View(model);
+                _context.Orders.Add(new Order { ClientId = client.Id, Date = DateTime.Now, IsOnline = input.IsOnline });
             }
+
+            var card = JsonSerializer.Deserialize<ShopCard>(ShopCard.Session.GetString("ShopCard"));
+
+            var products = card?.ListShopItems?.ToList();
+
+            var clubs = card?.ListShopClubs?.ToList();
+
+            decimal sum = 0;
+
+            for (int i = 0; i < products?.Count; i++)
+            {
+                _context.Subscriptions.Add(new ProductOrder { ProductId = products[i].Id, OrderId = _context.Orders.Select(c => c.Id).OrderBy(c => c).Last(), ClubId = clubs[i].Id });
+                sum+= products[i].Price;
+            }
+
+            _context.Orders.OrderBy(c => c.Id).Last().Sum = sum;
+            _context.SaveChanges();
+
+            HttpContext.Session.Clear();
+
+            return Ok();
         }
-
-
-        //[Route("Store/Order/Registration")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Registration(RegistrationViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Client? client = await _context.Clients.FirstOrDefaultAsync(u => u.Email == model.Email);
-        //        if (client == null)
-        //        {
-        //            _context.Clients.Add(new Client { Email = model.Email, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Password = "0" });
-        //            await _context.SaveChangesAsync();
-
-        //            return PartialView("_ChoosePayModal");
-        //        }
-        //        else
-        //        {
-        //            return PartialView("_ChoosePayModal");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("", "Заполните все поля регистрации!");
-        //    }
-        //    return View(model);
-        //}
-
 
         [Route("Store/Order/Recommendations")]
         [HttpGet]
@@ -147,7 +124,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Order/ChoosePayModal")]
         [HttpGet]
-        public IActionResult ChoosePayModal() 
+        public IActionResult ChoosePayModal()
         {
             return PartialView("_ChoosePayModal");
         }
@@ -168,9 +145,9 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Order/AddToCard")]
         [HttpGet]
-        public RedirectToRouteResult AddToCard(int productId)
+        public RedirectToRouteResult AddToCard(int productId, int clubId)
         {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "AddToCard", ids = productId });
+            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "AddToCard", productId, clubId });
         }
 
         [Route("Store/Order/BasketModal")]
@@ -180,17 +157,9 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "BasketModal" });
         }
 
-        [Route("Store/Order/AddOrder")]
+        [Route("Store/Order/FinishPay")]
         [HttpGet]
-        public void AddOrder(OrderViewModel model) 
-        {
-            _context.Orders.Add(new Order {ClientId = model.ClientId, Sum = model.Sum, Date = DateTime.Now, IsOnline = model.IsOnline, /*ProductId = model.ProductId*/ });
-            _context.SaveChanges();
-        }
-
-        [Route("Store/Order/Pay")]
-        [HttpGet]
-        public IActionResult Pay()
+        public IActionResult FinishPay()
         {
             return View();
         }

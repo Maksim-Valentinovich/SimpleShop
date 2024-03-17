@@ -25,6 +25,26 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\home\\index.js",
+      "PackagePath": "staticwebassets\\js\\views\\store\\home\\index.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\order\\finishPay.js",
+      "PackagePath": "staticwebassets\\js\\views\\store\\order\\finishPay.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\order\\index.js",
+      "PackagePath": "staticwebassets\\js\\views\\store\\order\\index.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\order\\registration.js",
+      "PackagePath": "staticwebassets\\js\\views\\store\\order\\registration.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\shopCard\\index.js",
+      "PackagePath": "staticwebassets\\js\\views\\store\\shopCard\\index.js"
+    },
+    {
       "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\lib\\air-datepicker\\css\\datepicker.css",
       "PackagePath": "staticwebassets\\lib\\air-datepicker\\css\\datepicker.css"
     },

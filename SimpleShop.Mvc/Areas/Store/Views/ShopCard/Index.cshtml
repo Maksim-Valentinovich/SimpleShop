@@ -24,18 +24,8 @@
     </div>
 </div>
 
-<script src="~/lib/jquery/jquery.min.js"></script>
+@section Scripts
+{
+    <script src="~/js/views/store/shopCard/index.js"></script>
+}
 
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: 'Order/BasketModal',
-            type: 'GET',
-            dataType: 'html',
-            success: function (content) {
-                $('#additional div.partial-content').html(content);
-            },
-            error: function (e) { }
-        });
-    })
-</script>

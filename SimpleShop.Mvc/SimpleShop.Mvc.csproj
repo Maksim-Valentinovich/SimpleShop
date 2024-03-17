@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Store\Views\Order\FinishPay.cshtml" />
     <Content Remove="Views\Shared\_Header - Копировать.cshtml" />
     <Content Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
@@ -36,6 +37,18 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Store\Views\Order\FinishPay.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Store\Views\Order\FinishPay.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Store\Views\Order\FinishPay.cshtml" />
   </ItemGroup>
 
 </Project>
