@@ -651,6 +651,24 @@ body {
     background-color: #A0F570;
 }
 
+.finish-container {
+    margin:100px auto;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height: 200px;
+    width: 300px;
+    border: 1px solid black;
+}
+
+.finish-pay-button {
+    margin:auto;
+    border-radius: 10px;
+    background-color: #A0F570;
+}
+
+
 
 
 

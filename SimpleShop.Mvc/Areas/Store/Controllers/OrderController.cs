@@ -68,7 +68,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
             if (client == null)
             {
-                _context.Clients.Add(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone });
+                _context.Clients.Add(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone, IsMan = input.IsMan, Birhday = input.Birthday });
                 _context.Orders.Add(new Order { ClientId = _context.Clients.OrderBy(c => c.Id).Last().Id, Date = DateTime.Now, IsOnline = input.IsOnline });
             }
             else
@@ -81,6 +81,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             var products = card?.ListShopItems?.ToList();
 
             var clubs = card?.ListShopClubs?.ToList();
+            
 
             decimal sum = 0;
 
