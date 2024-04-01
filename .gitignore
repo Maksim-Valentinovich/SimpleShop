@@ -1,0 +1,13 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SimpleShop/FileContentIndex/32b8a26b-3036-4549-ad71-c73e5b906949.vsidx
+/.vs/SimpleShop/FileContentIndex/4d4281f8-1cc0-4188-b4a9-2b52b7875404.vsidx
+/.vs/SimpleShop/FileContentIndex/54fb89ed-e4b8-40bc-abfc-4cbda177fade.vsidx
+/.vs/SimpleShop/FileContentIndex/8c74979e-a172-41ec-bdee-36da8e9f814f.vsidx
+/.vs/SimpleShop/FileContentIndex/8e7b61df-32ad-43c8-8e9d-10308a57d08d.vsidx
+/.vs/SimpleShop/FileContentIndex/a3999b8d-693e-4eef-aba6-227e5fbb0347.vsidx
+/.vs/SimpleShop/FileContentIndex/bfd22996-c334-4fad-a164-4c9922f5160e.vsidx
+/.vs/SimpleShop/FileContentIndex/e9fbf3bd-8141-4941-9f89-c970672e4cd1.vsidx
+/SimpleShop.Mvc/obj/Debug/net7.0/SimpleShop.Mvc.csproj.AssemblyReference.cache
