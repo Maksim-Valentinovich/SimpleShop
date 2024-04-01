@@ -76,7 +76,6 @@ $("#buy").on("click", function () {
         $("#validation-email").text("")
     }
     $('#choose-pay').modal('show');
-    2123
 });
 
 $(document).ready(function () {
