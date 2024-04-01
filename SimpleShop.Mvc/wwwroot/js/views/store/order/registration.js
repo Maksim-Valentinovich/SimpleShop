@@ -35,6 +35,8 @@ $("#buy").on("click", function () {
         Surname: $("#surname").val(),
         Patronymic: $("#patronymic").val(),
         Phone: $("#phone").val(),
+        Birthday: $("#birthday").val(),
+        IsMan: $("input[type='radio'][name='flexRadioDefault']:checked").val(),
         Email: $("#email").val(),
     };
     if (!user.Name) {
@@ -54,6 +56,12 @@ $("#buy").on("click", function () {
         return;
     } else {
         $("#validation-patronymic").text("")
+    }
+    if (!user.Birthday) {
+        $("#validation-birthday").text("Поле не заполнено!")
+        return;
+    } else {
+        $("#validation-birthday").text("")
     }
     if (!user.Phone) {
         $("#validation-phone").text("Поле не заполнено!")

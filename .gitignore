@@ -2,12 +2,25 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/SimpleShop/FileContentIndex/32b8a26b-3036-4549-ad71-c73e5b906949.vsidx
-/.vs/SimpleShop/FileContentIndex/4d4281f8-1cc0-4188-b4a9-2b52b7875404.vsidx
-/.vs/SimpleShop/FileContentIndex/54fb89ed-e4b8-40bc-abfc-4cbda177fade.vsidx
-/.vs/SimpleShop/FileContentIndex/8c74979e-a172-41ec-bdee-36da8e9f814f.vsidx
-/.vs/SimpleShop/FileContentIndex/8e7b61df-32ad-43c8-8e9d-10308a57d08d.vsidx
-/.vs/SimpleShop/FileContentIndex/a3999b8d-693e-4eef-aba6-227e5fbb0347.vsidx
-/.vs/SimpleShop/FileContentIndex/bfd22996-c334-4fad-a164-4c9922f5160e.vsidx
-/.vs/SimpleShop/FileContentIndex/e9fbf3bd-8141-4941-9f89-c970672e4cd1.vsidx
-/SimpleShop.Mvc/obj/Debug/net7.0/SimpleShop.Mvc.csproj.AssemblyReference.cache
+/.vs/SimpleShop/FileContentIndex/2351d75b-0dc2-4122-885e-b6f40ee5b222.vsidx
+/.vs/SimpleShop/FileContentIndex/7b552866-1087-433d-906c-e53d9a77b163.vsidx
+/.vs/SimpleShop/FileContentIndex/89c723ce-4859-4b5a-8fe8-da0b7d5bd5df.vsidx
+/.vs/SimpleShop/FileContentIndex/ac82d04d-282b-43d0-970d-2395dc53c8f0.vsidx
+/.vs/SimpleShop/FileContentIndex/c385e596-05a7-4e8f-ab10-e08696716dcf.vsidx
+/.vs/SimpleShop/FileContentIndex/d218e3c4-1d59-49fd-9bf8-ee93204ea8b6.vsidx
+/.vs/SimpleShop/FileContentIndex/f034bfde-2b85-4a79-94fb-179ef0620a2f.vsidx
+/.vs/SimpleShop/FileContentIndex/f33dd67e-c234-457c-9692-d7718410bda5.vsidx
+/.vs/SimpleShop/FileContentIndex/0d8981c7-09db-4804-82eb-fbefbf77c2f0.vsidx
+/.vs/SimpleShop/FileContentIndex/3ac6164d-ab20-45ad-bccd-266e6bd44549.vsidx
+/.vs/SimpleShop/FileContentIndex/4f046706-7522-4b01-b3e3-99b69627fe7b.vsidx
+/.vs/SimpleShop/FileContentIndex/7099c4e7-3441-478e-886b-8f3018a48f91.vsidx
+/.vs/SimpleShop/FileContentIndex/cb641fe2-8181-4aad-a54d-730754b84ed8.vsidx
+/.vs/SimpleShop/FileContentIndex/e8473dc5-8ed6-4015-bdb3-ae54ff884afb.vsidx
+/.vs/SimpleShop/FileContentIndex/2e0059fc-f734-4dea-a1b8-3e40dfa7292a.vsidx
+/.vs/SimpleShop/FileContentIndex/3f652bb7-b983-4b45-ad55-e5144846ee6a.vsidx
+/.vs/SimpleShop/FileContentIndex/7a94e052-e0c8-48fc-9202-edd29e671f07.vsidx
+/.vs/SimpleShop/FileContentIndex/07022faf-df9f-4ae7-a430-486035f259d9.vsidx
+/.vs/SimpleShop/FileContentIndex/644476ee-b83a-4386-8b6e-81e4257a4c61.vsidx
+/.vs/SimpleShop/FileContentIndex/e5f24c74-073e-4d09-85b6-3974658ecf12.vsidx
+/SimpleShop.Domain/bin/Debug/net7.0/SimpleShop.Domain.dll
+/SimpleShop.Domain/bin/Debug/net7.0/SimpleShop.Domain.pdb

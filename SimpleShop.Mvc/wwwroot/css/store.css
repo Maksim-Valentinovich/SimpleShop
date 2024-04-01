@@ -480,106 +480,120 @@ body {
 }
 
 
-
-/*Оплата*/
-
 .wrapper {
     background-color: #ffffff;
     width: 500px;
     padding: 3em;
     perspective: 800px;
     box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
-    margin:auto;
+    margin: auto;
 }
+
 .credit-card {
-  position: relative;
-  width: 350px;
-  height: 220px;
-  margin: auto;
-  transform-style: preserve-3d;
-  transition: 0.3s;
+    position: relative;
+    width: 350px;
+    height: 220px;
+    margin: auto;
+    transform-style: preserve-3d;
+    transition: 0.3s;
 }
+
 .card-front,
 .card-back {
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  background: linear-gradient(#33a4f8, #206df9);
-  border-radius: 1em;
-  backface-visibility: hidden;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(#33a4f8, #206df9);
+    border-radius: 1em;
+    backface-visibility: hidden;
 }
+
 .card-front {
-  padding: 2em 1em;
+    padding: 2em 1em;
 }
+
 .branding {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.branding img {
-  width: 50px;
-  height: auto;
-}
+
+    .branding img {
+        width: 50px;
+        height: auto;
+    }
+
 .card-back {
-  position: absolute;
-  transform: rotateY(180deg);
+    position: absolute;
+    transform: rotateY(180deg);
 }
+
 .card-number {
-  color: #ffffff;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-around;
-  font-size: 20px;
-  margin-top: 25px;
+    color: #ffffff;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    margin-top: 25px;
 }
+
 .details {
     color: #ffffff;
     display: flex;
     justify-content: space-between;
     margin-top: 1.5em;
     font-size: 15px;
-    text-align:center;
+    text-align: center;
 }
-.details span {
-  display: block;
-}
-.details #card-holder-name {
-  text-transform: uppercase;
-}
+
+    .details span {
+        display: block;
+    }
+
+    .details #card-holder-name {
+        text-transform: uppercase;
+    }
+
 .card-back .black-strip {
-  position: relative;
-  background-color: #000000;
-  height: 50px;
-  top: 2em;
+    position: relative;
+    background-color: #000000;
+    height: 50px;
+    top: 2em;
 }
+
 .card-back .white-strip {
-  top: 3em;
-  position: relative;
-  text-align: right;
+    top: 3em;
+    position: relative;
+    text-align: right;
 }
-.card-back .white-strip span {
-  margin-right: 1em;
-}
-.card-back .white-strip div {
-  height: 30px;
-  background-color: #ffffff;
-  margin-top: 0.5em;
-}
+
+    .card-back .white-strip span {
+        margin-right: 1em;
+    }
+
+    .card-back .white-strip div {
+        height: 30px;
+        background-color: #ffffff;
+        margin-top: 0.5em;
+    }
+
 .card-back .visa-logo {
-  position: absolute;
-  width: 50px;
-  margin-top: 4em;
-  right: 1em;
+    position: absolute;
+    width: 50px;
+    margin-top: 4em;
+    right: 1em;
 }
+
 .wrapper form {
     margin-top: 2em;
 }
-.wrapper label,input {
+
+.wrapper label, input {
     display: block;
 }
+
 .wrapper label {
     margin-bottom: 0.5em;
-    font-weight: 600;
 }
 
 .wrapper input {
@@ -588,33 +602,54 @@ body {
     padding: 1em 0.5em;
     border-radius: 0.5em;
 }
-.wrapper input:not(:last-child) {
-    margin-bottom: 1em;
-}
+
+    .wrapper input:not(:last-child) {
+        margin-bottom: 1em;
+    }
+
 .wrapper form .date-cvv {
     display: flex;
     justify-content: space-between;
 }
 
 .finish-button {
-    display:flex;
-    justify-content:center;
-    padding:20px 0px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
 }
+
 .finish-pay {
     width: 100%;
     height: 60px;
     border-radius: 10px;
     border: 1px solid #FFFFFF;
     background-color: #A0F570;
-    color:gray;
+    color: gray;
 }
+
 .warning-text {
-    text-align:center;
+    text-align: center;
     color: black;
     font-size: 14px;
 }
 
+
+.finish-container {
+    margin: 100px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    width: 300px;
+    border: 1px solid black;
+}
+
+.finish-pay-button {
+    margin: auto;
+    border-radius: 10px;
+    background-color: #A0F570;
+}
 
 .finish-container {
     margin:100px auto;
