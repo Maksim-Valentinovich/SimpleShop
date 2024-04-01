@@ -81,6 +81,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             var products = card?.ListShopItems?.ToList();
 
             var clubs = card?.ListShopClubs?.ToList();
+            
 
             decimal sum = 0;
 
