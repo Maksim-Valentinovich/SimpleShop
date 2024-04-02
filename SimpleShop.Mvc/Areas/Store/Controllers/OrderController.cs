@@ -81,17 +81,19 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             var products = card?.ListShopItems?.ToList();
 
             var clubs = card?.ListShopClubs?.ToList();
-            
+
+            var lastOrder = _context.Orders.OrderBy(c => c.Id).Last();
 
             decimal sum = 0;
 
             for (int i = 0; i < products?.Count; i++)
             {
-                _context.Subscriptions.Add(new ProductOrder { ProductId = products[i].Id, OrderId = _context.Orders.Select(c => c.Id).OrderBy(c => c).Last(), ClubId = clubs[i].Id });
-                sum+= products[i].Price;
+                _context.Subscriptions.Add(new ProductOrder { ProductId = products[i].Id, OrderId = lastOrder.Id, ClubId = clubs[i].Id });
+                sum += products[i].Price;
             }
 
-            _context.Orders.OrderBy(c => c.Id).Last().Sum = sum;
+            lastOrder.Sum = sum;
+
             _context.SaveChanges();
 
             HttpContext.Session.Clear();
