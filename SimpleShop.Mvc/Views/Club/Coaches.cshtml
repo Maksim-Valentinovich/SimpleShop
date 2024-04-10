@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="buttons-dropdown">
-                        <button class="button-see" data-clubs="???">Подобрать</button>
+                        <button class="button-see" data-club="???">Подобрать</button>
                         <button class="button">Сбросить</button>
                     </div>
                 </div>
@@ -52,28 +52,8 @@
     </div>
 </div>
 
-<script src="~/lib/jquery/jquery.min.js"></script>
-
-<script>
-    $(".dropdown-item").click(function () {
-        let clubId = $(this).data("club")
-        $.ajax({
-            url: 'CategoryCoaches?clubId=' + clubId,
-            type: 'GET',
-            dataType: 'html',
-            success: function (content) {
-                $('#coaches div.partial-content').html(content);
-            },
-            error: function (e) { }
-        });
-    })
-</script>
-
-
-@* <script>
-    $(".dropdown-item").click(function () {
-        let clubId = $(this).data("club")
-        $(this).closest(".button-see").data('clubs', clubId);
-    })
-</script> *@
+@section Scripts
+{
+    <script src="~/js/views/site/club/coaches.js"></script>
+}
 

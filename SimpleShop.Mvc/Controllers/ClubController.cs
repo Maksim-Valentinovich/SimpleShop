@@ -93,15 +93,17 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet("{name}")]
         public IActionResult Schedule(string name, string? clubName = null)
         {
-            var city = _context.Cities.FirstOrDefault(c => c.Name == name);
+            //var city = _context.Cities.FirstOrDefault(c => c.Name == name);
 
-            //int id;
+            int id;
 
-            //if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
-            //    id = 1;
+            if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
+                id = 1;
 
-            //else
-            //    id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
+            else
+                id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
+
+            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
 
             List<Club> clubs;
 
@@ -123,5 +125,25 @@ namespace SimpleShop.Mvc.Controllers
             }));
         }
 
+        [Route("Club/ScheduleTable")]
+        [HttpGet]
+        public IActionResult ScheduleTable(int clubId)
+        {
+            var cl = _context.Clubs.FirstOrDefault(c => c.Id == clubId);
+
+            ClubViewModel club = new()
+            {
+                DisplayName = cl.DisplayName,
+            };
+
+            return PartialView("_ScheduleTable", club);
+        }
+
+        [Route("Club/ChooseCityModal")]
+        [HttpGet]
+        public RedirectToRouteResult ChooseCityModal()
+        {
+            return RedirectToRoute(new { area = "", controller = "Home", action = "ChooseCityModal" });
+        }
     }
 }

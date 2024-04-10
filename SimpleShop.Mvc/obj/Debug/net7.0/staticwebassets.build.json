@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+hqrWPE5WCQ6H30wzv54ZXVoKvjGZAAqVwXeBHEU4no=",
+  "Hash": "c8ktCCNnNU1UM4jnLG3MTcufY3EAwMRQ9epjdZOtDUU=",
   "Source": "SimpleShop.Mvc",
   "BasePath": "_content/SimpleShop.Mvc",
   "Mode": "Default",
@@ -119,12 +119,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\account\\register.js",
       "SourceId": "SimpleShop.Mvc",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\",
       "BasePath": "_content/SimpleShop.Mvc",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/views/site/account/register.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -133,7 +133,41 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\views\\site\\account\\register.js"
+    },
+    {
+      "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\club\\coaches.js",
+      "SourceId": "SimpleShop.Mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\",
+      "BasePath": "_content/SimpleShop.Mvc",
+      "RelativePath": "js/views/site/club/coaches.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\views\\site\\club\\coaches.js"
+    },
+    {
+      "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\club\\schedule.js",
+      "SourceId": "SimpleShop.Mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\",
+      "BasePath": "_content/SimpleShop.Mvc",
+      "RelativePath": "js/views/site/club/schedule.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\views\\site\\club\\schedule.js"
     },
     {
       "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\home\\index.js",

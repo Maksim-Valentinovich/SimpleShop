@@ -32,95 +32,18 @@
                 </div>
 
                 <div class="buttons-dropdown">
-                    <div class="button"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule">Подобрать</a></div>
-
-                    <div class="button"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule">Сбросить</a></div>
+                    <button class="button-see" data-club="@Model.First().ClubId">Подобрать</button>
+                    <button class="button">Сбросить</button>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <div class="club-content-info">
-        <h1><a name="schedule_link">РАСПИСАНИЕ ФИТНЕС-КЛУБА</a></h1>
+    <div class="club-coaches-partial" id="coaches">
+        <div class="partial-content"></div>
     </div>
-
-    <div class="club-schedule">
-        <div class="shedual-table">
-            <div class="table-date">
-                <div class="date-logo"><i class="fa-regular fa-clock"></i></div>
-                <div class="date-day">18.09 пн</div>
-                <div class="date-day">19.09 вт</div>
-                <div class="date-day">20.09 ср</div>
-                <div class="date-day">21.09 чт</div>
-                <div class="date-day">22.09 пт</div>
-                <div class="date-day">23.09 сб</div>
-                <div class="date-day">24.09 вс</div>
-            </div>
-
-            <div class="table-lessons">
-                <div class="lessons-time">
-                    <div class="time-hour">09.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Lower body</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">10.00</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Flex</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Fitness Yoga</div>
-                    <div class="time-lesson">Dumbbells</div>
-                    <div class="time-lesson"></div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">11.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Flex</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">16.00</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Dumbbells</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">17.00</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson">Bums+ABS</div>
-                    <div class="time-lesson">Fitness Yoga</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Flex</div>
-                </div>
-                <div class="lessons-time">
-                    <div class="time-hour">18.00</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson">Lower body</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson">Body sculpt</div>
-                    <div class="time-lesson"></div>
-                    <div class="time-lesson"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     <div class="modal" tabindex="-1" id="choose-city">
         <div class="modal-dialog">
@@ -139,18 +62,8 @@
     </div>
 </div>
 
-<script src="~/lib/jquery/jquery.min.js"></script>
-<script>
-    $(".change-city").click(function () {
-        $.ajax({
-            url: 'Home/ChooseCityModal',
-            type: 'GET',
-            dataType: 'html',
-            success: function (content) {
-                $('#choose-city div.modal-content').html(content);
-                $('#choose-city').modal('show');
-            },
-            error: function (e) { }
-        })
-    })
-</script>
+@section Scripts
+{
+    <script src="~/js/views/site/club/schedule.js"></script>
+}
+

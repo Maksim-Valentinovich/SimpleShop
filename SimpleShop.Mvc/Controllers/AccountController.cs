@@ -35,8 +35,13 @@ namespace SimpleShop.Mvc.Controllers
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", /*email = model.Email,*/ clientId = client.Id});
+                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", clientId = client.Id});
                 }
+                else
+                    ModelState.AddModelError("", "Клиент с таким email уже существует!");
+            }
+            else
+            {
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
@@ -58,7 +63,7 @@ namespace SimpleShop.Mvc.Controllers
                 if (client == null)
                 {
                     // добавляем пользователя в бд
-                    _context.Clients.Add(new Client { Email = model.Email, Password = model.Password, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Birhday = model.Birthday});
+                    _context.Clients.Add(new Client { Email = model.Email, Password = model.Password, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Birhday = model.Birthday, IsMan = model.IsMan});
                     await _context.SaveChangesAsync();
 
                     await Authenticate(model.Email); // аутентификация

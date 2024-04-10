@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-position">
                     <label for="birthday">Дата рождения</label><br />
-                    <input type="date" class="form-control" id="birthday" />
+                    <input type="text" class="form-control datepicker-here" id="birthday" autocomplete="off" />
                     <span id="validation-birthday"></span>
                 </div>
                 <div class="form-position">
@@ -71,14 +71,14 @@
         <div class="registration-submit">
             <div class="submit-info">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
+                    <input class="form-check-input" id="form" required="" type="checkbox">
                     <label class="form-check-label" for="gridCheck">Я ознакомлен(-на) и согласен(-на) с условиями Договора,  Правилами техники безопасности, <a asp-area="" asp-controller="Home" asp-action="Privacy">Правилами Клуба</a> и даю свое согласие  на обработку персональных данных.</label>
                 </div>
             </div>
 
             <div class="buttonts-next">
                 <button class="button-back"><a class="btn" asp-area="Store" asp-controller="Home" asp-action="Index">Вернуться в магазин</a> </button>
-                <button class="button-choose-pay" id="buy">Перейти к оплате</button>
+                <button class="button-choose-pay" id="buy" disabled="">Перейти к оплате</button>
             </div>
         </div>
         @await Html.PartialAsync("_ChoosePayModal")
@@ -88,6 +88,7 @@
 @section Scripts
 {
     <script src="~/js/views/store/order/registration.js"></script>
+    <script src="~/lib/air-datepicker/js/datepicker.js"></script>
 }
 
 
