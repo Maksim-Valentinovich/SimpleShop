@@ -19,7 +19,7 @@ $(".button-see").click(function () {
 
 $(".change-city").click(function () {
     $.ajax({
-        url: 'ChooseCityModal',
+        url: '/Home/ChooseCityModal',
         type: 'GET',
         dataType: 'html',
         success: function (content) {

@@ -76,7 +76,7 @@
         $(".button-buy-product").click(function () {
             let productId = $(this).data("ids");
             $.ajax({
-                url: 'AddToCard?productId=' + productId + '&clubId=' + @Model.ClubId,
+                url: '/Store/ShopCard/AddToCard?productId=' + productId + '&clubId=' + @Model.ClubId,
                 type: 'GET',
                 dataType: 'html',
                 success: function (content) {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "c8ktCCNnNU1UM4jnLG3MTcufY3EAwMRQ9epjdZOtDUU=",
+  "Hash": "nYlvJkntHdpNlx+WAz2Ke+r5On3DPjS/i8YGuMmDJJA=",
   "Source": "SimpleShop.Mvc",
   "BasePath": "_content/SimpleShop.Mvc",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\views\\site\\club\\schedule.js"
+    },
+    {
+      "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\home\\index.js",
+      "SourceId": "SimpleShop.Mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\",
+      "BasePath": "_content/SimpleShop.Mvc",
+      "RelativePath": "js/views/site/home/index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\views\\site\\home\\index.js"
     },
     {
       "Identity": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\home\\index.js",

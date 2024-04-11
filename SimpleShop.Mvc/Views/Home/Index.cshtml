@@ -17,8 +17,8 @@
                         }
                     </ul>
                 </div>
-                <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule" asp-route-name="@Model.First().CityName" >Расписание<i class="fa-solid fa-list-check"></i></a></div></div>
-            <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Coaches" asp-route-name="@Model.First().CityName">Тренеры<i class="fa-solid fa-person-circle-check"></i></a></div></div>
+            <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Schedule">Расписание<i class="fa-solid fa-list-check"></i></a></div></div>
+            <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="" asp-controller="Club" asp-action="Coaches">Тренеры<i class="fa-solid fa-person-circle-check"></i></a></div></div>
                 <div class="button"><div class="btn btn-lg"><a class="btn btn-lg" asp-area="Store" asp-controller="Home" asp-action="Index">Акции<i class="fa-solid fa-burst"></i></a></div></div>
             </div>
             <div class="button-buy"><a class="btn btn-lg" asp-area="Store" asp-controller="Home" asp-action="Index">Купить сейчас</a></div>
@@ -126,67 +126,11 @@
     </div>
 </div>
 
-<script src="~/lib/jquery/jquery.min.js"></script>
-<script>
-    $(".change-city").click(function () {
-        $.ajax({
-            url: 'ChooseCityModal',
-            type: 'GET',
-            dataType: 'html',
-            success: function (content) {
-                $('#choose-city div.modal-body').html(content);
-                $('#choose-city').modal('show');
-            },
-            error: function (e) { }
-        })
-    })
-</script>
 
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: 'CookieCheck2',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                console.dir(data);
-            },
-            error: function (jqXHR, exception) {
-                if (jqXHR.status == 200) {
-                    // window.location.href = "http://localhost:5255/Home/Index";
-                }
-                else if (jqXHR.status == 404) {
-                    $.ajax({
-                        url: 'ChooseCityModal',
-                        type: 'GET',
-                        dataType: 'html',
-                        success: function (content) {
-                            $('#choose-city div.modal-body').html(content);
-                            $('#choose-city').modal('show');
-                        },
-                        error: function (e) { }
-                    })
-                }
-                else (jqXHR.status == 400)
-                {
-                    navigator.geolocation.getCurrentPosition(
-                        function (position) {
-                            $.ajax({
-                                url: 'Home/AgreeCityModal?latitude=' + position.coords.latitude + "&longitude=" + encodeURIComponent(position.coords.longitude),
-                                type: 'GET',
-                                dataType: 'html',
-                                success: function (content) {
-                                    $('#question div.location-content').html(content);
-                                },
-                                error: function (e) { }
-                            });
-                        }
-                    );
-                }
-            }
-        })
-    })
-</script>
+@section Scripts
+{
+    <script src="~/js/views/site/home/index.js"></script>
+}
 
 
 

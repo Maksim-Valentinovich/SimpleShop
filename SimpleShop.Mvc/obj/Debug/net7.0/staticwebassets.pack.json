@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\js\\views\\site\\club\\schedule.js"
     },
     {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\home\\index.js",
+      "PackagePath": "staticwebassets\\js\\views\\site\\home\\index.js"
+    },
+    {
       "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\home\\index.js",
       "PackagePath": "staticwebassets\\js\\views\\store\\home\\index.js"
     },

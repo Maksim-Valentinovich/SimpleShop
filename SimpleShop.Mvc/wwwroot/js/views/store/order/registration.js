@@ -81,7 +81,7 @@ $("#buy").on("click", function () {
 
 $(document).ready(function () {
     $.ajax({
-        url: 'Product',
+        url: '/Store/ShopCard/Product',
         type: 'GET',
         dataType: 'html',
         success: function (content) {

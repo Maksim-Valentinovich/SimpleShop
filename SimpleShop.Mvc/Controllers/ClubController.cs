@@ -44,9 +44,17 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/Coaches")]
         [HttpGet("{name}")]
-        public IActionResult Coaches(string name, string? clubName = null)
+        public IActionResult Coaches(string? clubName = null)
         {
-            var city = _context.Cities.FirstOrDefault(c => c.Name == name);
+            int id;
+
+            if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
+                id = 1;
+
+            else
+                id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
+
+            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
 
             List<Club> clubs;
 
@@ -90,11 +98,9 @@ namespace SimpleShop.Mvc.Controllers
         }
 
         [Route("Club/Schedule")]
-        [HttpGet("{name}")]
-        public IActionResult Schedule(string name, string? clubName = null)
+        [HttpGet("{chapter}")]
+        public IActionResult Schedule(string chapter, string? clubName = null)
         {
-            //var city = _context.Cities.FirstOrDefault(c => c.Name == name);
-
             int id;
 
             if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
@@ -122,6 +128,7 @@ namespace SimpleShop.Mvc.Controllers
                 ClubName = c.Name,
                 ClubDisplayName = c.DisplayName,
                 ClubId = c.Id,
+                Chapter = chapter,
             }));
         }
 
@@ -137,13 +144,6 @@ namespace SimpleShop.Mvc.Controllers
             };
 
             return PartialView("_ScheduleTable", club);
-        }
-
-        [Route("Club/ChooseCityModal")]
-        [HttpGet]
-        public RedirectToRouteResult ChooseCityModal()
-        {
-            return RedirectToRoute(new { area = "", controller = "Home", action = "ChooseCityModal" });
         }
     }
 }
