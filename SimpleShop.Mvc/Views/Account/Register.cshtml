@@ -1,8 +1,7 @@
 ﻿@model SimpleShop.Mvc.ViewModels.RegisterViewModel
-@{
-    ViewData["Title"] = "Register";
-}
-<link rel="stylesheet" href="~/css/air-datepicker.css" />
+
+<link rel="stylesheet" href="~/lib/air-datepicker/css/datepicker.css" />
+
 <div class="join">
    <div class="join-form">
         <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
@@ -31,7 +30,7 @@
 
                 <div class="col-12">
                     <label asp-for="Birthday">Дата рождения</label><br />
-                    <input type="date" class="form-control" id="airdatepicker" asp-for="Birthday" />
+                    <input type="text" class="form-control" id="airdatepicker" asp-for="Birthday" />
                     <span asp-validation-for="Birthday"/>
                 </div>
 
@@ -64,16 +63,20 @@
                 </div>
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <input class="form-check-input" type="checkbox" id="form-checkbox" required="">
                         <label class="form-check-label" for="gridCheck">Я ознакомлен(-на) и согласен(-на) с условиями Договора,  Правилами техники безопасности, <a asp-area="" asp-controller="Home" asp-action="Privacy">Правилами Клуба</a> и даю свое согласие  на обработку персональных данных.</label>
                     </div>
                 </div>
                 <div class="col-12">
-                    <input type="submit" class="btn btn-primary" value="Регистрация" />
+                    <input type="submit" class="btn-primary" value="Регистрация" disabled=""/>
                 </div>
             </div>
         </form>
    </div>
 </div>
-<script src="~/js/air-datepicker.js"></script>
-<script>new AirDatepicker('#airdatepicker');</script>
+
+@section Scripts
+{
+    <script src="~/js/views/site/account/register.js"></script>
+    <script src="~/lib/air-datepicker/js/datepicker.js"></script>
+}

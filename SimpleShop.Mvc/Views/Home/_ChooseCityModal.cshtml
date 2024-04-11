@@ -11,11 +11,11 @@
     $(".choose-city").click(function () {
         let cityId = $(this).data("city")
         $.ajax({
-            url: 'CookieUpdate?cityId=' + cityId,
+            url: '/Home/CookieUpdate?cityId=' + cityId,
             type: 'GET',
             dataType: 'html',
             success: function () {
-                window.location.href = "http://localhost:5255/Home/Index";
+                window.location.reload();
             },
             error: function (e) { }
         })

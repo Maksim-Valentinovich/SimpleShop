@@ -15,7 +15,7 @@ $(".offline").click(function () {
 $(".online").click(function () {
     $(".payment-method").addClass("d-none")
     $('#onlinePay').removeClass("d-none")
-});
+})
 
 $(".finish-pay").click(function () {
     $.ajax({
@@ -77,11 +77,11 @@ $("#buy").on("click", function () {
     }
 
     $('#choose-pay').modal('show');
-});
+})
 
 $(document).ready(function () {
     $.ajax({
-        url: 'Product',
+        url: '/Store/ShopCard/Product',
         type: 'GET',
         dataType: 'html',
         success: function (content) {
@@ -91,5 +91,18 @@ $(document).ready(function () {
     });
 })
 
-$("#phone").mask("+7(999) 999-9999");
+$("#phone").mask("+7(999) 999-9999")
 
+$('#form').on('change', function () {
+    if ($(this).is(':checked')) $('.button-choose-pay').attr('disabled', false);
+    else $('.button-choose-pay').attr('disabled', true);
+})
+
+$(function () {
+    $('#birthday').datepicker({
+        position: 'bottom right',
+        onSelect(formatedDate, date, inst) {
+            inst.hide();
+        }
+    });
+})

@@ -5,10 +5,10 @@ namespace SimpleShop.Mvc.ViewModels
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Не указан Email")]
-        public string? Email { get; set; }
+        public required string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
+        public required string Password { get; set; }
     }
 }

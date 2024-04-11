@@ -8,7 +8,7 @@ namespace SimpleShop.Mvc.ViewModels
         [Required]
         public string? Name { get; set; }
 
-        public string? DisplayName { get; set; }
+        public required string DisplayName { get; set; }
 
         public TimeSpan InterpreterStart { get; set; }
 

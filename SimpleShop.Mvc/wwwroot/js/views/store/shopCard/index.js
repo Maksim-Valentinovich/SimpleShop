@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $.ajax({
-        url: 'Order/BasketModal',
+        url: '/Store/ShopCard/BasketModal',
         type: 'GET',
         dataType: 'html',
         success: function (content) {

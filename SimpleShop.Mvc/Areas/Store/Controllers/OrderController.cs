@@ -132,34 +132,6 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             return PartialView("_ChoosePayModal");
         }
 
-        [Route("Store/Order/Product")]
-        [HttpGet]
-        public RedirectToRouteResult Product() 
-        {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "Product" });
-        }
-
-        [Route("Store/Order/DeleteProductOnCard")]
-        [HttpGet]
-        public RedirectToRouteResult DeleteProductOnCard(int indx)
-        {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "DeleteProductOnCard", index = indx});
-        }
-
-        [Route("Store/Order/AddToCard")]
-        [HttpGet]
-        public RedirectToRouteResult AddToCard(int productId, int clubId)
-        {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "AddToCard", productId, clubId });
-        }
-
-        [Route("Store/Order/BasketModal")]
-        [HttpGet]
-        public RedirectToRouteResult BasketModal()
-        {
-            return RedirectToRoute(new { area = "Store", controller = "ShopCard", action = "BasketModal" });
-        }
-
         [Route("Store/Order/FinishPay")]
         [HttpGet]
         public IActionResult FinishPay()

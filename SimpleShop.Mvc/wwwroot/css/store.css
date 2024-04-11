@@ -633,39 +633,31 @@ body {
     font-size: 14px;
 }
 
-
+/*Финальная страница покупки*/
 .finish-container {
-    margin: 100px auto;
+    margin: 30px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 200px;
-    width: 300px;
-    border: 1px solid black;
 }
-
 .finish-pay-button {
+    margin: 15px auto;
+    border-radius: 5px;
+    background-color: #44CC00;
+    height: 40px;
+    width: auto;
+    color:ghostwhite;
+    border-color: #44CC00;
+}
+.head {
+    font-size: 30px;
+}
+.ok-image {
+    display: flex;
     margin: auto;
-    border-radius: 10px;
-    background-color: #A0F570;
-}
-
-.finish-container {
-    margin:100px auto;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
     height: 200px;
-    width: 300px;
-    border: 1px solid black;
-}
-
-.finish-pay-button {
-    margin:auto;
-    border-radius: 10px;
-    background-color: #A0F570;
+    width: 350px;
 }
 
 

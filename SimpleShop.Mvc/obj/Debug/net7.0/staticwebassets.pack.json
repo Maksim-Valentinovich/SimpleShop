@@ -21,8 +21,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\account\\register.js",
+      "PackagePath": "staticwebassets\\js\\views\\site\\account\\register.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\club\\coaches.js",
+      "PackagePath": "staticwebassets\\js\\views\\site\\club\\coaches.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\club\\schedule.js",
+      "PackagePath": "staticwebassets\\js\\views\\site\\club\\schedule.js"
+    },
+    {
+      "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\site\\home\\index.js",
+      "PackagePath": "staticwebassets\\js\\views\\site\\home\\index.js"
     },
     {
       "Id": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Mvc\\wwwroot\\js\\views\\store\\home\\index.js",

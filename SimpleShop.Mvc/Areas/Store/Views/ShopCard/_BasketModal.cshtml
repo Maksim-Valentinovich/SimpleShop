@@ -19,7 +19,7 @@
         var index = $(this).data("index")
         
         $.ajax({
-            url: 'Order/DeleteProductOnCard?indx=' + index,
+            url: '/Store/ShopCard/DeleteProductOnCard?indx=' + index,
             type: 'GET',
             dataType: 'html',
             success: function (content) {

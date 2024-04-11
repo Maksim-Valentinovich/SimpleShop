@@ -27,7 +27,7 @@ namespace SimpleShop.Mvc.Controllers
         {
             int id;
 
-            HttpContext.Response.Cookies.Delete("cityId"); // test
+            /*HttpContext.Response.Cookies.Delete("cityId");*/ // test
 
             if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
                 id = 1;
