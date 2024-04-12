@@ -413,13 +413,12 @@ body {
     height: min-content;
 }
 
-
-.personal-info {
+/*.personal-info {
     margin: 20px 0px;
     padding: 20px 30px;
     box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
     border-radius: 10px;
-}
+}*/
 
 
 .list-offers {
@@ -453,7 +452,17 @@ body {
     border-radius: 10px;
     background-color: #F9E000;
 }
+
+.button-choose-pay,
+.button-back {
+    height: 45px;
+    padding: 0px 10px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #E2F0FB;
+}
 /*Регистрация*/
+
 
 /*Метод оплаты*/
 .payment-method {
@@ -488,7 +497,9 @@ body {
     box-shadow: 0.4em 0.4em 15px rgba(122,122,122,0.5);
     margin: auto;
 }
-
+.personal-card-info {
+padding:25px 50px 0px 50px;
+}
 .credit-card {
     position: relative;
     width: 350px;

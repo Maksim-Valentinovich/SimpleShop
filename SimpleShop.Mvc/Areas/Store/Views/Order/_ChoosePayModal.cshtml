@@ -73,24 +73,24 @@
                         </div>
                     </div>
 
-                    <form>
-                        <label for="card-number">Card Number</label>
-                        <input type="number" id="card-number" placeholder="0000 0000 0000 0000" />
-                        <div class="date-cvv">
-                            <div>
-                                <label for="validity">Expires On:</label>
-                                <input type="date" id="validity-input" />
-                            </div>
-                            <div>
-                                <label for="cvv">CVV:</label>
-                                <input type="number" id="cvv" placeholder="***" />
-                            </div>
+                    <div class="personal-card-info">
+                        <div class="form-position">
+                            <label for="card-number">Номер карты</label><br />
+                            <input type="number" class="form-control" id="card-number" placeholder="0000 0000 0000 0000" />
+                        </div>
+                        <div class="form-position">
+                            <label for="validity">Срок действия</label><br />
+                            <input type="date" class="form-control" id="validity"/>
+                        </div>
+                        <div class="form-position">
+                            <label for="cvv">Срок действия</label><br />
+                            <input type="number" class="form-control" id="cvv" placeholder="***" />
                         </div>
                         <div class="finish-button">
                             <button class="finish-pay">Оплатить</button>
                         </div>
-                    </form>
-
+                    </div>
+                        
                     <div class="warning-text">
                         <hr>
                         Ваш платеж защищен по международному стандарту PCI DSS.

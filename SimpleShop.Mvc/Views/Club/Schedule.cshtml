@@ -3,6 +3,11 @@
     ViewData["Title"] = "Schedule";
 }
 <div class="club-content">
+
+    <div class="schedule-info-partial" id="schedule-info">
+        <div class="partial-content"></div>
+    </div>
+
     <div class="schedule-info">
         <div class="schedule-info-text">
             <h1>МАСТЕР-КЛАССЫ</h1>
@@ -33,7 +38,7 @@
 
                 <div class="buttons-dropdown">
                     <button class="button-see" data-club="@Model.First().ClubId">Подобрать</button>
-                    <button class="button">Сбросить</button>
+                    <button class="button-reset">Сбросить</button>
                 </div>
 
             </div>

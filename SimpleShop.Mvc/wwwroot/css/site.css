@@ -624,6 +624,22 @@ body {
     margin:auto;
     font-size: 100px;
 }
+.button-see {
+    background: #E2F0FB;
+    margin: 0px 20px 0px 0px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    padding:0px 15px;
+}
+.button-reset {
+    background: #E2F0FB;
+    margin: 0px 0px 0px 0px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    padding: 0px 15px;
+}
 /*Страница тренеров*/
 
 
