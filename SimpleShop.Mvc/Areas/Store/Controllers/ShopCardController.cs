@@ -34,7 +34,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
             _shopCard.AddToCard(product, club);
 
-            return RedirectToAction("BasketModal");
+            return RedirectToAction("BasketModal"); //убрать
         }
 
         [Route("Store/ShopCard/DeleteProductOnCard")]
@@ -43,10 +43,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         {
             _shopCard.DeleteProduct(index);
 
-            return PartialView("_BasketModal", new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            return Ok();
         }
 
         [Route("Store/ShopCard/BasketModal")]
