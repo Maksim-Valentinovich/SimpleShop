@@ -483,18 +483,6 @@ body {
 }
 
 
-/*.club-price-service {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 30px 0px;
-}
-.services-position {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 30px 0px;
-}*/
 .service-image {
     display: flex;
     flex-direction: row;
