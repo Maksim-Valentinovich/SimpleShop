@@ -45,10 +45,10 @@ namespace SimpleShop.Domain.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Patronymic")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
@@ -304,16 +304,13 @@ namespace SimpleShop.Domain.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Count")
+                    b.Property<int>("CountDay")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CountDay")
+                    b.Property<int>("CountPeople")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CountPeople")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("CountVisit")
+                    b.Property<int>("CountVisit")
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
