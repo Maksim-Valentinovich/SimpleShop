@@ -1,33 +1,28 @@
 ﻿let user;
 
-$(".offline").click(function () {
+function makeOrder(user, isOnline) {
     $.ajax({
         url: 'MakeOrder',
         type: 'POST',
-        data: {...user,isOnline:false},
+        data: { ...user, isOnline },
         success: function (content) {
             window.location.href = "http://localhost:5255/Store/Order/FinishPay";
         },
         error: function (e) { }
     })
+}
+$(".offline").click(function () {
+    makeOrder(user,false);
+})
+
+$(".finish-online-pay").click(function () {
+    makeOrder(user, true);
 })
 
 $(".online").click(function () {
     $(".payment-method").addClass("d-none")
     $(".modal-title").text('Оплата картой')
     $('#onlinePay').removeClass("d-none")
-})
-
-$(".finish-online-pay").click(function () {
-    $.ajax({
-        url: 'MakeOrder',
-        type: 'POST',
-        data: { ...user, isOnline: true },
-        success: function (content) {
-            window.location.href = "http://localhost:5255/Store/Order/FinishPay";
-        },
-        error: function (e) { }
-    })
 })
 
 $("#buy").on("click", function () {
