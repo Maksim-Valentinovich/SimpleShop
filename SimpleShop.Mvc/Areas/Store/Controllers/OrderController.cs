@@ -125,11 +125,11 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             }));
         }
 
-        [Route("Store/Order/ChoosePayModal")]
+        [Route("Store/Order/PayModal")]
         [HttpGet]
-        public IActionResult ChoosePayModal()
+        public IActionResult PayModal()
         {
-            return PartialView("_ChoosePayModal");
+            return PartialView("_PayModal");
         }
 
         [Route("Store/Order/FinishPay")]

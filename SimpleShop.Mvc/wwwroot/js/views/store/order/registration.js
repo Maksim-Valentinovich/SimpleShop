@@ -14,10 +14,11 @@ $(".offline").click(function () {
 
 $(".online").click(function () {
     $(".payment-method").addClass("d-none")
+    $(".modal-title").text('Оплата картой')
     $('#onlinePay').removeClass("d-none")
 })
 
-$(".finish-pay").click(function () {
+$(".finish-online-pay").click(function () {
     $.ajax({
         url: 'MakeOrder',
         type: 'POST',
