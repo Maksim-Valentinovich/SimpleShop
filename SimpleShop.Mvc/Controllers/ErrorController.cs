@@ -1,10 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleShop.Mvc.Controllers
 {
     public class ErrorController : MvcBaseController
     {
-        public IActionResult Index()
+        [AllowAnonymous]
+        [Route("/NotFound")]
+        [HttpGet]
+        public IActionResult PageNotFound()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [Route("/ServerError")]
+        [HttpGet]
+        public IActionResult PageServerError()
         {
             return View();
         }
