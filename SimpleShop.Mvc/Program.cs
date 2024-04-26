@@ -54,6 +54,18 @@ namespace SimpleShop.Mvc
                 }
             });
 
+            
+            app.Environment.EnvironmentName = "Production";
+
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/error");
+            }
+            app.Map("/error",  async (context) =>
+            {
+                context.Response.Redirect("/ServerError");
+            });
+
             app.UseResponseCompression();
 
             app.UseHttpsRedirection();
