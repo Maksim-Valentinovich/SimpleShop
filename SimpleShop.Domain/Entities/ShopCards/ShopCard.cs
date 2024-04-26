@@ -122,6 +122,12 @@ namespace SimpleShop.Domain.Entities.ShopCards
         public List<Product>? GetShopItems()
         {
             var card = JsonSerializer.Deserialize<ShopCard>(Session.GetString("ShopCard"));
+
+            if (card?.ListShopItems == null)
+            {
+                card.ListShopItems = new List<Product>() {};
+            }
+
             return card?.ListShopItems;
         }
 
