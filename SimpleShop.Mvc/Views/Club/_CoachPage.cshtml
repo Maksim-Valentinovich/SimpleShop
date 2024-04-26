@@ -1,0 +1,16 @@
+﻿@using SimpleShop.Mvc.ViewModels;
+@model CoachesViewModel
+
+<div class="coach-page">
+	<div class="coach-img" style="background-image: url(@Model.PhotoLink);  background-position:center; background-size:cover; width:200px; height:290px;"></div>
+
+	<div class="coach-info">
+		<h3>@Model.Name</h3>
+		@Model.Description
+		<p>
+			Контакт для связи:
+		</p>
+		<p>@Model.TelephoneNumber</p>
+	</div>
+</div>
+

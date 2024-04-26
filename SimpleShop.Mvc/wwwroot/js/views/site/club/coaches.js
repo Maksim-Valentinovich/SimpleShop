@@ -1,4 +1,4 @@
-﻿
+﻿let coach
 $(".dropdown-item").click(function () {
     let clubId = $(this).data("club")
     $(".button-see").data("club", clubId);
@@ -29,3 +29,5 @@ $(".change-city").click(function () {
         error: function (e) { }
     })
 })
+
+

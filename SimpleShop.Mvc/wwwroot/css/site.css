@@ -610,9 +610,16 @@ body {
     font-size: 20px;
     padding: 0px 15px;
 }
+.coach-page {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    color: black;
+}
+.coach-info {
+    text-align:center;
+}
 /*Страница тренеров*/
-
-
 .reset {
     display: flex;
     flex-direction: column;
