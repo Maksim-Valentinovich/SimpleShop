@@ -76,7 +76,7 @@ namespace SimpleShop.Mvc
             });
 
             
-            app.Environment.EnvironmentName = "Production";
+            app.Environment.EnvironmentName = "Production";// состояние продакшн
 
             if (!app.Environment.IsDevelopment())
             {
