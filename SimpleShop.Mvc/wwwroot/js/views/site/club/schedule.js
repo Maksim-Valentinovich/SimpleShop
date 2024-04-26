@@ -1,5 +1,4 @@
-﻿
-$(".dropdown-item").click(function () {
+﻿$(".dropdown-item").click(function () {
     let clubId = $(this).data("club")
     $(".button-see").data("club", clubId);
 })

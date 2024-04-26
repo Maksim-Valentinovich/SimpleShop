@@ -145,5 +145,24 @@ namespace SimpleShop.Mvc.Controllers
 
             return PartialView("_ScheduleTable", club);
         }
+
+        [Route("Club/CoachPage")]
+        [HttpGet]
+        public IActionResult CoachPage(int coachId)
+        {
+            var coach = _context.Coaches.FirstOrDefault(c => c.Id == coachId);
+            var club = _context.Clubs.FirstOrDefault(c => c.Id == coach.ClubId);
+
+            CoachesViewModel ch = new()
+            {
+                Name = coach.Name,
+                ClubName = club.Name,
+                PhotoLink = coach.PhotoLink,
+                TelephoneNumber = coach.TelephoneNubmer,
+                Description = coach.Description,
+            };
+
+            return PartialView("_CoachPage", ch);
+        }
     }
 }
