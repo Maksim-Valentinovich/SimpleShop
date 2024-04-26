@@ -37,48 +37,6 @@ namespace SimpleShop.Mvc
 
             var app = builder.Build();
 
-            //// Configure the HTTP request pipeline.
-            //if (!app.Environment.IsDevelopment()) 
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            //    app.UseHsts();
-            //}
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await next();
-
-            //    if (context.Response.StatusCode == 404 && !context.Response.HasStarted)
-            //    {
-            //        //Re-execute the request so the user gets the error page
-            //        string originalPath = context.Request.Path.Value;
-            //        context.Items["originalPath"] = originalPath;
-            //        context.Request.Path = "/NotFount";
-            //        await next();
-            //    }
-            //});
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await next();
-            //    if (context.Response.StatusCode == 404)
-            //    {
-            //        context.Request.Path = "/NotFount";
-            //        await next();
-            //    }
-            //});
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await next.Invoke();
-            //    if (context.Response.StatusCode == 404)
-            //    {
-            //        context.Response.Redirect("/NotFound");
-            //        await next();
-            //    }
-            //});
-
             //обработка ошибок HTTP
             app.UseStatusCodePages(async statusCodeContext =>
             {
@@ -95,13 +53,6 @@ namespace SimpleShop.Mvc
                     response.Redirect("/NotFound");
                 }
             });
-
-            //app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
-            ////app.Map("/error", (string code) => $"Error Code: {code}");
-            //app.Map("/error", async (context) =>
-            //{
-            //    context.Response.Redirect("/NotFound");
-            //});
 
             app.UseResponseCompression();
 
