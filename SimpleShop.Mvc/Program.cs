@@ -22,8 +22,9 @@ namespace SimpleShop.Mvc
 
             builder.Services.AddDbContext<SimpleShopContext>(x => x.UseNpgsql(connectionString));
 
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); 
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+            builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/account");
             builder.Services.AddAuthorization();
@@ -33,13 +34,12 @@ namespace SimpleShop.Mvc
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// добавил
             builder.Services.AddScoped(sp => ShopCard.GetCard(sp));// добавил
-
+            
 
             var app = builder.Build();
 
             //обработка ошибок HTTP
-            app.UseStatusCodePages(async statusCodeContext =>
-            {
+            app.UseStatusCodePages(statusCodeContext => {
                 var response = statusCodeContext.HttpContext.Response;
                 var path = statusCodeContext.HttpContext.Request.Path;
 
@@ -52,6 +52,8 @@ namespace SimpleShop.Mvc
                 {
                     response.Redirect("/NotFound");
                 }
+
+                return Task.CompletedTask;
             });
 
             
@@ -61,9 +63,9 @@ namespace SimpleShop.Mvc
             {
                 app.UseExceptionHandler("/error");
             }
-            app.Map("/error",  async (context) =>
-            {
+            app.Map("/error", (context) => {
                 context.Response.Redirect("/ServerError");
+                return Task.CompletedTask;
             });
 
             app.UseResponseCompression();

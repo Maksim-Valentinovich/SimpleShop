@@ -18,10 +18,10 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/Index")]
         [HttpGet]
-        public IActionResult Index(int clubId)
+        public async Task<IActionResult> Index(int clubId)
         {
-            var cl = _context.Clubs.FirstOrDefault(c => c.Id == clubId);
-            var city = _context.Cities.FirstOrDefault(c => c.Id == cl.CityId);
+            var cl = await _context.Clubs.FirstAsync(c => c.Id == clubId);
+            var city = await _context.Cities.FirstAsync(c => c.Id == cl.CityId);
 
 
             ClubViewModel club = new()
@@ -44,27 +44,25 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/Coaches")]
         [HttpGet("{name}")]
-        public IActionResult Coaches(string? clubName = null)
+        public async Task<IActionResult> Coaches(string? clubName = null)
         {
-            int id;
+            int id = 1;
+            if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0")
+            {
+                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+            }
 
-            if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
-                id = 1;
-
-            else
-                id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
-
-            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
+            var city = await _context.Cities.FirstAsync(c => c.Id == id);
 
             List<Club> clubs;
-
-            if (clubName == null)
+            clubs = await _context.Clubs
+                .Where(c => c.CityId == city.Id)
+                .ToListAsync();
+            if (clubName != null)
             {
-                clubs = _context.Clubs.Where(c => c.CityId == city.Id).ToList();
-            }
-            else
-            {
-                clubs = _context.Clubs.Where(c => c.Name == clubName).ToList();
+                clubs = await _context.Clubs
+                    .Where(c => c.Name == clubName)
+                    .ToListAsync();
             }
 
             return View(clubs.Select(c => new StartViewModel
@@ -78,11 +76,13 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/CategoryCoaches")]
         [HttpGet]
-        public IActionResult CategoryCoaches(int clubId)
+        public async Task<IActionResult> CategoryCoaches(int clubId)
         {
-            var club = _context.Clubs.FirstOrDefault(c => c.Id == clubId);
+            var club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
 
-            var coaches = _context.Coaches.Where(c => c.ClubId == clubId).ToList();
+            var coaches = await _context.Coaches
+                .Where(c => c.ClubId == clubId)
+                .ToListAsync();
 
             return PartialView("_CategoryCoaches", coaches.Select(c => new CoachesViewModel 
             {
@@ -99,27 +99,25 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/Schedule")]
         [HttpGet("{chapter}")]
-        public IActionResult Schedule(string chapter, string? clubName = null)
+        public async Task<IActionResult> Schedule(string chapter, string? clubName = null)
         {
-            int id;
+            int id = 1;
+            if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0")
+            {
+                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+            }
 
-            if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
-                id = 1;
-
-            else
-                id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
-
-            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
+            var city = await _context.Cities.FirstAsync(c => c.Id == id);
 
             List<Club> clubs;
-
-            if (clubName == null)
+            clubs = await _context.Clubs
+                .Where(c => c.CityId == city.Id)
+                .ToListAsync();
+            if (clubName != null)
             {
-                clubs = _context.Clubs.Where(c => c.CityId == city.Id).ToList();
-            }
-            else
-            {
-                clubs = _context.Clubs.Where(c => c.Name == clubName).ToList();
+                clubs = await _context.Clubs
+                    .Where(c => c.Name == clubName)
+                    .ToListAsync();
             }
 
             return View(clubs.Select(c => new StartViewModel
@@ -134,9 +132,9 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/ScheduleTable")]
         [HttpGet]
-        public IActionResult ScheduleTable(int clubId)
+        public async Task <IActionResult> ScheduleTable(int clubId)
         {
-            var cl = _context.Clubs.FirstOrDefault(c => c.Id == clubId);
+            var cl = await _context.Clubs.FirstAsync(c => c.Id == clubId);
 
             ClubViewModel club = new()
             {
@@ -148,10 +146,10 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/CoachPage")]
         [HttpGet]
-        public IActionResult CoachPage(int coachId)
+        public async Task<IActionResult> CoachPage(int coachId)
         {
-            var coach = _context.Coaches.FirstOrDefault(c => c.Id == coachId);
-            var club = _context.Clubs.FirstOrDefault(c => c.Id == coach.ClubId);
+            var coach = await _context.Coaches.FirstAsync(c => c.Id == coachId);
+            var club = await _context.Clubs.FirstAsync(c => c.Id == coach.ClubId);
 
             CoachesViewModel ch = new()
             {

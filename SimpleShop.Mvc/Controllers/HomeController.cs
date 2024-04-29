@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Mvc.Models;
 using SimpleShop.Mvc.ViewModels;
@@ -17,36 +20,34 @@ namespace SimpleShop.Mvc.Controllers
         //}
 
         private readonly SimpleShopContext _context;
+        private readonly IMapper _mapper;
 
-        public HomeController(SimpleShopContext context)
+        public HomeController(SimpleShopContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            int id;
-
-            /*HttpContext.Response.Cookies.Delete("cityId");*/ // test
-
-            if (HttpContext.Request.Cookies["cityId"] == null || HttpContext.Request.Cookies["cityId"] == "0")
-                id = 1;
-
-            else
-                id = int.Parse(HttpContext.Request.Cookies["cityId"].ToString());
-
-            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
-
-            var clubs = _context.Clubs.Where(c => c.CityId == id).ToList();
-
-            return View(clubs.Select(c => new StartViewModel
+            int id = 1;
+            if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0") 
             {
-                CityName = city.Name,
-                ClubName = c.Name,
-                ClubDisplayName = c.DisplayName,
-                ClubId = c.Id,
-            }));
+                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+            }
+                  
+            //var clubs = await _context.Clubs
+            //    .Include(c=>c.City)
+            //    .Where(c => c.CityId == id)
+            //    .ProjectTo<StartViewModel>(_mapper.ConfigurationProvider)
+            //    .ToListAsync();
+
+            var clubs = await _context.Clubs
+               .Include(c => c.City)
+               .Where(c => c.CityId == id)
+               .ToListAsync();
+            return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
         }
 
         [Route("Home/Privacy")]
@@ -56,19 +57,13 @@ namespace SimpleShop.Mvc.Controllers
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
-
         [Route("Home/ChooseCityModal")]
         [HttpGet]
-        public IActionResult ChooseCityModal()
+        public async Task<IActionResult> ChooseCityModal()
         {
             HttpContext.Response.Cookies.Delete("NoSPB");
 
-            var cities = _context.Cities.ToList();
+            var cities = await _context.Cities.ToListAsync();
 
             return PartialView("_ChooseCityModal", cities.Select(c => new CityViewModel
             {
@@ -105,12 +100,10 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Home/AgreeCityModal")]
         [HttpGet]
-        public IActionResult AgreeCityModal(double latitude, double longitude)
+        public async Task<IActionResult> AgreeCityModal(double latitude, double longitude)
         {
             double[,] cities = { { 55.75330785790186, 37.61966161690279 }, { 59.93265635770101, 30.317497465332426 }, { 55.79247459978864, 49.11478483216316 } };
-
             double[] latitudelLongitude = {0,0};
-
             double square = 100;
 
             for (int i = 0; i < 3; i++)
@@ -125,9 +118,11 @@ namespace SimpleShop.Mvc.Controllers
                 }   
             }
 
-            var city = _context.Cities.Where(c => c.Latitude == latitudelLongitude[0] && c.Longitude == latitudelLongitude[1]).First().Name;
+            var city = await _context.Cities
+                .Where(c => c.Latitude == latitudelLongitude[0] && c.Longitude == latitudelLongitude[1])
+                .FirstAsync();
 
-            return PartialView("_AgreeCityModal", new CityViewModel() { Name = city});
+            return PartialView("_AgreeCityModal", new CityViewModel() { Name = city.Name});
         }
 
         [Route("Home/CookieNoSPB")]

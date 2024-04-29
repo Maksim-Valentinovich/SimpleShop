@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
 using SimpleShop.Mvc.Controllers;
@@ -17,12 +18,12 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
 
         [Route("PersonalAccount/Home/Index")]
         [HttpGet("{clientId}")]
-        public IActionResult Index(int clientId)
+        public async Task<IActionResult> Index(int clientId)
         {
-            var cl = _context.Clients.FirstOrDefault(c => c.Id == clientId);
+            var cl = await _context.Clients.FirstAsync(c => c.Id == clientId);
 
             ClientViewModel client = new()
-            {
+            {   
                 Id = cl.Id,
                 Name = cl.Name,
                 Surname = cl.Surname,

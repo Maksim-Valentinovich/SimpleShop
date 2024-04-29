@@ -63,7 +63,7 @@ namespace SimpleShop.Mvc.Controllers
                 if (client == null)
                 {
                     // добавляем пользователя в бд
-                    _context.Clients.Add(new Client { Email = model.Email, Password = model.Password, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Birhday = model.Birthday, IsMan = model.IsMan});
+                    await _context.Clients.AddAsync(new Client { Email = model.Email, Password = model.Password, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Birhday = model.Birthday, IsMan = model.IsMan});
                     await _context.SaveChangesAsync();
 
                     await Authenticate(model.Email); // аутентификация

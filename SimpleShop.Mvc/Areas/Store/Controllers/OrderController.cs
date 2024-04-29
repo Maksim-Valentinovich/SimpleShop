@@ -23,17 +23,17 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Order/Index")]
         [HttpGet]
-        public IActionResult Index(int productId, int clubId)
+        public async Task<IActionResult> Index(int productId, int clubId)
         {
-            var category = _context.CategoryProducts
+            var category = await _context.CategoryProducts
                 .Where(c => c.ProductId == productId)
                 .Select(c => c.Category)
                 .OrderBy(c => c.Id)
-                .Last();
+                .LastAsync();
 
-            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            var product = await _context.Products.FirstAsync(p => p.Id == productId);
 
-            var club = _context.Clubs.FirstOrDefault(p => p.Id == clubId);
+            var club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
 
             ProductViewModel prod = new()
             {
@@ -62,57 +62,51 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Order/MakeOrder")]
         [HttpPost]
-        public IActionResult MakeOrder(MakeOrderDto input)
+        public async Task<IActionResult> MakeOrder(MakeOrderDto input)
         {
-            var client = _context.Clients.FirstOrDefault(u => u.Email == input.Email);
+            var client = await _context.Clients.FirstAsync(u => u.Email == input.Email);
 
             if (client == null)
             {
-                _context.Clients.Add(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone, IsMan = input.IsMan, Birhday = input.Birthday });
-                _context.Orders.Add(new Order { ClientId = _context.Clients.OrderBy(c => c.Id).Last().Id, Date = DateTime.Now, IsOnline = input.IsOnline });
+                await _context.Clients.AddAsync(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone, IsMan = input.IsMan, Birhday = input.Birthday });
+                await _context.Orders.AddAsync(new Order { ClientId = _context.Clients.OrderBy(c => c.Id).Last().Id, Date = DateTime.Now, IsOnline = input.IsOnline });
             }
             else
             {
-                _context.Orders.Add(new Order { ClientId = client.Id, Date = DateTime.Now, IsOnline = input.IsOnline });
+                await _context.Orders.AddAsync(new Order { ClientId = client.Id, Date = DateTime.Now, IsOnline = input.IsOnline });
             }
 
-            var card = JsonSerializer.Deserialize<ShopCard>(ShopCard.Session.GetString("ShopCard"));
+            var card = JsonSerializer.Deserialize<ShopCard>(ShopCard.Session!.GetString("ShopCard")!);
 
-            var products = card?.ListShopItems?.ToList();
-
-            var clubs = card?.ListShopClubs?.ToList();
-
-            var lastOrder = _context.Orders.OrderBy(c => c.Id).Last();
-
+            var products = card!.ListShopItems!.ToList();
+            var clubs = card!.ListShopClubs!.ToList();
+            var lastOrder = await _context.Orders.OrderBy(c => c.Id).LastAsync();
             decimal sum = 0;
 
             for (int i = 0; i < products?.Count; i++)
             {
-                _context.Subscriptions.Add(new ProductOrder { ProductId = products[i].Id, OrderId = lastOrder.Id, ClubId = clubs[i].Id });
+                await _context.Subscriptions.AddAsync(new ProductOrder { ProductId = products[i].Id, OrderId = lastOrder.Id, ClubId = clubs[i].Id });
                 sum += products[i].Price;
             }
-
             lastOrder.Sum = sum;
 
-            _context.SaveChanges();
-
+            await _context.SaveChangesAsync();
             HttpContext.Session.Clear();
-
             return Ok();
         }
 
         [Route("Store/Order/Recommendations")]
         [HttpGet]
-        public IActionResult Recommendations()
+        public async Task<IActionResult> Recommendations()
         {
-            var productIds = _context.CategoryProducts
+            var productIds = await _context.CategoryProducts
                 .Where(c => c.CategoryId == 1)
                 .Select(c => c.ProductId)
-                .ToArray();
+                .ToArrayAsync();
 
-            var products = _context.Products
+            var products = await _context.Products
                 .Where(c => productIds.Contains(c.Id))
-                .ToList();
+                .ToListAsync();
 
             return PartialView("_Recommendations", products.Select(c => new ProductViewModel
             {

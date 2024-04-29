@@ -1,4 +1,6 @@
-﻿namespace SimpleShop.Domain.Entities.Clubs
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SimpleShop.Domain.Entities.Clubs
 {
     public class Club : Entity
     {
@@ -7,6 +9,9 @@
         public required string DisplayName { get; set; }
 
         public required int CityId { get; set; }
+
+        [ForeignKey(nameof(CityId))]
+        public required City City { get; set; }
 
         public TimeSpan InterpreterStart { get; set; }
 
