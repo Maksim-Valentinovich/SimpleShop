@@ -20,21 +20,21 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Home/Index")]
         [HttpGet("{category}")]
-        public IActionResult Index(string category = "Discount")
+        public async Task<IActionResult> Index(string category = "Discount")
         {
-            var categoryId = _context.Categories
+            var categoryId = await _context.Categories
                 .Where(c => c.Name == category)
                 .Select(c => c.Id)
-                .ToArray();
+                .ToArrayAsync();
 
-            var productIds = _context.CategoryProducts
+            var productIds = await _context.CategoryProducts
                 .Where(c => c.CategoryId == categoryId.First())
                 .Select(c => c.ProductId)
-                .ToArray();
+                .ToArrayAsync();
 
-            var products = _context.Products
+            var products = await _context.Products
                 .Where(c => productIds.Contains(c.Id))
-                .ToList();
+                .ToListAsync();
 
             return View(products.Select(c => new ProductViewModel
             {
@@ -49,16 +49,16 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/Home/ChooseClubModal")]
         [HttpGet("{productId}")]
-        public IActionResult ChooseClubModal(int productId)
+        public async Task<IActionResult> ChooseClubModal(int productId)
         {
-            var clubIds = _context.ClubProducts
+            var clubIds = await _context.ClubProducts
                 .Where(c => c.ProductId == productId)
                 .Select(c =>c.ClubId)
-                .ToArray();
+                .ToArrayAsync();
 
-            var clubs = _context.Clubs
+            var clubs = await _context.Clubs
                 .Where(c => clubIds.Contains(c.Id))
-                .ToList();
+                .ToListAsync();
 
             return PartialView("_ChooseClubModal", clubs.Select(c => new ProductInClubViewModel {
                 ClubId = c.Id,

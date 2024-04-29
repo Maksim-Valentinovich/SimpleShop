@@ -18,7 +18,7 @@ namespace SimpleShop.Application.Clients
 
         public async Task<ClientDto> GetAsync(int id)
         {
-            var client = await Context.Clients.FirstOrDefaultAsync(c => c.Id == id);
+            var client = await Context.Clients.FirstAsync(c => c.Id == id);
 
             return null;
         }

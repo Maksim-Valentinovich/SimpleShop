@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
@@ -18,9 +19,9 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
 
         [Route("PersonalAccount/Basket/Index")]
         [HttpGet("{clientId}")]
-        public IActionResult Index(int clientId)
+        public async Task<IActionResult> Index(int clientId)
         {
-            var cl = _context.Clients.FirstOrDefault(c => c.Id == clientId);
+            var cl = await _context.Clients.FirstAsync(c => c.Id == clientId);
 
             ClientViewModel client = new()
             {
@@ -39,25 +40,21 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
 
         [Route("PersonalAccount/Basket/Product")]
         [HttpGet("{clientId}, {categoryId}")]
-        public IActionResult Product(int clientId, int categoryId)
+        public async Task <IActionResult> Product(int clientId, int categoryId)
         {
-            var productIdsCategory = _context.CategoryProducts.Where(c => c.CategoryId == categoryId).Select(c => c.ProductId).ToArray();
-
-            var orders = _context.Orders.Where(x => x.ClientId == clientId).ToList();
+            var productIdsCategory = await _context.CategoryProducts.Where(c => c.CategoryId == categoryId).Select(c => c.ProductId).ToArrayAsync();
+            var orders = await _context.Orders.Where(x => x.ClientId == clientId).ToListAsync();
 
             List<Product>? products = null;
 
             foreach (var order in orders)
             {
-                var productIdsInOrder = _context.Subscriptions.Where(x => x.OrderId == order.Id).Select(x => x.ProductId).ToList();
-
+                var productIdsInOrder = await _context.Subscriptions.Where(x => x.OrderId == order.Id).Select(x => x.ProductId).ToListAsync();
                 var productIdsInOrderCategory = productIdsInOrder.Intersect(productIdsCategory);
-
-                products = _context.Products.Where(c => productIdsInOrderCategory.Contains(c.Id)).ToList();
-
+                products = await _context.Products.Where(c => productIdsInOrderCategory.Contains(c.Id)).ToListAsync();
             }
 
-            return base.PartialView("_Product", products.Select(c => new Mvc.Areas.PersonalAccount.ViewModels.ProductViewModel
+            return PartialView("_Product", products?.Select(c => new ProductViewModel
             {
                 Id = c.Id,
                 Name = c.Name,

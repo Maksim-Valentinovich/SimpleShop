@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Domain.Entities.Products;
@@ -26,11 +27,11 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
 
         [Route("Store/ShopCard/AddToCard")]
         [HttpGet]
-        public RedirectToActionResult AddToCard(int productId, int clubId)
+        public async Task<RedirectToActionResult> AddToCard(int productId, int clubId)
         {
-            Product? product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            Product product = await _context.Products.FirstAsync(p => p.Id == productId);
 
-            Club? club = _context.Clubs.FirstOrDefault(p => p.Id == clubId);
+            Club club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
 
             _shopCard.AddToCard(product, club);
 
