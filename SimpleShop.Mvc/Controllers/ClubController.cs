@@ -20,9 +20,7 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int clubId)
         {
-            var cl = await _context.Clubs.FirstAsync(c => c.Id == clubId);
-            var city = await _context.Cities.FirstAsync(c => c.Id == cl.CityId);
-
+            var cl = await _context.Clubs.Include(c=>c.City).FirstAsync(c => c.Id == clubId);
 
             ClubViewModel club = new()
             {
@@ -37,7 +35,7 @@ namespace SimpleShop.Mvc.Controllers
                 GumLink = cl.GumLink,
                 SwimLink = cl.SwimLink,
                 GroupLink = cl.GroupLink,
-                CityName = city.Name,
+                CityName = cl.City.Name,
             };
             return View(club);
         }
@@ -52,22 +50,16 @@ namespace SimpleShop.Mvc.Controllers
                 id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
             }
 
-            var city = await _context.Cities.FirstAsync(c => c.Id == id);
-
             List<Club> clubs;
-            clubs = await _context.Clubs
-                .Where(c => c.CityId == city.Id)
-                .ToListAsync();
+            clubs = await _context.Clubs.Include(c=>c.City).Where(c => c.CityId == id).ToListAsync();
             if (clubName != null)
             {
-                clubs = await _context.Clubs
-                    .Where(c => c.Name == clubName)
-                    .ToListAsync();
+                clubs = await _context.Clubs.Include(c => c.City).Where(c => c.Name == clubName).ToListAsync();
             }
 
             return View(clubs.Select(c => new StartViewModel
             {
-                CityName = city.Name,
+                CityName = c.City.Name,
                 ClubName = c.Name,
                 ClubDisplayName = c.DisplayName,
                 ClubId = c.Id,
@@ -78,11 +70,7 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> CategoryCoaches(int clubId)
         {
-            var club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
-
-            var coaches = await _context.Coaches
-                .Where(c => c.ClubId == clubId)
-                .ToListAsync();
+            var coaches = await _context.Coaches.Include(c=>c.Club).Where(c => c.ClubId == clubId).ToListAsync();
 
             return PartialView("_CategoryCoaches", coaches.Select(c => new CoachesViewModel 
             {
@@ -92,7 +80,7 @@ namespace SimpleShop.Mvc.Controllers
                 Description = c.Description,
                 TelephoneNumber = c.TelephoneNubmer,
                 CategoryId = c.CategoryCoachId,
-                ClubName = club.DisplayName,
+                ClubName = c.Club.DisplayName,
                 PhotoLink = c.PhotoLink,
             }));
         }
@@ -107,22 +95,16 @@ namespace SimpleShop.Mvc.Controllers
                 id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
             }
 
-            var city = await _context.Cities.FirstAsync(c => c.Id == id);
-
             List<Club> clubs;
-            clubs = await _context.Clubs
-                .Where(c => c.CityId == city.Id)
-                .ToListAsync();
+            clubs = await _context.Clubs.Include(c=>c.City).Where(c => c.CityId == id).ToListAsync();
             if (clubName != null)
             {
-                clubs = await _context.Clubs
-                    .Where(c => c.Name == clubName)
-                    .ToListAsync();
+                clubs = await _context.Clubs.Where(c => c.Name == clubName).ToListAsync();
             }
 
             return View(clubs.Select(c => new StartViewModel
             {
-                CityName = city.Name,
+                CityName = c.City.Name,
                 ClubName = c.Name,
                 ClubDisplayName = c.DisplayName,
                 ClubId = c.Id,
@@ -148,13 +130,12 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> CoachPage(int coachId)
         {
-            var coach = await _context.Coaches.FirstAsync(c => c.Id == coachId);
-            var club = await _context.Clubs.FirstAsync(c => c.Id == coach.ClubId);
+            var coach = await _context.Coaches.Include(c => c.Club).FirstAsync(c => c.Id == coachId);
 
             CoachesViewModel ch = new()
             {
                 Name = coach.Name,
-                ClubName = club.Name,
+                ClubName = coach.Club.Name,
                 PhotoLink = coach.PhotoLink,
                 TelephoneNumber = coach.TelephoneNubmer,
                 Description = coach.Description,

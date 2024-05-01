@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SimpleShop.Application.Clubs;
 using SimpleShop.Domain;
 using SimpleShop.Mvc.Models;
 using SimpleShop.Mvc.ViewModels;
@@ -12,41 +13,27 @@ namespace SimpleShop.Mvc.Controllers
 {
     public class HomeController : MvcBaseController
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
-        private readonly SimpleShopContext _context;
+        private readonly IClubAppService _clubAppService;
         private readonly IMapper _mapper;
+        private readonly SimpleShopContext _context;
 
-        public HomeController(SimpleShopContext context, IMapper mapper)
+        public HomeController(IMapper mapper, IClubAppService clubAppService, SimpleShopContext context)
         {
-            _context = context;
             _mapper = mapper;
+            _clubAppService = clubAppService;
+            _context = context;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            int id = 1;
+            int cityId = 1;
             if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0") 
             {
-                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+                cityId = int.Parse(HttpContext.Request.Cookies["cityId"]!);
             }
-                  
-            //var clubs = await _context.Clubs
-            //    .Include(c=>c.City)
-            //    .Where(c => c.CityId == id)
-            //    .ProjectTo<StartViewModel>(_mapper.ConfigurationProvider)
-            //    .ToListAsync();
 
-            var clubs = await _context.Clubs
-               .Include(c => c.City)
-               .Where(c => c.CityId == id)
-               .ToListAsync();
+            var clubs = await _clubAppService.GetAllAsync(cityId);
             return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
         }
 
@@ -79,7 +66,6 @@ namespace SimpleShop.Mvc.Controllers
             string id = cityId.ToString();
 
             HttpContext.Response.Cookies.Delete("cityId");
-
             HttpContext.Response.Cookies.Append("cityId", id);
         }
 
@@ -91,6 +77,7 @@ namespace SimpleShop.Mvc.Controllers
             {
                 return NotFound();
             }
+
             if (HttpContext.Request.Cookies["cityId"] == null)
             {
                 return BadRequest();

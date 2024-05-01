@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using SimpleShop.Application;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clients;
 using SimpleShop.Domain.Entities.ShopCards;
+using System.Reflection;
 
 namespace SimpleShop.Mvc
 {
@@ -24,7 +26,7 @@ namespace SimpleShop.Mvc
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddAutoMapper(typeof(Program), typeof(SimpleShopAppService));
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => options.LoginPath = "/account");
             builder.Services.AddAuthorization();
@@ -35,6 +37,13 @@ namespace SimpleShop.Mvc
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// добавил
             builder.Services.AddScoped(sp => ShopCard.GetCard(sp));// добавил
             
+            var types = Assembly.GetAssembly(typeof(SimpleShopAppService))!.GetTypes()
+                .Where(x => !x.IsAbstract && x.IsClass && typeof(IApplicationService).IsAssignableFrom(x));
+
+            foreach (var type in types)
+            {
+                builder.Services.AddTransient(type.GetInterface($"I{type.Name}")!, type);
+            }
 
             var app = builder.Build();
 

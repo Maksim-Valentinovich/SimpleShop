@@ -32,7 +32,6 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
                 .LastAsync();
 
             var product = await _context.Products.FirstAsync(p => p.Id == productId);
-
             var club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
 
             ProductViewModel prod = new()
@@ -45,13 +44,12 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
                 CountPeople = product.CountPeople,
                 CountDay = product.CountDay,
                 ClubName = club.DisplayName,
+                ClubId = club.Id,
                 Info = category.Info,
                 PictureLink = category.PictureLink,
-                ClubId = clubId,
             };
             return View(prod);
         }
-
 
         [Route("Store/Order/Registration")]
         [HttpGet]
@@ -65,7 +63,6 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         public async Task<IActionResult> MakeOrder(MakeOrderDto input)
         {
             var client = await _context.Clients.FirstAsync(u => u.Email == input.Email);
-
             if (client == null)
             {
                 await _context.Clients.AddAsync(new Client { Email = input.Email, Name = input.Name, Surname = input.Surname, Patronymic = input.Patronymic, Phone = input.Phone, IsMan = input.IsMan, Birhday = input.Birthday });

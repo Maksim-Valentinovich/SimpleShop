@@ -41,7 +41,7 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.10",
           "Node.js": "5.3.0",
           "RestSharp": "110.2.0",
-          "SimpleShop.Domain": "1.0.0",
+          "SimpleShop.Application": "1.0.0",
           "jQuery": "3.7.1",
           "Microsoft.AspNetCore.Antiforgery": "7.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "7.0.0.0",
@@ -932,6 +932,18 @@
         }
       },
       "System.Threading.Tasks.Extensions/4.5.4": {},
+      "SimpleShop.Application/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "SimpleShop.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SimpleShop.Application.dll": {}
+        },
+        "compile": {
+          "SimpleShop.Application.dll": {}
+        }
+      },
       "SimpleShop.Domain/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -3130,6 +3142,11 @@
       "sha512": "sha512-zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
       "path": "system.threading.tasks.extensions/4.5.4",
       "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    },
+    "SimpleShop.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "SimpleShop.Domain/1.0.0": {
       "type": "project",

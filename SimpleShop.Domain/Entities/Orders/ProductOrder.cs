@@ -8,18 +8,18 @@ namespace SimpleShop.Domain.Entities.Orders
     {
         public int ProductId { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey(nameof(ProductId))]
         public Product? Product { get; set; }
 
         public int OrderId { get; set; }
 
-        [ForeignKey("OrderId")]
+        [ForeignKey(nameof(OrderId))]
         public Order? Order { get; set; }
 
         public int ClubId { get; set; }
 
-        [ForeignKey("ClubId")]
-        public Club Club { get; set; }
+        [ForeignKey(nameof(ClubId))]
+        public Club? Club { get; set; }
 
     }
 }

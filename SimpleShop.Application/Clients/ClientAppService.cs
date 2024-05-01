@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clients.Dto;
 using SimpleShop.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleShop.Application.Clients
 {
@@ -16,11 +11,28 @@ namespace SimpleShop.Application.Clients
         {
         }
 
+        public Task<IEnumerable<ClientDto>> GetAllAsync(int cityId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ClientDto> GetAsync(int id)
         {
             var client = await Context.Clients.FirstAsync(c => c.Id == id);
+            ClientDto clientdto = new()
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Surname = client.Surname,
+                Patronymic = client.Patronymic,
+                Email = client.Email,
+                Birhday = client.Birhday,
+                Phone = client.Phone,
+                IsMan = client.IsMan,
+                Password = client.Password,
+            };
 
-            return null;
+            return clientdto;
         }
     }
 }
