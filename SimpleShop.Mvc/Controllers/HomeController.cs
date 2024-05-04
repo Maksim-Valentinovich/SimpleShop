@@ -35,6 +35,13 @@ namespace SimpleShop.Mvc.Controllers
 
             var clubs = await _clubAppService.GetAllAsync(cityId);
             return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
+
+            //var clubs = await _context.Clubs
+            //    .Include(c => c.City)
+            //    .Where(c => c.CityId == cityId)
+            //    .ToListAsync();
+
+            //return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
         }
 
         [Route("Home/Privacy")]
@@ -50,13 +57,11 @@ namespace SimpleShop.Mvc.Controllers
         {
             HttpContext.Response.Cookies.Delete("NoSPB");
 
-            var cities = await _context.Cities.ToListAsync();
+            var cities = await _context.Cities
+                .Select(c => new CityViewModel{Id = c.Id,Name = c.Name,})
+                .ToListAsync();
 
-            return PartialView("_ChooseCityModal", cities.Select(c => new CityViewModel
-            {
-                Id = c.Id,
-                Name = c.Name,
-            }));
+            return PartialView("_ChooseCityModal", cities);
         }
 
         [Route("Home/CookieUpdate")]

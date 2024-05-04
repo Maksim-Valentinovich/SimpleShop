@@ -40,7 +40,7 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
 
         [Route("PersonalAccount/Basket/Product")]
         [HttpGet("{clientId}, {categoryId}")]
-        public async Task <IActionResult> Product(int clientId, int categoryId)
+        public async Task <IActionResult> Product(int clientId, int categoryId) // не работает - переделать !
         {
             var productIdsCategory = await _context.CategoryProducts.Where(c => c.CategoryId == categoryId).Select(c => c.ProductId).ToArrayAsync();
             var orders = await _context.Orders.Where(x => x.ClientId == clientId).ToListAsync();
