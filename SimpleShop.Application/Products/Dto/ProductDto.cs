@@ -1,9 +1,9 @@
-﻿namespace SimpleShop.Mvc.Areas.Store.ViewModels
-{
-    public class ProductViewModel
-    {
-        public int Id { get; set; }
+﻿using SimpleShop.Application.Common;
 
+namespace SimpleShop.Application.Products.Dto
+{
+    public class ProductDto : EntityDto
+    {
         public required string Name { get; set; }
 
         public required string Description { get; set; }

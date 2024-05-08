@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SimpleShop.Application.Clubs;
+using SimpleShop.Application.Products;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clients;
 using SimpleShop.Domain.Entities.Orders;
+using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Domain.Entities.ShopCards;
 using SimpleShop.Mvc.Areas.Store.Dto.Order;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
@@ -15,40 +19,79 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
     public class OrderController : MvcBaseController
     {
         private readonly SimpleShopContext _context;
+        private readonly IProductAppService _productAppService;
+        private readonly IClubAppService _clubAppService;
+        private readonly IMapper _mapper;
 
-        public OrderController(SimpleShopContext context)
+        public OrderController(SimpleShopContext context, IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper)
         {
             _context = context;
+            _productAppService = productAppService;
+            _clubAppService = clubAppService;
+            _mapper = mapper;
         }
 
         [Route("Store/Order/Index")]
         [HttpGet]
         public async Task<IActionResult> Index(int productId, int clubId)
         {
-            var category = await _context.CategoryProducts
-                .Where(c => c.ProductId == productId)
-                .Select(c => c.Category)
-                .OrderBy(c => c.Id)
-                .LastAsync();
+            var categoryProduct = await _productAppService.GetAsync(productId);
+            
+            var club = await _clubAppService.GetAsync(clubId);
 
-            var product = await _context.Products.FirstAsync(p => p.Id == productId);
-            var club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
+            var model = _mapper.Map<ProductViewModel>(categoryProduct);
+            _mapper.Map(club, model);
 
-            ProductViewModel prod = new()
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                CountVisit = product.CountVisit,
-                CountPeople = product.CountPeople,
-                CountDay = product.CountDay,
-                ClubName = club.DisplayName,
-                ClubId = club.Id,
-                Info = category.Info,
-                PictureLink = category.PictureLink,
-            };
-            return View(prod);
+            //var clubProductCategory = _mapper.Map<Category>(categoryProduct);
+
+
+
+            //var category = await _context.CategoryProducts
+            //    .Where(c => c.ProductId == productId)
+            //    .Select(c => c.Category)
+            //    .OrderBy(c => c.Id)
+            //    .LastAsync();
+
+            //var category = await _context.CategoryProducts
+            //        .Where(c => c.ProductId == productId)
+            //        .Include(c => c.Category)
+            //        .Include(c => c.Product)
+            //        .FirstAsync();
+
+            //var product = await _context.Products.FirstAsync(p => p.Id == productId);
+
+            //var club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
+
+            //ProductViewModel prod = new()
+            //{
+            //    Id = category.Product.Id,
+            //    Name = category.Product.Name,
+            //    Description = category.Product.Description,
+            //    Price = category.Product.Price,
+            //    CountVisit = category.Product.CountVisit,
+            //    CountPeople = category.Product.CountPeople,
+            //    CountDay = category.Product.CountDay,
+            //    ClubName = club.DisplayName,
+            //    ClubId = club.Id,
+            //    Info = category.Category.Info,
+            //    PictureLink = category.Category.PictureLink,
+            //};
+
+            //ProductViewModel prod = new()
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Description = product.Description,
+            //    Price = product.Price,
+            //    CountVisit = product.CountVisit,
+            //    CountPeople = product.CountPeople,
+            //    CountDay = product.CountDay,
+            //    ClubName = club.DisplayName,
+            //    ClubId = club.Id,
+            //    Info = category.Info,
+            //    PictureLink = category.PictureLink,
+            //};
+            return View(/*prod*/ model );
         }
 
         [Route("Store/Order/Registration")]

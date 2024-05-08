@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Coaches;
-using SimpleShop.Domain;
-using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Mvc.ViewModels;
 
 namespace SimpleShop.Mvc.Controllers
@@ -77,7 +73,7 @@ namespace SimpleShop.Mvc.Controllers
 
         [Route("Club/ScheduleTable")]
         [HttpGet]
-        public async Task <IActionResult> ScheduleTable(int clubId)
+        public async Task<IActionResult> ScheduleTable(int clubId)
         {
             var club = await _clubAppService.GetAsync(clubId);
             return PartialView("_ScheduleTable", _mapper.Map<ClubViewModel>(club));
