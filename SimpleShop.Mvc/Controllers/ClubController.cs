@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Coaches;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clubs;
@@ -11,22 +12,22 @@ namespace SimpleShop.Mvc.Controllers
 {
     public class ClubController : MvcBaseController
     {
-        private readonly SimpleShopContext _context;
         private readonly IMapper _mapper;
         private readonly ICoachAppService _coachAppService;
+        private readonly IClubAppService _clubAppService;
 
-        public ClubController(SimpleShopContext context, IMapper mapper, ICoachAppService coachAppService)
+        public ClubController(IMapper mapper, ICoachAppService coachAppService, IClubAppService clubAppService)
         {
-            _context = context;
             _mapper = mapper;
             _coachAppService = coachAppService;
+            _clubAppService = clubAppService;
         }
 
         [Route("Club/Index")]
         [HttpGet]
         public async Task<IActionResult> Index(int clubId)
         {
-            var club = await _context.Clubs.Include(c=>c.City).FirstAsync(c => c.Id == clubId);
+            var club = await _clubAppService.GetAsync(clubId);
             return View(_mapper.Map<ClubViewModel>(club));
         }
 
@@ -34,19 +35,17 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Coaches(string? clubName = null)
         {
-            int id = 1;
+            int cityId = 1;
             if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0")
             {
-                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+                cityId = int.Parse(HttpContext.Request.Cookies["cityId"]!);
             }
 
-            List<Club> clubs;
-            clubs = await _context.Clubs.Include(c=>c.City).Where(c => c.CityId == id).ToListAsync();
+            var clubs = await _clubAppService.GetAllAsync(cityId);
             if (clubName != null)
             {
-                clubs = await _context.Clubs.Include(c => c.City).Where(c => c.Name == clubName).ToListAsync();
+                clubs = await _clubAppService.GetAllAsync(clubName);
             }
-
             return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
         }
 
@@ -54,31 +53,24 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> CategoryCoaches(int clubId)
         {
-            //var coaches = await _context.Coaches.Include(c=>c.Club).Where(c => c.ClubId == clubId).ToListAsync();
-            //return PartialView("_CategoryCoaches", _mapper.Map<IEnumerable<CoachesViewModel>>(coaches));
-
-            //var clubs = await _clubAppService.GetAllAsync(cityId);
-            //return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
-
             var coaches = await _coachAppService.GetAllAsync(clubId);
-            return View(_mapper.Map<IEnumerable<CoachesViewModel>>(coaches));
+            return PartialView("_CategoryCoaches", _mapper.Map<IEnumerable<CoachesViewModel>>(coaches));
         }
 
         [Route("Club/Schedule")]
         [HttpGet("{chapter}")]
         public async Task<IActionResult> Schedule(string? clubName = null)
         {
-            int id = 1;
+            int cityId = 1;
             if (HttpContext.Request.Cookies["cityId"] != null && HttpContext.Request.Cookies["cityId"] != "0")
             {
-                id = int.Parse(HttpContext.Request.Cookies["cityId"]!);
+                cityId = int.Parse(HttpContext.Request.Cookies["cityId"]!);
             }
 
-            List<Club> clubs;
-            clubs = await _context.Clubs.Include(c=>c.City).Where(c => c.CityId == id).ToListAsync();
+            var clubs = await _clubAppService.GetAllAsync(cityId);
             if (clubName != null)
             {
-                clubs = await _context.Clubs.Where(c => c.Name == clubName).ToListAsync();
+                clubs = await _clubAppService.GetAllAsync(clubName);
             }
             return View(_mapper.Map<IEnumerable<StartViewModel>>(clubs));
         }
@@ -87,7 +79,7 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task <IActionResult> ScheduleTable(int clubId)
         {
-            var club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
+            var club = await _clubAppService.GetAsync(clubId);
             return PartialView("_ScheduleTable", _mapper.Map<ClubViewModel>(club));
         }
 
@@ -95,7 +87,7 @@ namespace SimpleShop.Mvc.Controllers
         [HttpGet]
         public async Task<IActionResult> CoachPage(int coachId)
         {
-            var coach = await _context.Coaches.Include(c => c.Club).FirstAsync(c => c.Id == coachId);
+            var coach = await _coachAppService.GetAsync(coachId);
             return PartialView("_CoachPage", _mapper.Map<CoachesViewModel>(coach));
         }
     }

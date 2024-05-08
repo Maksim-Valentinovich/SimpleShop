@@ -39,7 +39,6 @@ namespace SimpleShop.Mvc
             
             var types = Assembly.GetAssembly(typeof(SimpleShopAppService))!.GetTypes()
                 .Where(x => !x.IsAbstract && x.IsClass && typeof(IApplicationService).IsAssignableFrom(x));
-
             foreach (var type in types)
             {
                 builder.Services.AddTransient(type.GetInterface($"I{type.Name}")!, type);
@@ -65,17 +64,18 @@ namespace SimpleShop.Mvc
                 return Task.CompletedTask;
             });
 
-            
-            app.Environment.EnvironmentName = "Production";
 
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/error");
-            }
-            app.Map("/error", (context) => {
-                context.Response.Redirect("/ServerError");
-                return Task.CompletedTask;
-            });
+            //app.Environment.EnvironmentName = "Production";
+
+            //if (!app.Environment.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/error");
+            //}
+            //app.Map("/error", (context) =>
+            //{
+            //    context.Response.Redirect("/ServerError");
+            //    return Task.CompletedTask;
+            //});
 
             app.UseResponseCompression();
 

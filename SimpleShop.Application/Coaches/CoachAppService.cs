@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Coaches.Dto;
 using SimpleShop.Domain;
@@ -17,10 +16,19 @@ namespace SimpleShop.Application.Coaches
             var coaches = await Context.Coaches
                 .Include(c => c.Club)
                 .Where(c => c.ClubId == clubId)
-                .ProjectTo<CoachDto>(Mapper.ConfigurationProvider)
                 .ToListAsync();
 
-            return coaches;
+            return (Mapper.Map<IEnumerable<CoachDto>>(coaches));
+
+        }
+
+        public async Task<CoachDto> GetAsync(int coachId)
+        {
+            var coach = await Context.Coaches
+                .Include(c => c.Club)
+                .FirstAsync(c => c.Id == coachId);
+
+            return Mapper.Map<CoachDto>(coach);
         }
     }
 }

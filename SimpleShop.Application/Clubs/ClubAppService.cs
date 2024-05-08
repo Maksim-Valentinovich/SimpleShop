@@ -19,8 +19,29 @@ namespace SimpleShop.Application.Clubs
                 .Where(c => c.CityId == cityId)
                 .ProjectTo<ClubDto>(Mapper.ConfigurationProvider)
                 .ToListAsync();
+            return clubs;
+        }
+
+        public async Task<IEnumerable<ClubDto>> GetAllAsync(string clubName)
+        {
+            var clubs = await Context.Clubs
+                .Include(c => c.City)
+                .Where(c => c.Name == clubName)
+                .ProjectTo<ClubDto>(Mapper.ConfigurationProvider)
+                .ToListAsync();
 
             return clubs;
+        }
+
+        public async Task<ClubDto> GetAsync(int clubId)
+        {
+            var club = await Context.Clubs
+                .Include(c => c.City)
+                .Where(c => c.Id == clubId)
+                .ProjectTo<ClubDto>(Mapper.ConfigurationProvider)
+                .FirstAsync();
+
+            return club;
         }
     }
 
