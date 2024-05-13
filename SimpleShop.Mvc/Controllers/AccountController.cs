@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SimpleShop.Domain;
-using System.Security.Claims;
+using SimpleShop.Application.Clients;
+using SimpleShop.Application.Clients.Dto;
 using SimpleShop.Mvc.ViewModels;
-using SimpleShop.Domain.Entities.Clients;
+using System.Security.Claims;
 
 namespace SimpleShop.Mvc.Controllers
 {
     public class AccountController : MvcBaseController
     {
-        private readonly SimpleShopContext _context;
+        private readonly IClientAppService _clientAppService;
+        private readonly IMapper _mapper;
 
-        public AccountController(SimpleShopContext context)
+        public AccountController(IClientAppService clientAppService, IMapper mapper)
         {
-            _context = context;
+            _clientAppService = clientAppService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,12 +32,12 @@ namespace SimpleShop.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                Client? client = await _context.Clients.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                var client = await _clientAppService.GetAsync(model.Email, model.Password);
                 if (client != null)
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", clientId = client.Id});
+                    return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", clientId = client.Id });
                 }
                 else
                     ModelState.AddModelError("", "Клиент с таким email уже существует!");
@@ -48,7 +50,7 @@ namespace SimpleShop.Mvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register() 
+        public IActionResult Register()
         {
             return View();
         }
@@ -59,12 +61,12 @@ namespace SimpleShop.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                Client? client = await _context.Clients.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var client = await _clientAppService.GetAsync(model.Email);
                 if (client == null)
                 {
                     // добавляем пользователя в бд
-                    await _context.Clients.AddAsync(new Client { Email = model.Email, Password = model.Password, Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, Phone = model.Phone, Birhday = model.Birthday, IsMan = model.IsMan});
-                    await _context.SaveChangesAsync();
+                    var clientDto = _mapper.Map<ClientDto>(model);
+                    await _clientAppService.AddAsync(clientDto);
 
                     await Authenticate(model.Email); // аутентификация
 
@@ -88,7 +90,7 @@ namespace SimpleShop.Mvc.Controllers
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
             // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }

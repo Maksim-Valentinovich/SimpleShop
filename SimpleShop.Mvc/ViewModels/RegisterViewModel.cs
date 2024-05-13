@@ -14,7 +14,7 @@ namespace SimpleShop.Mvc.ViewModels
         public required string Patronymic { get; set; }
 
         [Required(ErrorMessage = "Не указана дата рождения")]
-        public DateTime Birthday { get; set; }
+        public DateTime Birhday { get; set; }
 
         public bool IsMan { get; set; }
 

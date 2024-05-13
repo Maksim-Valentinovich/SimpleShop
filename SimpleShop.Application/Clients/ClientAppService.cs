@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clients.Dto;
 using SimpleShop.Domain;
+using SimpleShop.Domain.Entities.Clients;
 
 namespace SimpleShop.Application.Clients
 {
@@ -11,28 +12,37 @@ namespace SimpleShop.Application.Clients
         {
         }
 
-        public Task<IEnumerable<ClientDto>> GetAllAsync(int cityId)
+        public async Task<ClientDto> GetAsync(string email)
         {
-            throw new NotImplementedException();
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(c => c.Email == email);
+
+            return Mapper.Map<ClientDto>(client);
         }
 
-        public async Task<ClientDto> GetAsync(int id)
+        public async Task<ClientDto> GetAsync(int clientId)
         {
-            var client = await Context.Clients.FirstAsync(c => c.Id == id);
-            ClientDto clientdto = new()
-            {
-                Id = client.Id,
-                Name = client.Name,
-                Surname = client.Surname,
-                Patronymic = client.Patronymic,
-                Email = client.Email,
-                Birhday = client.Birhday,
-                Phone = client.Phone,
-                IsMan = client.IsMan,
-                Password = client.Password,
-            };
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(c => c.Id == clientId);
 
-            return clientdto;
+            return Mapper.Map<ClientDto>(client);
+        }
+
+        public async Task<ClientDto> GetAsync(string email, string password)
+        {
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+
+            return Mapper.Map<ClientDto>(client);
+        }
+
+        public async Task AddAsync(ClientDto clientDto)
+        {
+            var client = Mapper.Map<Client>(clientDto);
+
+            await Context.Clients.AddAsync(client);
+            await Context.SaveChangesAsync();
+
         }
     }
 }

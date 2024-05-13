@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clubs.Dto;
 using SimpleShop.Domain;
+using SimpleShop.Domain.Entities.Clubs;
 
 namespace SimpleShop.Application.Clubs
 {
@@ -29,6 +30,16 @@ namespace SimpleShop.Application.Clubs
                 .Where(c => c.Name == clubName)
                 .ProjectTo<ClubDto>(Mapper.ConfigurationProvider)
                 .ToListAsync();
+
+            return clubs;
+        }
+
+        public async Task<ClubProduct[]> GetClubsFromProductAsync(int productId)
+        {
+            var clubs = await Context.ClubProducts
+                .Where(c => c.ProductId == productId)
+                .Include(c => c.Club)
+                .ToArrayAsync();
 
             return clubs;
         }

@@ -1,10 +1,12 @@
 ﻿using SimpleShop.Application.Clients.Dto;
-using SimpleShop.Application.Clubs.Dto;
 
 namespace SimpleShop.Application.Clients
 {
     public interface IClientAppService : IApplicationService
     {
-        Task<IEnumerable<ClientDto>> GetAllAsync(int cityId);
+        Task<ClientDto> GetAsync(string email);
+        Task<ClientDto> GetAsync(string email, string password);
+        Task<ClientDto> GetAsync(int clientId);
+        Task AddAsync(ClientDto clientDto);
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Products.Dto;
 using SimpleShop.Domain;
-using SimpleShop.Domain.Entities.Clubs;
 
 namespace SimpleShop.Application.Products
 {
@@ -11,6 +10,7 @@ namespace SimpleShop.Application.Products
         public ProductAppService(SimpleShopContext context, IMapper mapper) : base(context, mapper)
         {
         }
+
         public async Task<ProductDto> GetAsync(int productId)
         {
             var category = await Context.CategoryProducts
@@ -20,6 +20,17 @@ namespace SimpleShop.Application.Products
                 .FirstAsync();
 
             return Mapper.Map<ProductDto>(category);
+        }
+
+        public async Task<IEnumerable<ProductDto>> GetAllAsync(int categoryId)
+        {
+            var products = await Context.CategoryProducts
+                .Where(c => c.CategoryId == categoryId)
+                .Include(c => c.Product)
+                .Include(c => c.Category)
+                .ToArrayAsync();
+
+            return Mapper.Map<IEnumerable<ProductDto>>(products);
         }
     }
 }

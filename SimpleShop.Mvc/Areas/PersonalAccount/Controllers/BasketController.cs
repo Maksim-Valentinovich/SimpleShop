@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SimpleShop.Application.Clients;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
+using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 
 namespace SimpleShop.Areas.PersonalAccount.Controllers
@@ -11,31 +14,23 @@ namespace SimpleShop.Areas.PersonalAccount.Controllers
     public class BasketController : MvcBaseController
     {
         private readonly SimpleShopContext _context;
+        private readonly IMapper _mapper;
+        private readonly IClientAppService _clientAppService;
 
-        public BasketController(SimpleShopContext context)
+        public BasketController(SimpleShopContext context, IClientAppService clientAppService, IMapper mapper)
         {
             _context = context;
+            _clientAppService = clientAppService;
+            _mapper = mapper;
         }
 
         [Route("PersonalAccount/Basket/Index")]
         [HttpGet("{clientId}")]
         public async Task<IActionResult> Index(int clientId)
         {
-            var cl = await _context.Clients.FirstAsync(c => c.Id == clientId);
-
-            ClientViewModel client = new()
-            {
-                Id= cl.Id,
-                Name = cl.Name,
-                Surname = cl.Surname,
-                Patronymic = cl.Patronymic,
-                Phone = cl.Phone,
-                Email = cl.Email,
-                IsMan = cl.IsMan,
-                Birhday = cl.Birhday,
-            };
-
-            return View(client);
+            var client = await _clientAppService.GetAsync(clientId);
+            var model = _mapper.Map<ClientViewModel>(client);
+            return View(model);
         }
 
         [Route("PersonalAccount/Basket/Product")]

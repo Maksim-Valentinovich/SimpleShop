@@ -6,7 +6,6 @@ using SimpleShop.Application.Products;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clients;
 using SimpleShop.Domain.Entities.Orders;
-using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Domain.Entities.ShopCards;
 using SimpleShop.Mvc.Areas.Store.Dto.Order;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
@@ -36,70 +35,14 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         public async Task<IActionResult> Index(int productId, int clubId)
         {
             var categoryProduct = await _productAppService.GetAsync(productId);
-            
             var club = await _clubAppService.GetAsync(clubId);
 
             var model = _mapper.Map<ProductViewModel>(categoryProduct);
             _mapper.Map(club, model);
 
-            //var clubProductCategory = _mapper.Map<Category>(categoryProduct);
-
-
-
-            //var category = await _context.CategoryProducts
-            //    .Where(c => c.ProductId == productId)
-            //    .Select(c => c.Category)
-            //    .OrderBy(c => c.Id)
-            //    .LastAsync();
-
-            //var category = await _context.CategoryProducts
-            //        .Where(c => c.ProductId == productId)
-            //        .Include(c => c.Category)
-            //        .Include(c => c.Product)
-            //        .FirstAsync();
-
-            //var product = await _context.Products.FirstAsync(p => p.Id == productId);
-
-            //var club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
-
-            //ProductViewModel prod = new()
-            //{
-            //    Id = category.Product.Id,
-            //    Name = category.Product.Name,
-            //    Description = category.Product.Description,
-            //    Price = category.Product.Price,
-            //    CountVisit = category.Product.CountVisit,
-            //    CountPeople = category.Product.CountPeople,
-            //    CountDay = category.Product.CountDay,
-            //    ClubName = club.DisplayName,
-            //    ClubId = club.Id,
-            //    Info = category.Category.Info,
-            //    PictureLink = category.Category.PictureLink,
-            //};
-
-            //ProductViewModel prod = new()
-            //{
-            //    Id = product.Id,
-            //    Name = product.Name,
-            //    Description = product.Description,
-            //    Price = product.Price,
-            //    CountVisit = product.CountVisit,
-            //    CountPeople = product.CountPeople,
-            //    CountDay = product.CountDay,
-            //    ClubName = club.DisplayName,
-            //    ClubId = club.Id,
-            //    Info = category.Info,
-            //    PictureLink = category.PictureLink,
-            //};
-            return View(/*prod*/ model );
+            return View(model);
         }
 
-        [Route("Store/Order/Registration")]
-        [HttpGet]
-        public IActionResult Registration()
-        {
-            return View();
-        }
 
         [Route("Store/Order/MakeOrder")]
         [HttpPost]
@@ -139,24 +82,11 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public async Task<IActionResult> Recommendations()
         {
-            var productIds = await _context.CategoryProducts
-                .Where(c => c.CategoryId == 1)
-                .Select(c => c.ProductId)
-                .ToArrayAsync();
+            int categoryId = 1;
+            var categoryProduct = await _productAppService.GetAllAsync(categoryId);
 
-            var products = await _context.Products
-                .Where(c => productIds.Contains(c.Id))
-                .ToListAsync();
-
-            return PartialView("_Recommendations", products.Select(c => new ProductViewModel
-            {
-                Name = c.Name,
-                Description = c.Description,
-                Price = c.Price,
-                CountDay = c.CountDay,
-                CountVisit = c.CountVisit,
-                Id = c.Id,
-            }));
+            var model = _mapper.Map<IEnumerable<ProductViewModel>>(categoryProduct);
+            return PartialView("_Recommendations", model);
         }
 
         [Route("Store/Order/PayModal")]
@@ -169,6 +99,13 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [Route("Store/Order/FinishPay")]
         [HttpGet]
         public IActionResult FinishPay()
+        {
+            return View();
+        }
+
+        [Route("Store/Order/Registration")]
+        [HttpGet]
+        public IActionResult Registration()
         {
             return View();
         }

@@ -14,6 +14,10 @@ namespace SimpleShop.Application.Mapping
     {
         public EntityToDtoProfile()
         {
+            CreateMap<City, CityDto>();
+            CreateMap<Client, ClientDto>();
+            CreateMap<ClientDto, Client>();
+
             CreateMap<Club, ClubDto>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom((src, dest) => src.City.Name));
 
@@ -21,8 +25,6 @@ namespace SimpleShop.Application.Mapping
                 .ForMember(dest => dest.TelephoneNubmer, opt => opt.MapFrom((src, dest) => src.TelephoneNubmer))
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom((src, dest) => src.CategoryCoachId))
                 .ForMember(dest => dest.ClubName, opt => opt.MapFrom((src, dest) => src.Club.DisplayName));
-
-            CreateMap<City, CityDto>();
 
             CreateMap<CategoryProduct, ProductDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom((src, dest) => src.Product.Id))
@@ -33,7 +35,7 @@ namespace SimpleShop.Application.Mapping
                 .ForMember(dest => dest.CountPeople, opt => opt.MapFrom((src, dest) => src.Product.CountPeople))
                 .ForMember(dest => dest.CountDay, opt => opt.MapFrom((src, dest) => src.Product.CountDay))
                 .ForMember(dest => dest.Info, opt => opt.MapFrom((src, dest) => src.Category.Info))
-                .ForMember(dest => dest.PictureLink, opt => opt.MapFrom((src, dest) => src.Category.Info));
+                .ForMember(dest => dest.PictureLink, opt => opt.MapFrom((src, dest) => src.Category.PictureLink));
         }
     }
 }
