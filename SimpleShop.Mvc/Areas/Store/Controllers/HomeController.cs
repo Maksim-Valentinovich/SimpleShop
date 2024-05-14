@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Products;
-using SimpleShop.Domain;
-using SimpleShop.Domain.Entities.Clubs;
-using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 

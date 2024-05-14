@@ -3,9 +3,11 @@ using SimpleShop.Application.Cities.Dto;
 using SimpleShop.Application.Clients.Dto;
 using SimpleShop.Application.Clubs.Dto;
 using SimpleShop.Application.Coaches.Dto;
+using SimpleShop.Application.Orders.Dto;
 using SimpleShop.Application.Products.Dto;
 using SimpleShop.Domain.Entities.Clients;
 using SimpleShop.Domain.Entities.Clubs;
+using SimpleShop.Domain.Entities.Orders;
 using SimpleShop.Domain.Entities.Products;
 
 namespace SimpleShop.Application.Mapping
@@ -17,6 +19,7 @@ namespace SimpleShop.Application.Mapping
             CreateMap<City, CityDto>();
             CreateMap<Client, ClientDto>();
             CreateMap<ClientDto, Client>();
+            CreateMap<ProductOrderDto, ProductOrder>();
 
             CreateMap<Club, ClubDto>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom((src, dest) => src.City.Name));
@@ -36,6 +39,9 @@ namespace SimpleShop.Application.Mapping
                 .ForMember(dest => dest.CountDay, opt => opt.MapFrom((src, dest) => src.Product.CountDay))
                 .ForMember(dest => dest.Info, opt => opt.MapFrom((src, dest) => src.Category.Info))
                 .ForMember(dest => dest.PictureLink, opt => opt.MapFrom((src, dest) => src.Category.PictureLink));
+
+            //CreateMap<OrderDto, Order>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }

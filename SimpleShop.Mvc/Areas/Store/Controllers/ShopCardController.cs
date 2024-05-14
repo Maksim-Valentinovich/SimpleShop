@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Products;
+using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Domain.Entities.Products;
 using SimpleShop.Domain.Entities.ShopCards;
@@ -17,12 +19,14 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         private readonly IProductAppService _productAppService;
         private readonly IClubAppService _clubAppService;
         private readonly ShopCard _shopCard;
-        public ShopCardController(ShopCard shopCard, IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper)
+        private readonly SimpleShopContext _context;
+        public ShopCardController(SimpleShopContext context, ShopCard shopCard, IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper)
         {
             _shopCard = shopCard;
             _productAppService = productAppService;
             _clubAppService = clubAppService;
             _mapper = mapper;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -34,8 +38,12 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public async Task<RedirectToActionResult> AddToCard(int productId, int clubId)
         {
-            var product = _mapper.Map<Product>(await _productAppService.GetAsync(productId));
-            var club = _mapper.Map<Club>(await _clubAppService.GetAsync(clubId));
+            //var model = await _productAppService.GetAsync(productId);
+            //var product = _mapper.Map<Product>(model);
+            //var club = _mapper.Map<Club>(await _clubAppService.GetAsync(clubId));
+
+            Product product = await _context.Products.FirstAsync(c => c.Id == productId);
+            Club club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
 
             _shopCard.AddToCard(product, club);
 

@@ -42,7 +42,12 @@ namespace SimpleShop.Application.Clients
 
             await Context.Clients.AddAsync(client);
             await Context.SaveChangesAsync();
+        }
 
+        public int GetLast()
+        {
+            var clientId = Context.Clients.OrderBy(c => c.Id).LastAsync().Id;
+            return clientId;
         }
     }
 }

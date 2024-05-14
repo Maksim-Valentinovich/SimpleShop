@@ -7,6 +7,7 @@ namespace SimpleShop.Application.Clients
         Task<ClientDto> GetAsync(string email);
         Task<ClientDto> GetAsync(string email, string password);
         Task<ClientDto> GetAsync(int clientId);
+        int GetLast();
         Task AddAsync(ClientDto clientDto);
     }
 }
