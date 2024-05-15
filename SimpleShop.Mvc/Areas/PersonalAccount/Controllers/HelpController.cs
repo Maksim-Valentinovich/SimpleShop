@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clients;
-using SimpleShop.Domain;
 using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
 using SimpleShop.Mvc.Controllers;
 

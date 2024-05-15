@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Products;
+using SimpleShop.Application.ShopCard;
 using SimpleShop.Domain;
 using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Domain.Entities.Products;
@@ -18,15 +19,17 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         private readonly IMapper _mapper;
         private readonly IProductAppService _productAppService;
         private readonly IClubAppService _clubAppService;
+        private readonly IShopCardAppService _shopCardAppService;
         private readonly ShopCard _shopCard;
         private readonly SimpleShopContext _context;
-        public ShopCardController(SimpleShopContext context, ShopCard shopCard, IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper)
+        public ShopCardController(SimpleShopContext context, ShopCard shopCard, IProductAppService productAppService, IClubAppService clubAppService, IShopCardAppService shopCardAppService, IMapper mapper)
         {
-            _shopCard = shopCard;
             _productAppService = productAppService;
             _clubAppService = clubAppService;
+            _shopCardAppService = shopCardAppService;
             _mapper = mapper;
             _context = context;
+            _shopCard = shopCard;
         }
 
         public IActionResult Index()
@@ -42,10 +45,12 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             //var product = _mapper.Map<Product>(model);
             //var club = _mapper.Map<Club>(await _clubAppService.GetAsync(clubId));
 
-            Product product = await _context.Products.FirstAsync(c => c.Id == productId);
-            Club club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
+            //Product product = await _context.Products.FirstAsync(c => c.Id == productId);
+            //Club club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
 
-            _shopCard.AddToCard(product, club);
+            //_shopCard.AddToCard(product, club);
+
+            await _shopCardAppService.AddToCard(productId, clubId);
 
             return RedirectToAction("BasketModal"); //убрать
         }
