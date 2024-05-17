@@ -4,8 +4,8 @@ namespace SimpleShop.Application.Orders
 {
     public interface IOrderAppService : IApplicationService
     {
-        Task AddAsync(OrderDto orderDto, int clientId);
-        Task AddAsync(OrderDto orderDto);
+        Task AddAsync(OrderDto orderDto, int clientId = 0);
         Task<OrderDto> GetLast();
+        IEnumerable<OrderDto> GetOrder(int clientId);
     }
 }

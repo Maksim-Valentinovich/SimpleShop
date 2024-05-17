@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleShop.Application.Cities;
 using SimpleShop.Application.Clubs;
-using SimpleShop.Domain;
 using SimpleShop.Mvc.ViewModels;
 
 namespace SimpleShop.Mvc.Controllers
@@ -13,7 +12,7 @@ namespace SimpleShop.Mvc.Controllers
         private readonly ICityAppService _cityAppService;
         private readonly IMapper _mapper;
 
-        public HomeController(IMapper mapper, IClubAppService clubAppService, SimpleShopContext context, ICityAppService cityAppService)
+        public HomeController(IMapper mapper, IClubAppService clubAppService, ICityAppService cityAppService)
         {
             _mapper = mapper;
             _clubAppService = clubAppService;
@@ -95,10 +94,6 @@ namespace SimpleShop.Mvc.Controllers
                     latitudelLongitude[1] = cities[i, 1];
                 }
             }
-
-            //var city = await _context.Cities
-            //    .Where(c => c.Latitude == latitudelLongitude[0] && c.Longitude == latitudelLongitude[1])
-            //    .FirstAsync();
 
             var city = await _cityAppService.GetAsync(latitudelLongitude[0], latitudelLongitude[1]);
             return PartialView("_AgreeCityModal", _mapper.Map<CityViewModel>(city));

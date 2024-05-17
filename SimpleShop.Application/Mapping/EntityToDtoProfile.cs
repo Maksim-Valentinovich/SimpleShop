@@ -40,7 +40,7 @@ namespace SimpleShop.Application.Mapping
                 .ForMember(dest => dest.Info, opt => opt.MapFrom((src, dest) => src.Category.Info))
                 .ForMember(dest => dest.PictureLink, opt => opt.MapFrom((src, dest) => src.Category.PictureLink));
 
-            //CreateMap<OrderDto, Order>();
+            CreateMap<OrderDto, Order>();
             CreateMap<Order, OrderDto>();
         }
     }

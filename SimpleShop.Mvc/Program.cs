@@ -47,35 +47,34 @@ namespace SimpleShop.Mvc
             var app = builder.Build();
 
             //обработка ошибок HTTP
-            app.UseStatusCodePages(statusCodeContext => {
-                var response = statusCodeContext.HttpContext.Response;
-                var path = statusCodeContext.HttpContext.Request.Path;
+            //app.UseStatusCodePages(statusCodeContext => {
+            //    var response = statusCodeContext.HttpContext.Response;
+            //    var path = statusCodeContext.HttpContext.Request.Path;
 
-                response.ContentType = "text/plain; charset=UTF-8";
-                if (response.StatusCode == 500)
-                {
-                    response.Redirect("/ServerError");
-                }
-                else if (response.StatusCode == 404)
-                {
-                    response.Redirect("/NotFound");
-                }
-
-                return Task.CompletedTask;
-            });
-
-
-            //app.Environment.EnvironmentName = "Production";
-
-            //if (!app.Environment.IsDevelopment())
-            //{
-            //    app.UseExceptionHandler("/error");
-            //}
-            //app.Map("/error", (context) =>
-            //{
-            //    context.Response.Redirect("/ServerError");
+            //    response.ContentType = "text/plain; charset=UTF-8";
+            //    if (response.StatusCode == 500)
+            //    {
+            //        response.Redirect("/ServerError");
+            //    }
+            //    else if (response.StatusCode == 404)
+            //    {
+            //        response.Redirect("/NotFound");
+            //    }
             //    return Task.CompletedTask;
             //});
+
+
+            app.Environment.EnvironmentName = "Production";
+
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/error");
+            }
+            app.Map("/error", (context) =>
+            {
+                context.Response.Redirect("/ServerError");
+                return Task.CompletedTask;
+            });
 
             app.UseResponseCompression();
 

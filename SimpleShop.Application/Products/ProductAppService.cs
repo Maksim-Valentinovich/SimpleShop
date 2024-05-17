@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Products.Dto;
 using SimpleShop.Domain;
+using SimpleShop.Domain.Entities.Orders;
+using SimpleShop.Domain.Entities.Products;
 
 namespace SimpleShop.Application.Products
 {
@@ -31,6 +33,28 @@ namespace SimpleShop.Application.Products
                 .ToArrayAsync();
 
             return Mapper.Map<IEnumerable<ProductDto>>(products);
+        }
+
+        public List<ProductDto> GetProductAllAsync(int categoryId)
+        {
+            var products = Context.CategoryProducts
+                .Where(c => c.CategoryId == categoryId)
+                .Include(c => c.Product)
+                .Select(c => c.Product)
+                .ToArrayAsync();
+
+            return Mapper.Map<List<ProductDto>>(products);
+        }
+
+        public List<ProductDto> GetProductOrder(int orderId)
+        {
+            var products =  Context.Subscriptions
+                 .Where(x => x.OrderId == orderId)
+                 .Include(c => c.Product)
+                 .Select(c => c.Product)
+                 .ToListAsync();
+
+            return Mapper.Map<List<ProductDto>>(products);
         }
     }
 }

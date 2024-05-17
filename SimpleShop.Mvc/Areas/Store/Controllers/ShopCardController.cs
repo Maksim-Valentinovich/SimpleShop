@@ -1,13 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SimpleShop.Application.Clubs;
-using SimpleShop.Application.Products;
 using SimpleShop.Application.ShopCard;
-using SimpleShop.Domain;
-using SimpleShop.Domain.Entities.Clubs;
-using SimpleShop.Domain.Entities.Products;
-using SimpleShop.Domain.Entities.ShopCards;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 
@@ -17,19 +10,12 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
     public class ShopCardController : MvcBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IProductAppService _productAppService;
-        private readonly IClubAppService _clubAppService;
         private readonly IShopCardAppService _shopCardAppService;
-        private readonly ShopCard _shopCard;
-        private readonly SimpleShopContext _context;
-        public ShopCardController(SimpleShopContext context, ShopCard shopCard, IProductAppService productAppService, IClubAppService clubAppService, IShopCardAppService shopCardAppService, IMapper mapper)
+
+        public ShopCardController(IShopCardAppService shopCardAppService, IMapper mapper)
         {
-            _productAppService = productAppService;
-            _clubAppService = clubAppService;
             _shopCardAppService = shopCardAppService;
             _mapper = mapper;
-            _context = context;
-            _shopCard = shopCard;
         }
 
         public IActionResult Index()
@@ -41,17 +27,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public async Task<RedirectToActionResult> AddToCard(int productId, int clubId)
         {
-            //var model = await _productAppService.GetAsync(productId);
-            //var product = _mapper.Map<Product>(model);
-            //var club = _mapper.Map<Club>(await _clubAppService.GetAsync(clubId));
-
-            //Product product = await _context.Products.FirstAsync(c => c.Id == productId);
-            //Club club = await _context.Clubs.FirstAsync(c => c.Id == clubId);
-
-            //_shopCard.AddToCard(product, club);
-
-            await _shopCardAppService.AddToCard(productId, clubId);
-
+            await _shopCardAppService.AddProduct(productId, clubId);
             return RedirectToAction("BasketModal"); //убрать
         }
 
@@ -59,8 +35,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public IActionResult DeleteProductOnCard(int index)
         {
-            _shopCard.DeleteProduct(index);
-
+            _shopCardAppService.DeleteProduct(index);
             return Ok();
         }
 
@@ -68,32 +43,16 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public IActionResult BasketModal()
         {
-            var items = _shopCard.GetShopItems();
-
-            _shopCard.ListShopItems = items;
-
-            return PartialView("_BasketModal", new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            var model = _shopCardAppService.GetShopItems();
+            return PartialView("_BasketModal", _mapper.Map<ShopCardFiveViewModel>(model));
         }
 
         [Route("Store/ShopCard/Product")]
         [HttpGet]
         public IActionResult Product()
         {
-            var items = _shopCard.GetShopItems();
-
-            _shopCard.ListShopItems = items;
-
-            var clubs = _shopCard.GetShopClubs();
-
-            _shopCard.ListShopClubs = clubs;
-
-            return PartialView("_Product", new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            var model = _shopCardAppService.GetShopItems();
+            return PartialView("_Product", _mapper.Map<ShopCardFiveViewModel>(model));
         }
 
     }

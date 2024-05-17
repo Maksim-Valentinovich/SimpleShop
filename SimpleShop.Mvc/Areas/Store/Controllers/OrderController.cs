@@ -6,11 +6,10 @@ using SimpleShop.Application.Clubs;
 using SimpleShop.Application.Orders;
 using SimpleShop.Application.Orders.Dto;
 using SimpleShop.Application.Products;
-using SimpleShop.Domain.Entities.ShopCards;
+using SimpleShop.Application.ShopCard;
 using SimpleShop.Mvc.Areas.Store.Dto.Order;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
-using System.Text.Json;
 
 namespace SimpleShop.Mvc.Areas.Store.Controllers
 {
@@ -22,9 +21,10 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         private readonly IClientAppService _clientAppService;
         private readonly IOrderAppService _orderAppService;
         private readonly IProductOrderAppService _productOrderAppService;
+        private readonly IShopCardAppService _shopCardAppService;
         private readonly IMapper _mapper;
 
-        public OrderController(IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper, IClientAppService clientAppService, IOrderAppService orderAppService, IProductOrderAppService productOrderAppService)
+        public OrderController(IProductAppService productAppService, IClubAppService clubAppService, IMapper mapper, IClientAppService clientAppService, IOrderAppService orderAppService, IProductOrderAppService productOrderAppService, IShopCardAppService shopCardAppService)
         {
             _productAppService = productAppService;
             _clubAppService = clubAppService;
@@ -32,6 +32,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             _clientAppService = clientAppService;
             _orderAppService = orderAppService;
             _productOrderAppService = productOrderAppService;
+            _shopCardAppService = shopCardAppService;
         }
 
         [Route("Store/Order/Index")]
@@ -58,7 +59,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
             {
                 var clientDto = _mapper.Map<ClientDto>(input);
                 await _clientAppService.AddAsync(clientDto);
-                
+
                 var order = _mapper.Map<OrderDto>(input);
                 order.ClientId = _clientAppService.GetLast();
                 await _orderAppService.AddAsync(order);
@@ -70,9 +71,8 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
                 await _orderAppService.AddAsync(order, client.Id);
             }
 
-            var card = JsonSerializer.Deserialize<ShopCard>(ShopCard.Session!.GetString("ShopCard")!);
-            var products = card!.ListShopItems!.ToList();
-            var clubs = card!.ListShopClubs!.ToList();
+            var products = _shopCardAppService.GetShopItems().ShopCard!.ListShopItems!.ToList();
+            var clubs = _shopCardAppService.GetShopItems().ShopCard!.ListShopClubs!.ToList();
             decimal sum = 0;
             var lastOrder = await _orderAppService.GetLast();
 

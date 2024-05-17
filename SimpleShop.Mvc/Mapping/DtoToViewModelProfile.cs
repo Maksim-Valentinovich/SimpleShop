@@ -5,6 +5,7 @@ using SimpleShop.Application.Clubs.Dto;
 using SimpleShop.Application.Coaches.Dto;
 using SimpleShop.Application.Orders.Dto;
 using SimpleShop.Application.Products.Dto;
+using SimpleShop.Application.ShopCard.Dto;
 using SimpleShop.Domain.Entities.Clubs;
 using SimpleShop.Domain.Entities.Orders;
 using SimpleShop.Mvc.Areas.PersonalAccount.ViewModels;
@@ -27,6 +28,7 @@ namespace SimpleShop.Mvc.Mapping
             CreateMap<RegisterViewModel, ClientDto>();
             CreateMap<MakeOrderDto, ClientDto>();
             CreateMap<MakeOrderDto, OrderDto>();
+            CreateMap<ShopCardDto, ShopCardFiveViewModel>();
 
             CreateMap<ClubDto, StartViewModel>()
                 .ForMember(dest => dest.ClubName, opt => opt.MapFrom((src, dest) => src.Name))

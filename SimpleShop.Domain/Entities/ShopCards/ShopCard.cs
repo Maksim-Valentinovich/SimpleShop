@@ -8,52 +8,6 @@ using System.Text.Json;
 
 namespace SimpleShop.Domain.Entities.ShopCards
 {
-    //public class ShopCard : Entity
-    //{
-    //    private readonly SimpleShopContext _context;
-
-    //    public ShopCard(SimpleShopContext context)
-    //    {
-    //        _context = context;
-    //    }
-
-    //    public Guid ShopCardId { get; set; }
-    //    public List<ShopCardItem> ListShopItems { get; set; }
-
-    //    public static ShopCard GetCard(IServiceProvider services)
-    //    {
-    //        ISession? session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
-    //        Guid shopCardId;
-
-    //        if (session.GetString("Id") == null)
-    //        {
-    //            shopCardId = Guid.NewGuid();
-
-    //            session.SetString("Id", shopCardId.ToString());
-    //        }
-
-    //        shopCardId = Guid.Parse(session.GetString("Id"));
-
-    //        return new ShopCard(services.GetService<SimpleShopContext>()) { ShopCardId = shopCardId };
-    //    }
-
-    //    public void AddToCard(Product product)
-    //    {
-    //        _context?.ShopCardItem.Add(new ShopCardItem
-    //        {
-    //            ShopCardId = ShopCardId,
-    //            Product = product,
-    //        });
-    //        _context?.SaveChanges();
-    //    }
-
-    //    public List<ShopCardItem> GetShopItems()
-    //    {
-    //        return _context.ShopCardItem.Where(c => c.ShopCardId == ShopCardId).Include(s => s.Product).ToList();
-    //    }
-    //}
-
     public class ShopCard : Entity
     {
         private static IServiceProvider? Services { get; set; }
@@ -79,7 +33,7 @@ namespace SimpleShop.Domain.Entities.ShopCards
             }
             ShopCard? card = JsonSerializer.Deserialize<ShopCard>(Session.GetString("ShopCard"));
 
-            return new ShopCard() { ListShopItems = card?.ListShopItems , ListShopClubs = card?.ListShopClubs };
+            return new ShopCard() { ListShopItems = card?.ListShopItems, ListShopClubs = card?.ListShopClubs };
         }
 
         public void AddToCard(Product product, Club club)
