@@ -8,6 +8,10 @@ using System.Text.Json;
 
 namespace SimpleShop.Domain.Entities.ShopCards
 {
+    /// <summary>
+    /// Почему оно лежит рядом с моделями бд? Закинуть к сервисам.
+    /// Похоже на костыль под переписку, но надо отдельно обсуждать если будет желание, что ты тут хотел реализовать.Вряд ли это нужно хранить в Сессиях.
+    /// </summary>
     public class ShopCard : Entity
     {
         private static IServiceProvider? Services { get; set; }
@@ -17,11 +21,9 @@ namespace SimpleShop.Domain.Entities.ShopCards
 
         public List<Club>? ListShopClubs {  get; set; }
 
-        public static ShopCard GetCard(IServiceProvider services)
+        public static ShopCard GetCard(IHttpContextAccessor contextAccessor)
         {
-            Services = services;
-
-            Session = Services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            Session = contextAccessor?.HttpContext.Session;
 
             if (Session.GetString("ShopCard") == null)
             {
@@ -67,9 +69,9 @@ namespace SimpleShop.Domain.Entities.ShopCards
 
             ShopCard cardNew = new() { ListShopItems = card.ListShopItems, ListShopClubs = card.ListShopClubs };
 
-            string json = JsonSerializer.Serialize(cardNew);
+            string cardNewJson = JsonSerializer.Serialize(cardNew);
 
-            Session.SetString("ShopCard", json);
+            Session.SetString("ShopCard", cardNewJson);
         }
 
         public List<Product> GetShopItems()

@@ -17,6 +17,7 @@ namespace SimpleShop.Mvc
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // комменты с копипасты тоже нахер
             // Add services to the container.
             builder.Services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>()).AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -36,7 +37,8 @@ namespace SimpleShop.Mvc
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// добавил
             builder.Services.AddScoped(sp => ShopCard.GetCard(sp));// добавил
-            
+
+            // —ервисы можно просто ручками добавить в отдельном методе, и не нужно будет лепить ненужный IApplicationService
             var types = Assembly.GetAssembly(typeof(SimpleShopAppService))!.GetTypes()
                 .Where(x => !x.IsAbstract && x.IsClass && typeof(IApplicationService).IsAssignableFrom(x));
             foreach (var type in types)
@@ -80,6 +82,7 @@ namespace SimpleShop.Mvc
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            // ненужные комменты не оставл€ем в гите, относитс€ ко всем подобным
             app.UseSession();// добавил
 
             app.UseRouting();

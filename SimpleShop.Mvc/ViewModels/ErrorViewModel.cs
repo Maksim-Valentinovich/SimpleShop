@@ -1,4 +1,4 @@
-namespace SimpleShop.Mvc.Models
+namespace SimpleShop.Mvc.Models // Пространство имён не то
 {
     public class ErrorViewModel
     {

@@ -11,7 +11,7 @@ namespace SimpleShop.Domain.Entities.Clients
         public required string Patronymic { get; set; }
 
         [NotMapped]
-        public string FullName => $"{Surname} {Name} {Patronymic}";
+        public string FullName => $"{Surname} {Name} {Patronymic}"; // Бизнес логики в моделлях для маппинга в бд быть не должно
 
         public required string Email { get; set; }
 

@@ -35,7 +35,7 @@ namespace SimpleShop.Mvc.Controllers
                 var client = await _clientAppService.GetAsync(model.Email, model.Password);
                 if (client != null)
                 {
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(model.Email); // аутентификация -> бесполезный коммент
 
                     return RedirectToRoute(new { area = "PersonalAccount", controller = "Home", action = "Index", clientId = client.Id });
                 }
@@ -64,11 +64,11 @@ namespace SimpleShop.Mvc.Controllers
                 var client = await _clientAppService.GetAsync(model.Email);
                 if (client == null)
                 {
-                    // добавляем пользователя в бд
+                    // добавляем пользователя в бд -> бесполезный коммент
                     var clientDto = _mapper.Map<ClientDto>(model);
                     await _clientAppService.AddAsync(clientDto);
 
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(model.Email); // аутентификация -> бесполезный коммент
 
                     return RedirectToAction("Login", "Account");
                 }
@@ -82,9 +82,10 @@ namespace SimpleShop.Mvc.Controllers
             return View(model);
         }
 
+        // Это нужно вынести в сервис. Бизнес логики в контрололлерах быть не должно
         private async Task Authenticate(string userName)
         {
-            // создаем один claim
+            // создаем один claim -> бесполезный коммент, ну такие же сам найдешь дальше
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)

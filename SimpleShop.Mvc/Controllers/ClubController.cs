@@ -19,7 +19,7 @@ namespace SimpleShop.Mvc.Controllers
             _clubAppService = clubAppService;
         }
 
-        [Route("Club/Index")]
+        [Route("Club/Index")] // -> ниже идёт копипаст части Club, нарушаем DRY хоть и не критично, можно это вынести в переменную
         [HttpGet]
         public async Task<IActionResult> Index(int clubId)
         {
