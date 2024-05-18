@@ -1,5 +1,4 @@
 ﻿using SimpleShop.Domain.Entities.ShopCards;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleShop.Mvc.Areas.Store.ViewModels
 {

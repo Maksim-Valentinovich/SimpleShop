@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SimpleShop.Mvc.Areas.Store.ViewModels.ProductInClubViewModel>
+﻿@model IEnumerable<SimpleShop.Mvc.Areas.Store.ViewModels.ProductViewModel>
 
 <div class="list-group">
     @foreach(var club in Model)
     {
-        <button class="choose-club" data-club="@club.ClubId" data-product="@club.ProductId"> @club.ClubName </button>
+        <button class="choose-club" data-club="@club.ClubId" data-product="@club.Id"> @club.ClubName </button>
     }
 </div>
 

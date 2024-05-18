@@ -11,7 +11,7 @@ namespace SimpleShop.Domain.Entities.Clubs
         public required int CityId { get; set; }
 
         [ForeignKey(nameof(CityId))]
-        public required City City { get; set; }
+        public required City City { get; set; } // навигационное свойство 
 
         public TimeSpan InterpreterStart { get; set; }
 

@@ -6,12 +6,12 @@ namespace SimpleShop.Domain.Entities.Products
     {
         public int CategoryId { get; set; }
 
-        [ForeignKey("CategoryId")]
+        [ForeignKey(nameof(CategoryId))]
         public required Category Category { get; set; }
 
         public int ProductId { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey(nameof(ProductId))]
         public required Product Product { get; set; }
     }
 }

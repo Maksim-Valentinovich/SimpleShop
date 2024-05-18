@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SimpleShop.Domain;
-using SimpleShop.Domain.Entities.Clubs;
-using SimpleShop.Domain.Entities.Products;
-using SimpleShop.Domain.Entities.ShopCards;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SimpleShop.Application.ShopCard;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 
@@ -12,12 +9,13 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
     [Area("Store")]
     public class ShopCardController : MvcBaseController
     {
-        private readonly ShopCard _shopCard;
-        private readonly SimpleShopContext _context;
-        public ShopCardController(ShopCard shopCard, SimpleShopContext context)
+        private readonly IMapper _mapper;
+        private readonly IShopCardAppService _shopCardAppService;
+
+        public ShopCardController(IShopCardAppService shopCardAppService, IMapper mapper)
         {
-            _shopCard = shopCard;
-            _context = context;
+            _shopCardAppService = shopCardAppService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -29,12 +27,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public async Task<RedirectToActionResult> AddToCard(int productId, int clubId)
         {
-            Product product = await _context.Products.FirstAsync(p => p.Id == productId);
-
-            Club club = await _context.Clubs.FirstAsync(p => p.Id == clubId);
-
-            _shopCard.AddToCard(product, club);
-
+            await _shopCardAppService.AddProduct(productId, clubId);
             return RedirectToAction("BasketModal"); //убрать
         }
 
@@ -42,8 +35,7 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public IActionResult DeleteProductOnCard(int index)
         {
-            _shopCard.DeleteProduct(index);
-
+            _shopCardAppService.DeleteProduct(index);
             return Ok();
         }
 
@@ -51,32 +43,16 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
         [HttpGet]
         public IActionResult BasketModal()
         {
-            var items = _shopCard.GetShopItems();
-
-            _shopCard.ListShopItems = items;
-
-            return PartialView("_BasketModal", new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            var model = _shopCardAppService.GetShopItems();
+            return PartialView("_BasketModal", _mapper.Map<ShopCardFiveViewModel>(model));
         }
 
         [Route("Store/ShopCard/Product")]
         [HttpGet]
         public IActionResult Product()
         {
-            var items = _shopCard.GetShopItems();
-
-            _shopCard.ListShopItems = items;
-
-            var clubs = _shopCard.GetShopClubs();
-
-            _shopCard.ListShopClubs = clubs;
-
-            return PartialView("_Product", new ShopCardFiveViewModel
-            {
-                ShopCard = _shopCard,
-            });
+            var model = _shopCardAppService.GetShopItems();
+            return PartialView("_Product", _mapper.Map<ShopCardFiveViewModel>(model));
         }
 
     }

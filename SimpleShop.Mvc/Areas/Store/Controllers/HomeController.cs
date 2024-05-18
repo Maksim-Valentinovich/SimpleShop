@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SimpleShop.Domain;
-using SimpleShop.Domain.Entities;
-using SimpleShop.Domain.Migrations;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SimpleShop.Application.Clubs;
+using SimpleShop.Application.Products;
 using SimpleShop.Mvc.Areas.Store.ViewModels;
 using SimpleShop.Mvc.Controllers;
 
@@ -11,60 +10,33 @@ namespace SimpleShop.Mvc.Areas.Store.Controllers
     [Area("Store")]
     public class HomeController : MvcBaseController
     {
-        private readonly SimpleShopContext _context;
+        private readonly IProductAppService _productAppService;
+        private readonly IClubAppService _clubAppService;
+        private readonly IMapper _mapper;
 
-        public HomeController(SimpleShopContext context)
+        public HomeController(IProductAppService productAppService, IMapper mapper, IClubAppService clubAppService)
         {
-            _context = context;
+            _productAppService = productAppService;
+            _mapper = mapper;
+            _clubAppService = clubAppService;
         }
 
         [Route("Store/Home/Index")]
-        [HttpGet("{category}")]
-        public async Task<IActionResult> Index(string category = "Discount")
+        [HttpGet("{categoryId}")]
+        public async Task<IActionResult> Index(int categoryId = 1)
         {
-            var categoryId = await _context.Categories
-                .Where(c => c.Name == category)
-                .Select(c => c.Id)
-                .ToArrayAsync();
-
-            var productIds = await _context.CategoryProducts
-                .Where(c => c.CategoryId == categoryId.First())
-                .Select(c => c.ProductId)
-                .ToArrayAsync();
-
-            var products = await _context.Products
-                .Where(c => productIds.Contains(c.Id))
-                .ToListAsync();
-
-            return View(products.Select(c => new ProductViewModel
-            {
-                Name = c.Name,
-                Description = c.Description,
-                Price = c.Price,
-                CountDay = c.CountDay,
-                CountVisit = c.CountVisit,
-                Id = c.Id,
-            }));
+            var products = await _productAppService.GetAllAsync(categoryId);
+            var models = _mapper.Map<IEnumerable<ProductViewModel>>(products);
+            return View(models);
         }
 
         [Route("Store/Home/ChooseClubModal")]
         [HttpGet("{productId}")]
         public async Task<IActionResult> ChooseClubModal(int productId)
         {
-            var clubIds = await _context.ClubProducts
-                .Where(c => c.ProductId == productId)
-                .Select(c =>c.ClubId)
-                .ToArrayAsync();
-
-            var clubs = await _context.Clubs
-                .Where(c => clubIds.Contains(c.Id))
-                .ToListAsync();
-
-            return PartialView("_ChooseClubModal", clubs.Select(c => new ProductInClubViewModel {
-                ClubId = c.Id,
-                ClubName = c.DisplayName,
-                ProductId = productId,
-            }));
+            var clubs = await _clubAppService.GetClubsFromProductAsync(productId);
+            var models = _mapper.Map<IEnumerable<ProductViewModel>>(clubs);
+            return PartialView("_ChooseClubModal", models);
         }
     }
 }

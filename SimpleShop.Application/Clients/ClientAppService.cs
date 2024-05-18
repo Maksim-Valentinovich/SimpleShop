@@ -2,11 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleShop.Application.Clients.Dto;
 using SimpleShop.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SimpleShop.Domain.Entities.Clients;
 
 namespace SimpleShop.Application.Clients
 {
@@ -16,11 +12,42 @@ namespace SimpleShop.Application.Clients
         {
         }
 
-        public async Task<ClientDto> GetAsync(int id)
+        public async Task<ClientDto> GetAsync(string email)
         {
-            var client = await Context.Clients.FirstAsync(c => c.Id == id);
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(c => c.Email == email);
 
-            return null;
+            return Mapper.Map<ClientDto>(client);
+        }
+
+        public async Task<ClientDto> GetAsync(int clientId)
+        {
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(c => c.Id == clientId);
+
+            return Mapper.Map<ClientDto>(client);
+        }
+
+        public async Task<ClientDto> GetAsync(string email, string password)
+        {
+            var client = await Context.Clients
+                .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+
+            return Mapper.Map<ClientDto>(client);
+        }
+
+        public async Task AddAsync(ClientDto clientDto)
+        {
+            var client = Mapper.Map<Client>(clientDto);
+
+            await Context.Clients.AddAsync(client);
+            await Context.SaveChangesAsync();
+        }
+
+        public int GetLast()
+        {
+            var clientId = Context.Clients.OrderBy(c => c.Id).LastAsync().Id;
+            return clientId;
         }
     }
 }

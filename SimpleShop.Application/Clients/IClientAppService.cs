@@ -1,14 +1,13 @@
 ﻿using SimpleShop.Application.Clients.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleShop.Application.Clients
 {
-    public interface IClientAppService
+    public interface IClientAppService : IApplicationService
     {
-        Task<ClientDto> GetAsync(int id);
+        Task<ClientDto> GetAsync(string email);
+        Task<ClientDto> GetAsync(string email, string password);
+        Task<ClientDto> GetAsync(int clientId);
+        int GetLast();
+        Task AddAsync(ClientDto clientDto);
     }
 }

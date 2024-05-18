@@ -9,7 +9,5 @@
         public required string ClubName { get; set; }
 
         public required string ClubDisplayName { get; set; }
-
-        public string? Chapter {  get; set; }
     }
 }

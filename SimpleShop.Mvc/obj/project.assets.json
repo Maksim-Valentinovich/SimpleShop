@@ -1076,6 +1076,20 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
+      "SimpleShop.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "SimpleShop.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SimpleShop.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SimpleShop.Application.dll": {}
+        }
+      },
       "SimpleShop.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2781,6 +2795,11 @@
         "version.txt"
       ]
     },
+    "SimpleShop.Application/1.0.0": {
+      "type": "project",
+      "path": "../SimpleShop.Application/SimpleShop.Application.csproj",
+      "msbuildProject": "../SimpleShop.Application/SimpleShop.Application.csproj"
+    },
     "SimpleShop.Domain/1.0.0": {
       "type": "project",
       "path": "../SimpleShop.Domain/SimpleShop.Domain.csproj",
@@ -2795,7 +2814,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Node.js >= 5.3.0",
       "RestSharp >= 110.2.0",
-      "SimpleShop.Domain >= 1.0.0",
+      "SimpleShop.Application >= 1.0.0",
       "jQuery >= 3.7.1"
     ]
   },
@@ -2826,8 +2845,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj": {
-              "projectPath": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Domain\\SimpleShop.Domain.csproj"
+            "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Application\\SimpleShop.Application.csproj": {
+              "projectPath": "C:\\Users\\Alexandr\\Desktop\\Изменения\\SompleShop.Changes\\SimpleShop\\SimpleShop.Application\\SimpleShop.Application.csproj"
             }
           }
         }

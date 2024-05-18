@@ -5,10 +5,12 @@ namespace SimpleShop.Mvc.ViewModels
     public class ClubViewModel
     {
         public int Id { get; set; }
-        [Required]
+
         public string? Name { get; set; }
 
         public required string DisplayName { get; set; }
+
+        public string? CityName { get; set; }
 
         public TimeSpan InterpreterStart { get; set; }
 
@@ -17,8 +19,6 @@ namespace SimpleShop.Mvc.ViewModels
         public TimeSpan WeekendsStart { get; set; }
 
         public TimeSpan WeekendsFinish { get; set; }
-
-        public string? CityName { get; set; }
 
         public string? Address { get; set; }
 

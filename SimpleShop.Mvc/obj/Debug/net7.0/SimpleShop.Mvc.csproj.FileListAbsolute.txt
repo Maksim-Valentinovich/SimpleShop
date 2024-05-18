@@ -380,3 +380,5 @@ C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\Simpl
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\obj\Debug\net7.0\ref\SimpleShop.Mvc.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\SimpleShop.Application.dll
+C:\Users\Alexandr\Desktop\Изменения\SompleShop.Changes\SimpleShop\SimpleShop.Mvc\bin\Debug\net7.0\SimpleShop.Application.pdb

@@ -7,7 +7,7 @@ namespace SimpleShop.Domain.Entities.Orders
     {
         public int ClientId { get; set; }
 
-        [ForeignKey("ClientId")]
+        [ForeignKey(nameof(ClientId))]
         public Client? Client { get; set; }
 
         public bool IsOnline { get; set; }
